@@ -1,0 +1,869 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自定义表单,JS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="一、瞎扯 之前公司放我一个礼拜写了一个高度定制化，功能完善的自定义表单，然而因为去年9月份，硬盘，u盘，存储卡接连坏掉，代码就没了，不过也多亏这个，避免了日后的官司问题（开个玩笑，此处捂着嘴偷笑），最近一直在恢复之前写过的一些重要的代码，因此顺便更深入地折腾一下这个问题，写一些不会惹官司的demo（这个还真的得严肃对待=_=||）。 二、JS拖拽 2.1原理 拖拽的过程其实只有三个：按下，移动，放">
+<meta name="keywords" content="自定义表单,JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义表单（一）">
+<meta property="og:url" content="http://csuncle.com/2017/06/11/自定义表单（一）/index.html">
+<meta property="og:site_name" content="会打代码的扫地王大爷">
+<meta property="og:description" content="一、瞎扯 之前公司放我一个礼拜写了一个高度定制化，功能完善的自定义表单，然而因为去年9月份，硬盘，u盘，存储卡接连坏掉，代码就没了，不过也多亏这个，避免了日后的官司问题（开个玩笑，此处捂着嘴偷笑），最近一直在恢复之前写过的一些重要的代码，因此顺便更深入地折腾一下这个问题，写一些不会惹官司的demo（这个还真的得严肃对待=_=||）。 二、JS拖拽 2.1原理 拖拽的过程其实只有三个：按下，移动，放">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/685455-2e17975c96bc7ef2?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-08-02T01:44:38.654Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义表单（一）">
+<meta name="twitter:description" content="一、瞎扯 之前公司放我一个礼拜写了一个高度定制化，功能完善的自定义表单，然而因为去年9月份，硬盘，u盘，存储卡接连坏掉，代码就没了，不过也多亏这个，避免了日后的官司问题（开个玩笑，此处捂着嘴偷笑），最近一直在恢复之前写过的一些重要的代码，因此顺便更深入地折腾一下这个问题，写一些不会惹官司的demo（这个还真的得严肃对待=_=||）。 二、JS拖拽 2.1原理 拖拽的过程其实只有三个：按下，移动，放">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/685455-2e17975c96bc7ef2?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://csuncle.com/2017/06/11/自定义表单（一）/"/>
+
+
+
+
+
+  <title>自定义表单（一） | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6a885c4fa76edbbfd2bea3f856135042";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">会打代码的扫地王大爷</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">CS Uncle</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="William Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">自定义表单（一）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T05:57:08+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/11/自定义表单（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一、瞎扯</p>
+<p>之前公司放我一个礼拜写了一个高度定制化，功能完善的自定义表单，然而因为去年9月份，硬盘，u盘，存储卡接连坏掉，代码就没了，不过也多亏这个，避免了日后的官司问题（开个玩笑，此处捂着嘴偷笑），最近一直在恢复之前写过的一些重要的代码，因此顺便更深入地折腾一下这个问题，写一些不会惹官司的demo（这个还真的得严肃对待=_=||）。</p>
+<p>二、JS拖拽</p>
+<p>2.1原理</p>
+<p>拖拽的过程其实只有三个：按下，移动，放开</p>
+<p>分别对应JS中的三个事件：</p>
+<p>——需拖拽部分的onmousedown</p>
+<p>记录下点击时的鼠标位置信息，以及此时点击的节点的位置信息。</p>
+<p>绑定document的onmousemove和onmouseup事件。</p>
+<p>——Document的onmousemove</p>
+<p>记录当前鼠标的位置信息，然后计算出位移值，让刚才选中的节点的坐标的left和top分别加上位移值即可移动到当前位置。</p>
+<p>——Document的onmouseup</p>
+<p>取消document的onmousemove和onmouseup事件。</p>
+<p>然后就完成了一次拖拽。</p>
+<p>2.2 JS的setCapture和releaseCapture</p>
+<pre><code>//    if (target.setCapture)
+
+//    {
+
+//        target.setCapture();
+
+//    }
+//    else if (window.captureEvents)
+
+//    {
+
+//        window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
+
+//    }
+</code></pre><p>我看网上的很多拖拽教程都是用了这两个函数，但是去掉之后依然很正常，就去查询了一下资料，谷歌了一下，在MDN上找到了API：</p>
+<pre><code>element.setCapture(retargetToElement);
+
+retargetToElement：
+
+If true, all events are targeted directly to this element;if false, events can also fire at descendants of this element.
+
+参数retargetToElement：如果为true，则所有的事件将直接导向这个元素，如果为false，则同时也将指向派生自这个元素的元素（子元素）
+
+function：Callthismethod during the handling of a mousedown event to retarget all mouse events tothiselement until the mouse button is released or document.releaseCapture() is called.
+
+功能：在mousedown绑定的函数中调用这个函数将重定向所有鼠标事件到这个元素直到鼠标被释放或者调用了document.releaseCapture()
+
+因为在这里我绑定的是document的onmousemove和onmouseup，整个页面中的鼠标事件也能得到响应，拖动速度快了，鼠标超出了拖拽元素依然能得到响应，因此setCapture其实也不需要。
+</code></pre><p>2.3 移动算法</p>
+<p>原先采用的算法是</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/685455-2e17975c96bc7ef2?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请输入图片描述"></p>
+<pre><code>黑色部分是浏览器页面，白色部分是拖拽元素，棕色部分是点击的圆点，黄色部分是是鼠标点击处在浏览器上的坐标位置（X，Y），红色部分则是鼠标点击处在拖拽元素中的偏移量（x,y）,因此实际上要设置的top和left值是(X-x,Y-y),这里稍后还得普及一下各种位置信息的区别以及获取方法，不过这种方法的效果并不是很理想，所以就还整了新的方法，在mousedown时记录鼠标位置信息，然后在mousemove中，记录鼠标位移的变化值，把值直接加在拖拽元素的坐标上面就好了。
+</code></pre><p>2.4 区分offsetX layerX PageX clientX 值</p>
+<p>offsetX:</p>
+<p>IE特有（新版本浏览器 除了ff都支持）,鼠标相比较于触发事件的元素的位置,以元素盒子模型的内容区域的左上角为参考点,如果有boder,可能出现负值。</p>
+<p>layerX:</p>
+<p>FF特有,鼠标相比较于当前坐标系的位置,即如果触发元素没有设置绝对定位或相对定位,以页面为参考点,如果有,将改变参考坐标系,从触发元素盒子模型的border区域的左上角为参考点，</p>
+<p>也就是当触发元素设置了相对或者绝对定位后,layerX和offsetX就幸福地生活在一起^-^,几乎相等,唯一不同就是一个从border为参考点,一个以内容为参考点</p>
+<p>PageX和clientX ,这个两个比较容易搞混,</p>
+<p>PageX:鼠标在页面上的位置,从页面左上角开始,即是以页面为参考点,不随滑动条移动而变化</p>
+<p>clientX:鼠标在页面上可视区域的位置,从浏览器可视区域左上角开始,即是以浏览器的可视窗口为参考点,随滑动条移动 而变化.</p>
+<p>IE中没有PageX，解决办法：</p>
+<p>PageY=clientY+scrollTop-clientTop;</p>
+<p>页面上的位置=可视区域位置+页面滚动条切去高度-自身border高度</p>
+<p>三、源码</p>
+<p><a href="https://github.com/wlmnzf/javascript-train/tree/master/customForm" target="_blank" rel="external">https://github.com/wlmnzf/javascript-train/tree/master/customForm</a><br>四、感谢</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setCapture" target="_blank" rel="external">1.MDN-Element.setCapture()</a></p>
+<p><a href="http://blog.csdn.net/hdchangchang/article/details/8443237" target="_blank" rel="external">2.各个浏览器中鼠标位置的属性 offsetX layerX PageX clientX （自由拖动框，防止文字选中）</a></p>
+<p><a href="http://www.zhangxinxu.com/wordpress/2010/03/javascript%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C/" target="_blank" rel="external">3.JavaScript实现最简单的拖拽效果</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/qrcode.jpg" alt="William Wang wechat" style="width: 200px; max-width: 100%;"/>
+    <div>Welcome！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>I'm happy it's useful to you!</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/weixin.jpg" alt="William Wang WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/qq.jpg" alt="William Wang Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义表单-JS/" rel="tag"># 自定义表单,JS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/11/自定义表单（二）/" rel="prev" title="自定义表单（二）">
+                自定义表单（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="William Wang" />
+          <p class="site-author-name" itemprop="name">William Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlmnzf" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wlmnzf" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wlmnzf" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/wlmnzf" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">William Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "d3fcd82d4a67415cb3568053e5741356",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
