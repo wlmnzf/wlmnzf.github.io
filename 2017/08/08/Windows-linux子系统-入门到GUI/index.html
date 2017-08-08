@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="自定义表单,HTML5," />
+  <meta name="keywords" content="WSL,Windows,子系统,Linux," />
 
 
 
@@ -93,19 +93,19 @@
 
 
 
-<meta name="description" content="一、实现的功能   1、拖拽插入表单元素，从右边拖拽如左边的表单区   2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除   3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置 二、关键部分实现思路 2.1拖拽插入 1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就">
-<meta name="keywords" content="自定义表单,HTML5">
+<meta name="description" content="##一、安装 1.1、组件安装Windows 10中默认并没有安装子系统组件，我们需要安装它  控制面板-&amp;gt;程序-&amp;gt;程序与功能-&amp;gt;启用和关闭Windows功能-&amp;gt;勾选适用于Linux的Windows子系统Beta，确定即可安装。  1.2、开发者权限开启 设置-&amp;gt;更新和安全-&amp;gt;针对开发人员-&amp;gt;选中 开发人员模式  1.3、安装打开 命令提示符，输入bash">
+<meta name="keywords" content="WSL,Windows,子系统,Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义表单（完）">
-<meta property="og:url" content="http://csuncle.com/2017/06/11/自定义表单（完）/index.html">
+<meta property="og:title" content="Windows linux子系统--入门到GUI">
+<meta property="og:url" content="http://csuncle.com/2017/08/08/Windows-linux子系统-入门到GUI/index.html">
 <meta property="og:site_name" content="会打代码的扫地王大爷">
-<meta property="og:description" content="一、实现的功能   1、拖拽插入表单元素，从右边拖拽如左边的表单区   2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除   3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置 二、关键部分实现思路 2.1拖拽插入 1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/685455-4e08de27926deac9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-02T01:44:38.655Z">
+<meta property="og:description" content="##一、安装 1.1、组件安装Windows 10中默认并没有安装子系统组件，我们需要安装它  控制面板-&amp;gt;程序-&amp;gt;程序与功能-&amp;gt;启用和关闭Windows功能-&amp;gt;勾选适用于Linux的Windows子系统Beta，确定即可安装。  1.2、开发者权限开启 设置-&amp;gt;更新和安全-&amp;gt;针对开发人员-&amp;gt;选中 开发人员模式  1.3、安装打开 命令提示符，输入bash">
+<meta property="og:image" content="http://img.blog.csdn.net/20170807075233673?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-08-08T15:40:25.301Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自定义表单（完）">
-<meta name="twitter:description" content="一、实现的功能   1、拖拽插入表单元素，从右边拖拽如左边的表单区   2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除   3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置 二、关键部分实现思路 2.1拖拽插入 1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/685455-4e08de27926deac9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="Windows linux子系统--入门到GUI">
+<meta name="twitter:description" content="##一、安装 1.1、组件安装Windows 10中默认并没有安装子系统组件，我们需要安装它  控制面板-&amp;gt;程序-&amp;gt;程序与功能-&amp;gt;启用和关闭Windows功能-&amp;gt;勾选适用于Linux的Windows子系统Beta，确定即可安装。  1.2、开发者权限开启 设置-&amp;gt;更新和安全-&amp;gt;针对开发人员-&amp;gt;选中 开发人员模式  1.3、安装打开 命令提示符，输入bash">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170807075233673?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://csuncle.com/2017/06/11/自定义表单（完）/"/>
+  <link rel="canonical" href="http://csuncle.com/2017/08/08/Windows-linux子系统-入门到GUI/"/>
 
 
 
 
 
-  <title>自定义表单（完） | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Windows linux子系统--入门到GUI | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -279,7 +279,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（完）/">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/08/08/Windows-linux子系统-入门到GUI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
@@ -296,7 +296,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">自定义表单（完）</h2>
+          <h2 class="post-title" itemprop="name headline">Windows linux子系统--入门到GUI</h2>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T05:57:32+08:00">
-                2017-06-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-08T23:21:35+08:00">
+                2017-08-08
               </time>
             
 
@@ -327,7 +327,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/06/11/自定义表单（完）/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2017/08/08/Windows-linux子系统-入门到GUI/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -353,22 +353,34 @@
       
 
       
-        <p>一、实现的功能</p>
-<p>  1、拖拽插入表单元素，从右边拖拽如左边的表单区</p>
-<p>  2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除</p>
-<p>  3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置</p>
-<p>二、关键部分实现思路</p>
-<p>2.1拖拽插入<br><img src="http://upload-images.jianshu.io/upload_images/685455-4e08de27926deac9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请输入图片描述"></p>
-<p>1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就算完成准备工作了</p>
-<p>2、在ondragover中，因为要显示一根线来提示用户这个正在拖拽的表单元素会被放在哪里，因此就需要计算</p>
-<p>   这个黑色的就是浏览器页面，白色的是表单元素调用getBoundingClientRect()获取的最小覆盖矩形区，他会返回一个对象，其中top表示白色部分的距离（上边界到浏览器顶部的距离），bottom表示黄色线 距离。我们可以获取鼠标在浏览器页面上的坐标，然后判断鼠标正在哪个表单元素里。然后再对这个元素对半分，在粉色上面部分，则对其上边界标记为蓝色，否则就是下部分标记为蓝色。</p>
-<p>3、ondrop中，根据上一步判断的位置，放置拖拽的元素，如果是新增，则克隆一份，再插入，是替换的话则直接插进去就可以了。</p>
-<p>2.2拖拽删除</p>
-<p>  其实原理差不多，只不过在ondrop中绑定的函数中，是把正在拖拽的那个元素删掉就可以了。代码中有很多注释，这里就不一一讲解了。</p>
-<p>3、代码</p>
+        <p>##一、安装</p>
+<h4 id="1-1、组件安装"><a href="#1-1、组件安装" class="headerlink" title="1.1、组件安装"></a>1.1、组件安装</h4><p>Windows 10中默认并没有安装子系统组件，我们需要安装它</p>
 <blockquote>
-<p><a href="https://github.com/wlmnzf/javascript-train/tree/master/customForm" target="_blank" rel="external">https://github.com/wlmnzf/javascript-train/tree/master/customForm</a></p>
+<p>控制面板-&gt;程序-&gt;程序与功能-&gt;启用和关闭Windows功能-&gt;勾选适用于Linux的Windows子系统Beta，确定即可安装。</p>
 </blockquote>
+<h4 id="1-2、开发者权限开启"><a href="#1-2、开发者权限开启" class="headerlink" title="1.2、开发者权限开启"></a>1.2、开发者权限开启</h4><blockquote>
+<p>设置-&gt;更新和安全-&gt;针对开发人员-&gt;选中 开发人员模式</p>
+</blockquote>
+<h4 id="1-3、安装"><a href="#1-3、安装" class="headerlink" title="1.3、安装"></a>1.3、安装</h4><p>打开 命令提示符，输入bash进行安装，但是比较慢，建议挂载 V P N进行下载。</p>
+<h2 id="二、常见功能使用"><a href="#二、常见功能使用" class="headerlink" title="二、常见功能使用"></a>二、常见功能使用</h2><blockquote>
+<p>Tips:如果你的Windows是正式版的，并没有通过快速更新到Windows秋季创意者版本，那么你的ubuntu版本是14.04版本的。</p>
+</blockquote>
+<h4 id="2-1、更换源"><a href="#2-1、更换源" class="headerlink" title="2.1、更换源"></a>2.1、更换源</h4><p>此处采用@littlemonsters的方法，将其更换为阿里云的源，否则不仅速度慢，而且有些源中的软件包版本实在是低下，会有很多问题比如Nodjs安装。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak #备份</div><div class="line">sudo vim /etc/apt/sources.list #修改</div></pre></td></tr></table></figure></p>
+<p>将阿里云的源复制进去<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update #更新列表</div></pre></td></tr></table></figure>
+<h4 id="2-2、常见使用方法"><a href="#2-2、常见使用方法" class="headerlink" title="2.2、常见使用方法"></a>2.2、常见使用方法</h4><h5 id="2-2-1-启动"><a href="#2-2-1-启动" class="headerlink" title="2.2.1.启动"></a>2.2.1.启动</h5><p>使用 <figure class="highlight plain"><figcaption><span>即可在当前目录启动linux</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">##### 2.2.2.重装  </div><div class="line">有的时候linux被我们玩坏了，大环境结果全乱掉了，最好的办法就是重装</div></pre></td></tr></table></figure></p>
+<p>lxrun /uninstall    卸载linux子系统<br>lxrun /install        安装linux子系统<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">## 三、显示GUI</div><div class="line">##### 我们只有一个命令行，看起来就像连接服务器的shell，那万一我们需要运行我们的桌面窗口程序呢？国外大神们当然已经折腾除了方法。</div><div class="line"></div><div class="line">#### 3.1、安装VcXsrv</div><div class="line"></div><div class="line">&gt; 下载地址:https://sourceforge.net/projects/vcxsrv/</div><div class="line"></div><div class="line">安装以后会有两个程序，分别是XLaunch和VcXsrv，它们可以用来远程访问linux。所以其实在这里就是利用它们来访问命令行内的linux。</div><div class="line"></div><div class="line">#### 3.2、Linux内安装桌面</div></pre></td></tr></table></figure></p>
+<p>sudo apt-get install ubuntu-desktop<br>sudo apt-get install unity<br>sudo apt-get install compizconfig-settings-manager<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">接着配置显示方式</div></pre></td></tr></table></figure></p>
+<p>cd ~<br>sudo vim .bashrc<br>把export DISPLAY=:0.0复制进去<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 3.3、配置compiz</div><div class="line">1. 打开刚才安装的XLaunch</div><div class="line"></div><div class="line">2. 命令行输入```sudo ccsm```进入显示界面，这里和后面的打开compiz建议用管理员权限，理论上不加管理员也可以，但是本人在使用过程中出了不少奇怪的问题。</div><div class="line"></div><div class="line">3. 如图所示勾选上需要安装的插件</div><div class="line">![这里写图片描述](http://img.blog.csdn.net/20170807074020805?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)</div><div class="line"></div><div class="line">![这里写图片描述](http://img.blog.csdn.net/20170807074221090?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)</div><div class="line">![这里写图片描述](http://img.blog.csdn.net/20170807074239398?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)</div><div class="line">   </div><div class="line">  </div><div class="line">   点击close关闭即可。</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">##### PS：如果遇到配置选项无法保存的情况，可尝试以下方法</div><div class="line"></div><div class="line">1. 安装compizconfig-backend-gconf</div></pre></td></tr></table></figure></p>
+<p>sudo apt-get install compizconfig-backend-gconf<br>```</p>
+<ol>
+<li><p>进入CCSM-&gt;Preferences,将Backend改为Gsettings Configuration Backend，并且勾选Enable Intergration into the desktop environment </p>
+</li>
+<li><p>勾选插件，如果遇到冲突，则把冲突的插件关闭即可（确保上图的几个插件勾选，别的可以关闭，即可）</p>
+</li>
+</ol>
+<h4 id="3-4、开启桌面"><a href="#3-4、开启桌面" class="headerlink" title="3.4、开启桌面"></a>3.4、开启桌面</h4><p>输入<code>sudo compiz</code> 不出意外的话即可在XLaunch上看到桌面的真正面目了。<br><img src="http://img.blog.csdn.net/20170807075233673?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>这里如果不用sudo,在我这里就是不加载插件，也没有任何报错提示，就是这么吓人。</p>
 
       
     </div>
@@ -424,7 +436,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/自定义表单-HTML5/" rel="tag"># 自定义表单,HTML5</a>
+            <a href="/tags/WSL-Windows-子系统-Linux/" rel="tag"># WSL,Windows,子系统,Linux</a>
           
         </div>
       
@@ -437,8 +449,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/11/自定义表单（二）/" rel="next" title="自定义表单（二）">
-                <i class="fa fa-chevron-left"></i> 自定义表单（二）
+              <a href="/2017/07/03/机器学习之梯度下降法数学推导-分类/" rel="next" title="机器学习之梯度下降法数学推导--分类">
+                <i class="fa fa-chevron-left"></i> 机器学习之梯度下降法数学推导--分类
               </a>
             
           </div>
@@ -446,10 +458,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/13/基于tensorflow的MNIST手写字识别（一）-白话卷积神经网络模型/" rel="prev" title="基于tensorflow的MNIST手写字识别（一）--白话卷积神经网络模型">
-                基于tensorflow的MNIST手写字识别（一）--白话卷积神经网络模型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -521,8 +529,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -613,6 +630,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1、组件安装"><span class="nav-number">1.</span> <span class="nav-text">1.1、组件安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2、开发者权限开启"><span class="nav-number">2.</span> <span class="nav-text">1.2、开发者权限开启</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3、安装"><span class="nav-number">3.</span> <span class="nav-text">1.3、安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、常见功能使用"><span class="nav-number"></span> <span class="nav-text">二、常见功能使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1、更换源"><span class="nav-number">1.</span> <span class="nav-text">2.1、更换源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2、常见使用方法"><span class="nav-number">2.</span> <span class="nav-text">2.2、常见使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-1-启动"><span class="nav-number">2.1.</span> <span class="nav-text">2.2.1.启动</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4、开启桌面"><span class="nav-number">3.</span> <span class="nav-text">3.4、开启桌面</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
