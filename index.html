@@ -287,6 +287,387 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="William Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/" itemprop="url">【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-20T15:24:49+08:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Paper/" itemprop="url" rel="index">
+                    <span itemprop="name">Paper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于计算核芯和电子商务的兴起，有必要在硬件层面保护我们的数据安全，目前面临的主要威胁是来自内存的攻击，包括时间和空间上两方面的侵入，团队制造出了一个名为Shakti-T的轻量级安全扩展芯片来解决这些问题，本处理器仅使用194个LUTs以及2197个触发器。</p>
+<h4 id="二、攻击类型"><a href="#二、攻击类型" class="headerlink" title="二、攻击类型"></a>二、攻击类型</h4><p>刚刚提到了基于内存的攻击</p>
+<pre><code>1. 基于空间上的攻击 -指针访问了它不允许被访问的地方。
+   比较著名的例子有buffer-overflow，blaster-worm以及用于DDoS的slammer worm,安卓的Root也是利用了这个原理.
+2. 基于时间上的攻击 -指针访问了已经被释放的地方。
+</code></pre><h4 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前人对这两个问题提出了许多解决方案，为了解决问题一，有人提出了Lock and Key的方案，或者</p>
+<pre><code>- Stack Canaries,
+- Encryption of The Code Pointer,
+- Rearranging argument locations,
+- 以及the Address Space Layout Randomization(ASLR)
+</code></pre><p>等方法，而对于问题二，也有人提出富指针的方案，其中ASLR是抵御ROP(Return Oriented Programming)问题最好的方法，但是它依然存在一些问题，攻击者可以通过改变控制流的方法来绕过它们的检查。同时富指针方案也存在着高开销，缺乏稳定性等问题，即便有硬件层面的解决方案，当多个指针同时存在时也会失效。</p>
+<h4 id="四、富指针（Fat-Pointer）"><a href="#四、富指针（Fat-Pointer）" class="headerlink" title="四、富指针（Fat-Pointer）"></a>四、富指针（Fat-Pointer）</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所谓富指针就是指，在原先指针的数据结构上再加上基地址和限长两个元素，每次为指针分配一个地址空间的时候，都会自动写入这块地址的起始位置和长度，而每次访问指针时，都会检查是否越界，以此来防止指针在释放后再次读取的问题.但是传统的方法有一个十分遗憾的问题，假如存在{P1，P2…..Pn}n个指针，它们同时指向同一个空间，当释放其中一个以后，由于是各存一份，访问其它指针依然会认为是正常访问，但实际上已经出现了空间上的攻击。</p>
+<h4 id="五、提出的方案"><a href="#五、提出的方案" class="headerlink" title="五、提出的方案"></a>五、提出的方案</h4><p> 我们使用的是基于硬件的富指针:</p>
+<ol>
+<li>基地址和边界统一存放于一个PLM（Pointer Limits Memory），而PLM的地址存于PLBR寄存器</li>
+<li>每一个指针对应一个ptr_id</li>
+<li>每次调用指针时使用ptr_id调取对应的基地址和边界，<br><img src="http://img.blog.csdn.net/20171020205034999?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="表格"></li>
+</ol>
+<p>我们使用如图表格来作为缓存，</p>
+<ol>
+<li>其中左边的GPR（General Purpose Register）分两个部分一个是Tag bits，用于标记是数据还是指针，另一部分是寄存器的数值。</li>
+<li>右边的BnBIndex和BnBLookUp包含在一个名为BnBCache的寄存器中，BnBIndex中的index表示BnBLookUp的位置，有效位V的值若为1，则表示可以从BnBLookUp中取到值，若为0，则说明需要从内存中去取所需的信息，当BnBLookUp中的信息被更新时，BnBindex中的信息也会被同步更新。BnBLookUp中的有效位V为1则表示它目前可用，为0则表示它可能被释放了。当BnBLookUp中的空间不足，则用LRU(最近最少使用)算法进行替换。</li>
+</ol>
+<h4 id="六、副作用及解决方案"><a href="#六、副作用及解决方案" class="headerlink" title="六、副作用及解决方案"></a>六、副作用及解决方案</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如有的时候调用函数，某个寄存器被push了，若此时正好这个寄存器被替换出去，但是当数据再次被pop的时候那个寄存器已经是无效的了。于是需要新设计一个BnBStack（Base and Bound Stack）用于专门存放暂时被push的指针ptr_id.</p>
+<h4 id="七、结果"><a href="#七、结果" class="headerlink" title="七、结果"></a>七、结果</h4><ol>
+<li>安全性：还是同样的问题，此处有（P1，P2….Pn）n个指针，若它们指向同一个地址，其中一个释放以后，BnBLookUp中有效位被置0，其它指针再访问它时，就可以得知它是无效的消息。</li>
+<li>节约内存 :（P1，P2….Pn）n个指针,若他们指向同一个地址，则需要存n个ptr_id和1个base，一个bound，共n+2个空间。但传统的方法，每一个指针都需要存一份，则需要2n个空间。但如果这些指针分别指向不同的空间，则本方案更耗费一些空间。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/09/28/登录模块使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="William Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/28/登录模块使用/" itemprop="url">登录模块使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-28T14:58:47+08:00">
+                2017-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/28/登录模块使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/28/登录模块使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-将jsp页面的header修改成如下代码所示"><a href="#1-将jsp页面的header修改成如下代码所示" class="headerlink" title="1. 将jsp页面的header修改成如下代码所示"></a>1. 将jsp页面的header修改成如下代码所示</h3><ul>
+<li>用户信息会在这段前端代码中给出，也会存一份在cookie中，但是因为cookie开启了HttpOnly，因此js将提取不到cookie.</li>
+</ul>
+<h5 id="以下为前端jsp页面使用的变量"><a href="#以下为前端jsp页面使用的变量" class="headerlink" title="以下为前端jsp页面使用的变量"></a>以下为前端jsp页面使用的变量</h5><ul>
+<li>“_USER_NAME”:用户名</li>
+<li>“_TOKEN”：用户Token值</li>
+<li>“_TYPE”：用户类型</li>
+<li>“_TYPE_TEXT”:类型的文本信息</li>
+<li>“_HEAD_URL”：头像地址</li>
+</ul>
+<h5 id="以下为为cookie值"><a href="#以下为为cookie值" class="headerlink" title="以下为为cookie值"></a>以下为为cookie值</h5><ul>
+<li>“account”：账号</li>
+<li>“type”：用户权限类型</li>
+<li>“token”：用户登陆token</li>
+</ul>
+<h5 id="以下为jsp代码"><a href="#以下为jsp代码" class="headerlink" title="以下为jsp代码"></a>以下为jsp代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;header&gt;</div><div class="line">    &lt;div class=&quot;container-fluid&quot;&gt;</div><div class="line">        &lt;div class=&quot;navbar-header&quot;&gt;</div><div class="line">            &lt;img class=&quot;brand&quot; src=&quot;&lt;%=path%&gt;/img/logo.png&quot; alt=&quot;&quot;&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div class=&quot;collapse navbar-collapse&quot;&gt;</div><div class="line">            &lt;ul class=&quot;nav navbar-nav navbar-right login-ul&quot;&gt;</div><div class="line">                &lt;li&gt;</div><div class="line">                    &lt;div class=&quot;login-info&quot;&gt;</div><div class="line">                        &lt;div class=&quot;media-left media-top&quot;&gt;</div><div class="line">                            &lt;a href=&quot;#&quot;&gt;</div><div class="line">                            &lt;img class=&quot;media-object&quot; src=&quot;$&#123;_HEAD_URL&#125;&quot; alt=&quot;...&quot;&gt;</div><div class="line">                            &lt;/a&gt;</div><div class="line">                        &lt;/div&gt;</div><div class="line">                        &lt;div class=&quot;media-body&quot;&gt;</div><div class="line">                            &lt;h4 class=&quot;media-heading&quot; data-type=&quot;$&#123;_TYPE&#125;&quot;&gt;&lt;span class=&quot;label label-primary&quot;&gt;$&#123;_TYPE_TEXT&#125;&lt;/span&gt;&lt;/h4&gt;</div><div class="line">                            &lt;p class=&quot;login-name&quot; data-token=&quot;$&#123;_TOKEN&#125;&quot;&gt;$&#123;_USER_NAME&#125;&lt;/p&gt;</div><div class="line">                        &lt;/div&gt;</div><div class="line">                    &lt;/div&gt;</div><div class="line">                &lt;/li&gt;</div><div class="line">                &lt;li&gt;</div><div class="line">                    &lt;div class=&quot;options&quot;&gt;</div><div class="line">                        &lt;%--&lt;a class=&quot;option&quot; href=&quot;#&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-envelope&quot;&gt;&lt;/span&gt;&lt;/a&gt;--%&gt;</div><div class="line">                        &lt;a class=&quot;option&quot; id=&quot;exit&quot; href=&quot;&lt;%=path%&gt;/exit&quot;&gt;退出&lt;/a&gt;</div><div class="line">                    &lt;/div&gt;</div><div class="line">                &lt;/li&gt;</div><div class="line">            &lt;/ul&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/header&gt;</div></pre></td></tr></table></figure>
+<h3 id="2-在对应controller中进行用户认证，包括登录认证和权限认证"><a href="#2-在对应controller中进行用户认证，包括登录认证和权限认证" class="headerlink" title="2. 在对应controller中进行用户认证，包括登录认证和权限认证"></a>2. 在对应controller中进行用户认证，包括登录认证和权限认证</h3><h4 id="注意控制器中添加三个参数"><a href="#注意控制器中添加三个参数" class="headerlink" title="注意控制器中添加三个参数"></a>注意控制器中添加三个参数</h4><ul>
+<li><p>Map&lt;String, Object&gt;map</p>
+<blockquote>
+<p>用于将用户信息传递到前端</p>
+</blockquote>
+</li>
+<li><p>HttpServletRequest request</p>
+<blockquote>
+<p>用于提取cookie</p>
+</blockquote>
+</li>
+<li><p>RedirectAttributes attr</p>
+<blockquote>
+<p>用于登录失效时跳转后给出提示消息</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">//给出示例，这是永用于显示表单管理页面的控制器</div><div class="line"></div><div class="line"> @RequestMapping(&quot;/formManage&quot;)</div><div class="line">    private String customForm(Map&lt;String, Object&gt; map,HttpServletRequest request,RedirectAttributes attr)</div><div class="line">    &#123;</div><div class="line">       //传到前端页面的变量</div><div class="line">        map.put(&quot;curPage&quot;,1);</div><div class="line">//开始认证</div><div class="line">        int res=comm.Login.validCheck(request,2,attr,map);</div><div class="line">        if(res==0) &#123;</div><div class="line">             // 认证成功</div><div class="line">             // do....</div><div class="line">            return &quot;formManage&quot;;</div><div class="line">        &#125;</div><div class="line">        else</div><div class="line">        &#123;</div><div class="line">          return comm.Login.errRedirect(attr,res);</div><div class="line">        &#125;</div><div class="line"> //结束</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="3-一些API函数介绍"><a href="#3-一些API函数介绍" class="headerlink" title="3. 一些API函数介绍"></a>3. 一些API函数介绍</h3><h4 id="3-1-发生错误时进行跳转"><a href="#3-1-发生错误时进行跳转" class="headerlink" title="3.1 发生错误时进行跳转"></a>3.1 发生错误时进行跳转</h4><p><code>public  static String errRedirect(RedirectAttributes attr,int res)</code></p>
+<ul>
+<li>RedirectAttributes：跳转时传参数使用</li>
+<li><p>int：错误类型</p>
+<blockquote>
+<p>   0:OK</p>
+<pre><code>1:Login failed
+2:Auth failed
+</code></pre></blockquote>
+</li>
+<li><p>return: 跳转到首页</p>
+</li>
+</ul>
+<h4 id="3-2-登陆有效性检测（重载函数）"><a href="#3-2-登陆有效性检测（重载函数）" class="headerlink" title="3.2 登陆有效性检测（重载函数）"></a>3.2 登陆有效性检测（重载函数）</h4><p><code>public  static int validCheck(HttpServletRequest request,int authType,RedirectAttributes attr)</code></p>
+<p><code>public  static int validCheck(HttpServletRequest request,int authType,RedirectAttributes attr,Map&lt;String, Object&gt;  map)</code></p>
+<ul>
+<li>HttpServletRequest ：请求</li>
+<li><p>int：该页面所需要的权限</p>
+<blockquote>
+<p>  1:普通用户</p>
+<pre><code>2:管理员
+</code></pre></blockquote>
+</li>
+<li><p>RedirectAttributes：跳转时传参数使用</p>
+</li>
+<li>Map&lt;String, Object&gt;  map：用于展示用户个人信息。若请求的该页面为API则无需此参数，若为展示页面则必须添加此参数</li>
+</ul>
+<h4 id="3-3-权限检测"><a href="#3-3-权限检测" class="headerlink" title="3.3   权限检测"></a>3.3   权限检测</h4><p><code>public  static boolean authCheck(int authType,PersonPojo pp)</code></p>
+<ul>
+<li>int:该页面所需权限</li>
+<li>PersonPojo：用户信息Pojo</li>
+<li>return:<blockquote>
+<p>true:权限正确<br>false:权限错误</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="3-4-设置登录信息"><a href="#3-4-设置登录信息" class="headerlink" title="3.4 设置登录信息"></a>3.4 设置登录信息</h4><p><code>public static void  setLoginInfo(Map&lt;String, Object&gt;  map,PersonPojo pp)</code></p>
+<ul>
+<li>Map&lt;String, Object&gt;  map：用于展示用户个人信息。若请求的该页面为API则无需此参数，若为展示页面则必须添加此参数</li>
+<li>PersonPojo：用户信息Pojo<h5 id="以下变量用于在前端显示"><a href="#以下变量用于在前端显示" class="headerlink" title="以下变量用于在前端显示"></a>以下变量用于在前端显示</h5></li>
+<li>“_USER_NAME”:用户名</li>
+<li>“_TOKEN”：用户Token值</li>
+<li>“_TYPE”：用户类型</li>
+<li>“_TYPE_TEXT”:类型的文本信息</li>
+<li>“_HEAD_URL”：头像地址</li>
+</ul>
+<h4 id="3-5-设置错误信息"><a href="#3-5-设置错误信息" class="headerlink" title="3.5 设置错误信息"></a>3.5 设置错误信息</h4><p>  <code>public static  String setErrInfo(RedirectAttributes attr,String info)</code></p>
+<ul>
+<li>RedirectAttributes：跳转时传参数使用</li>
+<li>String: 错误信息</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/08/08/Windows-linux子系统-入门到GUI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1878,218 +2259,13 @@ ev.target.appendChild(document.getElementById(data));
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会打代码的扫地王大爷">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/11/自定义表单（一）/" itemprop="url">自定义表单（一）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T05:57:08+08:00">
-                2017-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
-                    <span itemprop="name">WebDesign</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/11/自定义表单（一）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/06/11/自定义表单（一）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一、瞎扯</p>
-<p>之前公司放我一个礼拜写了一个高度定制化，功能完善的自定义表单，然而因为去年9月份，硬盘，u盘，存储卡接连坏掉，代码就没了，不过也多亏这个，避免了日后的官司问题（开个玩笑，此处捂着嘴偷笑），最近一直在恢复之前写过的一些重要的代码，因此顺便更深入地折腾一下这个问题，写一些不会惹官司的demo（这个还真的得严肃对待=_=||）。</p>
-<p>二、JS拖拽</p>
-<p>2.1原理</p>
-<p>拖拽的过程其实只有三个：按下，移动，放开</p>
-<p>分别对应JS中的三个事件：</p>
-<p>——需拖拽部分的onmousedown</p>
-<p>记录下点击时的鼠标位置信息，以及此时点击的节点的位置信息。</p>
-<p>绑定document的onmousemove和onmouseup事件。</p>
-<p>——Document的onmousemove</p>
-<p>记录当前鼠标的位置信息，然后计算出位移值，让刚才选中的节点的坐标的left和top分别加上位移值即可移动到当前位置。</p>
-<p>——Document的onmouseup</p>
-<p>取消document的onmousemove和onmouseup事件。</p>
-<p>然后就完成了一次拖拽。</p>
-<p>2.2 JS的setCapture和releaseCapture</p>
-<pre><code>//    if (target.setCapture)
-
-//    {
-
-//        target.setCapture();
-
-//    }
-//    else if (window.captureEvents)
-
-//    {
-
-//        window.captureEvents(Event.MOUSEMOVE | Event.MOUSEUP);
-
-//    }
-</code></pre><p>我看网上的很多拖拽教程都是用了这两个函数，但是去掉之后依然很正常，就去查询了一下资料，谷歌了一下，在MDN上找到了API：</p>
-<pre><code>element.setCapture(retargetToElement);
-
-retargetToElement：
-
-If true, all events are targeted directly to this element;if false, events can also fire at descendants of this element.
-
-参数retargetToElement：如果为true，则所有的事件将直接导向这个元素，如果为false，则同时也将指向派生自这个元素的元素（子元素）
-
-function：Callthismethod during the handling of a mousedown event to retarget all mouse events tothiselement until the mouse button is released or document.releaseCapture() is called.
-
-功能：在mousedown绑定的函数中调用这个函数将重定向所有鼠标事件到这个元素直到鼠标被释放或者调用了document.releaseCapture()
-
-因为在这里我绑定的是document的onmousemove和onmouseup，整个页面中的鼠标事件也能得到响应，拖动速度快了，鼠标超出了拖拽元素依然能得到响应，因此setCapture其实也不需要。
-</code></pre><p>2.3 移动算法</p>
-<p>原先采用的算法是</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/685455-2e17975c96bc7ef2?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请输入图片描述"></p>
-<pre><code>黑色部分是浏览器页面，白色部分是拖拽元素，棕色部分是点击的圆点，黄色部分是是鼠标点击处在浏览器上的坐标位置（X，Y），红色部分则是鼠标点击处在拖拽元素中的偏移量（x,y）,因此实际上要设置的top和left值是(X-x,Y-y),这里稍后还得普及一下各种位置信息的区别以及获取方法，不过这种方法的效果并不是很理想，所以就还整了新的方法，在mousedown时记录鼠标位置信息，然后在mousemove中，记录鼠标位移的变化值，把值直接加在拖拽元素的坐标上面就好了。
-</code></pre><p>2.4 区分offsetX layerX PageX clientX 值</p>
-<p>offsetX:</p>
-<p>IE特有（新版本浏览器 除了ff都支持）,鼠标相比较于触发事件的元素的位置,以元素盒子模型的内容区域的左上角为参考点,如果有boder,可能出现负值。</p>
-<p>layerX:</p>
-<p>FF特有,鼠标相比较于当前坐标系的位置,即如果触发元素没有设置绝对定位或相对定位,以页面为参考点,如果有,将改变参考坐标系,从触发元素盒子模型的border区域的左上角为参考点，</p>
-<p>也就是当触发元素设置了相对或者绝对定位后,layerX和offsetX就幸福地生活在一起^-^,几乎相等,唯一不同就是一个从border为参考点,一个以内容为参考点</p>
-<p>PageX和clientX ,这个两个比较容易搞混,</p>
-<p>PageX:鼠标在页面上的位置,从页面左上角开始,即是以页面为参考点,不随滑动条移动而变化</p>
-<p>clientX:鼠标在页面上可视区域的位置,从浏览器可视区域左上角开始,即是以浏览器的可视窗口为参考点,随滑动条移动 而变化.</p>
-<p>IE中没有PageX，解决办法：</p>
-<p>PageY=clientY+scrollTop-clientTop;</p>
-<p>页面上的位置=可视区域位置+页面滚动条切去高度-自身border高度</p>
-<p>三、源码</p>
-<p><a href="https://github.com/wlmnzf/javascript-train/tree/master/customForm" target="_blank" rel="external">https://github.com/wlmnzf/javascript-train/tree/master/customForm</a><br>四、感谢</p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setCapture" target="_blank" rel="external">1.MDN-Element.setCapture()</a></p>
-<p><a href="http://blog.csdn.net/hdchangchang/article/details/8443237" target="_blank" rel="external">2.各个浏览器中鼠标位置的属性 offsetX layerX PageX clientX （自由拖动框，防止文字选中）</a></p>
-<p><a href="http://www.zhangxinxu.com/wordpress/2010/03/javascript%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C/" target="_blank" rel="external">3.JavaScript实现最简单的拖拽效果</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2132,7 +2308,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2143,7 +2319,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -2154,7 +2330,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

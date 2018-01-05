@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,机器学习实战," />
+  <meta name="keywords" content="William,王立敏,会打代码的扫地王大爷,wlmnzf,中科院信工所,IIE,CAS" />
 
 
 
@@ -93,21 +93,16 @@
 
 
 
-<meta name="description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。 有监督回归算法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴">
-<meta name="keywords" content="机器学习,机器学习实战">
+<meta name="description" content="1. 将jsp页面的header修改成如下代码所示 用户信息会在这段前端代码中给出，也会存一份在cookie中，但是因为cookie开启了HttpOnly，因此js将提取不到cookie.  以下为前端jsp页面使用的变量 “_USER_NAME”:用户名 “_TOKEN”：用户Token值 “_TYPE”：用户类型 “_TYPE_TEXT”:类型的文本信息 “_HEAD_URL”：头像地址  以">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习之梯度下降法数学推导--回归">
-<meta property="og:url" content="http://csuncle.com/2017/06/13/机器学习之梯度下降法数学推导--回归/index.html">
+<meta property="og:title" content="登录模块使用">
+<meta property="og:url" content="http://csuncle.com/2017/09/28/登录模块使用/index.html">
 <meta property="og:site_name" content="会打代码的扫地王大爷">
-<meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。 有监督回归算法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴">
-<meta property="og:image" content="http://img.blog.csdn.net/20170701112345372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170701112520064?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170701112938886?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-10-20T16:15:05.940Z">
+<meta property="og:description" content="1. 将jsp页面的header修改成如下代码所示 用户信息会在这段前端代码中给出，也会存一份在cookie中，但是因为cookie开启了HttpOnly，因此js将提取不到cookie.  以下为前端jsp页面使用的变量 “_USER_NAME”:用户名 “_TOKEN”：用户Token值 “_TYPE”：用户类型 “_TYPE_TEXT”:类型的文本信息 “_HEAD_URL”：头像地址  以">
+<meta property="og:updated_time" content="2017-10-20T16:12:58.921Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习之梯度下降法数学推导--回归">
-<meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。 有监督回归算法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20170701112345372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:title" content="登录模块使用">
+<meta name="twitter:description" content="1. 将jsp页面的header修改成如下代码所示 用户信息会在这段前端代码中给出，也会存一份在cookie中，但是因为cookie开启了HttpOnly，因此js将提取不到cookie.  以下为前端jsp页面使用的变量 “_USER_NAME”:用户名 “_TOKEN”：用户Token值 “_TYPE”：用户类型 “_TYPE_TEXT”:类型的文本信息 “_HEAD_URL”：头像地址  以">
 
 
 
@@ -135,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://csuncle.com/2017/06/13/机器学习之梯度下降法数学推导--回归/"/>
+  <link rel="canonical" href="http://csuncle.com/2017/09/28/登录模块使用/"/>
 
 
 
 
 
-  <title>机器学习之梯度下降法数学推导--回归 | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>登录模块使用 | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -291,7 +286,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/13/机器学习之梯度下降法数学推导--回归/">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/09/28/登录模块使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
@@ -308,7 +303,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">机器学习之梯度下降法数学推导--回归</h2>
+          <h2 class="post-title" itemprop="name headline">登录模块使用</h2>
         
 
         <div class="post-meta">
@@ -320,8 +315,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T16:00:43+08:00">
-                2017-06-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-28T14:58:47+08:00">
+                2017-09-28
               </time>
             
 
@@ -330,28 +325,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MachineLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">MachineLearning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -362,8 +335,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/13/机器学习之梯度下降法数学推导--回归/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/06/13/机器学习之梯度下降法数学推导--回归/" itemprop="commentsCount"></span>
+                <a href="/2017/09/28/登录模块使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/28/登录模块使用/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -389,44 +362,91 @@
       
 
       
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。</p>
-<h4 id="有监督回归算法"><a href="#有监督回归算法" class="headerlink" title="有监督回归算法"></a>有监督回归算法</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴恩达《斯坦福机器学习》中的例子，我们需要根据已有的房价信息预测当前房子的房价，于是我们收集到一些房价数据。</p>
-<p><img src="http://img.blog.csdn.net/20170701112345372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="房价信息"></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;再将它们画在二维坐标上，它们就以离散的点分布在平面上，如下所示<br><img src="http://img.blog.csdn.net/20170701112520064?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="房价分布情况"></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;我们希望能根据这些已知的点来预测我们想知道的房子的房价，因此我们需要找到一条规律，也就是一条大致经过这些点的线性模型，在数学上我们通常称之为拟合，而这个拟合的过程，我们称之为回归。</p>
-<p><img src="http://img.blog.csdn.net/20170701112938886?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="拟合结果"></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;假设我们建立的模型是一元一次的，将得到这样的拟合结果，于是我们可以x轴上的房屋面积，找到对应的房屋价格。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;有监督的学习算法，可以理解成我们训练模型的时候每一个输入都是有标准答案的，我们通过预测值跟标准答案的比对，不断修改模型的参数才能最终实现较好地的拟合结果。</p>
-<h4 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;最小二乘法是我们经常使用的拟合算法，它通过最小化误差的平方和寻找数据的最佳函数匹配。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;以我们《机器学习实战》第五章作例子，我们假设的模型为z，于是函数即可设为</p>
-<p>$$<br>\begin{equation}<br>z=w0+w_1x_1+w2x2+w3x3+….+w_nx_n\\=w_0x_0+w_1x_1+w2x2+w3x3+….+w_nx_n (x0=1)  \tag{1}<br>\end{equation}<br>$$</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;这种写法也可以表示为向量的写法:</p>
-<p>$$<br>z=w^Tx=<br>\begin{bmatrix}<br>w_0&amp;w_1&amp;…&amp;w_n<br>\end{bmatrix}<br>\begin{bmatrix}<br>x_0\\<br>x_1\\<br>…\\<br>x_n\\<br>\end{bmatrix} \tag{2}<br>$$</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;同样的道理，我们也可以这样子表示</p>
-<p>$$<br>z=x^Tw=<br>\begin{bmatrix}<br>x_0&amp;x_1&amp;…&amp;x_n<br>\end{bmatrix}<br>\begin{bmatrix}<br>w_0\\<br>w_1\\<br>…\\<br>w_n\\<br>\end{bmatrix} \tag{3}<br>$$</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;刚才我们也提到了，最小二乘法拟合的原理是最小化误差的平方和，我们将这个平方和称为损失函数，跟我们平时常用的方差类似，当这个损失函数越小，我们的模型就越能跟离散的点匹配起来:</p>
-<p>$$<br>f(w)=\frac{1}{2} \sum_{i=1}^m(z_w( x_i) -y_j   )^2    \tag{4}<br>$$</p>
-<p>其中的y表示我们给出的标准的特征 $<br>\begin{bmatrix}<br>y_0\\<br>y_1\\<br>…\\<br>y_m\\<br>\end{bmatrix}<br>$</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;因为梯度上升算法是用来计算函数的最大值的，而梯度下降算法则是计算函数最小值的。而我们的损失函数自然是越小越好，我们需要求得一个系数来使得f(w)最小，可是使用梯度上升法是用于求最大值的，因此为了用上梯度上升算法，我们最终应该在f(w)前加上负号。假设:</p>
-<p>$$<br>J(w)=-f(w) \tag{5}<br>$$</p>
-<p>接下来我们开始利用矩阵来推算我们的数学公式，因为原始的公式用来做迭代计算会很不方便，因此我们需要一个等价的公式来让我们的算法更加高效，就例如《机器学习实战》chapter5中的那样。假设我们的输入为X,我们有m组训练数据，每个数据有n个特征。则:</p>
-<p>$$<br>\begin{equation}<br>X=<br>        \begin{bmatrix}<br>        x_{11}&amp;x_{12}&amp;…&amp;x_{1n}\\<br>        x_{21}&amp;x_{22}&amp;…&amp;x_{2n}\\<br>        …&amp;…&amp;…&amp;…\\<br>        x_{m1}&amp;x_{m2}&amp;…&amp;x_{mn}\<br>        \end{bmatrix}<br>        =<br>        \begin{bmatrix}<br>        x_1^{T}\\<br>        x_2 ^{T}\\<br>        …\\<br>        x_m\\<br>        \end{bmatrix}   \tag{6}<br>     \end{equation}<br>$$</p>
-<p>于是通过（3）可以推出</p>
-<p>$$<br>Xw=<br>\begin{bmatrix}<br>x_1^T\\<br>x_2^T\\<br>…\\<br>x_m^T\\<br>\end{bmatrix}<br>w=<br>\begin{bmatrix}<br>x_1^Tw\\<br>x_2^Tw\\<br>…\\<br>x_m^Tw\\<br>\end{bmatrix}=<br>\begin{bmatrix}<br>z_w(x_1)\\<br>z_w(x_2)\\<br>…\\<br>z_w(x_m)\\<br>\end{bmatrix} \tag{7}<br>$$</p>
-<p>$$<br>Xw-\overrightarrow{y}=<br>\begin{bmatrix}<br>x_1^Tw\\<br>x_2^Tw\\<br>…\\<br>x_m^Tw\\<br>\end{bmatrix}-<br>\begin{bmatrix}<br>y_1\\<br>y_2\\<br>…\\<br>y_m\\<br>\end{bmatrix}=<br>\begin{bmatrix}<br>z_w(x_1)-y_1\\<br>z_w(x_2)-y_2\\<br>…\\<br>z_w(x_m)-y_m<br>\end{bmatrix} \tag{8}<br>$$</p>
-<p>由矩阵内积可得</p>
-<p>$$<br>\because z^Tz=\sum_i^nz_i^2  \tag{9}<br>$$</p>
-<p>$$<br>\therefore \frac{1}{2}(Xw-\overrightarrow{y})^T(Xw-\overrightarrow{y})= \frac{1}{2}\sum_{i=1}^n(z_w(x_i)-y_i)^2=f(w)   \tag{10}<br>$$</p>
-<p>则梯度为</p>
-<p>$$<br>\begin{equation}<br>\begin{split}<br>&amp;\nabla_wf(w)=\nabla_w\frac{1}{2}(Xw-\overrightarrow{y})^T(Xw-\overrightarrow{y})\\<br>&amp;=\frac{1}{2}\nabla_w(w^TX^TXw-w^TX^T\overrightarrow{y}-\overrightarrow{y}^TXw+\overrightarrow{y}^T\overrightarrow{y})\\<br>&amp;=\frac{1}{2}\nabla_wtr(w^TX^TXw-w^TX^T\overrightarrow{y}-\overrightarrow{y}^TXw+\overrightarrow{y}^T\overrightarrow{y}) \\<br>&amp;=\frac{1}{2}\nabla_w(trw^TX^TXw-2tr\overrightarrow{y}^TXw) \\<br>&amp;=\frac{1}{2}(X^TXw+X^TXw-2X^T\overrightarrow{y})\\<br>&amp;=X^TXw-X^T\overrightarrow{y}=X^T(Xw-\overrightarrow{y})\\\\<br>&amp;=&gt;J(w)=-f(w)=X^T(\overrightarrow{y}-Xw)<br>\end{split}<br>\end{equation}    \tag{11}<br>$$</p>
-<p>说明：<br>第二步：类似于括号展开<br>第三步:实数的迹等于它本身<br>第四步:因为 $\overrightarrow{y}^T\overrightarrow{y}$ 不含w，因此它对w求导为0.并且利用了公式  $trA=trA^T$ 进行简化。<br>第五步:利用公式 $\nabla_{A^T}trABA^TC=B^TA^TC^T+BA^TC$ ,令 $A^T=w,B=B^T=X^TX,C=I$ ,利用公式转化即可得到。</p>
-<p>最后再回到《机器学习实战》中，P78,代码清单5-1②的部分。<br>dataMatrix=X;<br>weights=w;<br>labelMat=y;<br>把等号右边的用左边的变量代入，不过很遗憾，还是有些区别的，在《机器学习实战》一书中，还有sigmoid这一函数，查阅了一些资料，发现其实还是有些区别的，将于下一篇博文中阐明。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
-<p>吴恩达《机器学习》notes1<br>周志华《机器学习》chapter3 线性模型</p>
+        <h3 id="1-将jsp页面的header修改成如下代码所示"><a href="#1-将jsp页面的header修改成如下代码所示" class="headerlink" title="1. 将jsp页面的header修改成如下代码所示"></a>1. 将jsp页面的header修改成如下代码所示</h3><ul>
+<li>用户信息会在这段前端代码中给出，也会存一份在cookie中，但是因为cookie开启了HttpOnly，因此js将提取不到cookie.</li>
+</ul>
+<h5 id="以下为前端jsp页面使用的变量"><a href="#以下为前端jsp页面使用的变量" class="headerlink" title="以下为前端jsp页面使用的变量"></a>以下为前端jsp页面使用的变量</h5><ul>
+<li>“_USER_NAME”:用户名</li>
+<li>“_TOKEN”：用户Token值</li>
+<li>“_TYPE”：用户类型</li>
+<li>“_TYPE_TEXT”:类型的文本信息</li>
+<li>“_HEAD_URL”：头像地址</li>
+</ul>
+<h5 id="以下为为cookie值"><a href="#以下为为cookie值" class="headerlink" title="以下为为cookie值"></a>以下为为cookie值</h5><ul>
+<li>“account”：账号</li>
+<li>“type”：用户权限类型</li>
+<li>“token”：用户登陆token</li>
+</ul>
+<h5 id="以下为jsp代码"><a href="#以下为jsp代码" class="headerlink" title="以下为jsp代码"></a>以下为jsp代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;header&gt;</div><div class="line">    &lt;div class=&quot;container-fluid&quot;&gt;</div><div class="line">        &lt;div class=&quot;navbar-header&quot;&gt;</div><div class="line">            &lt;img class=&quot;brand&quot; src=&quot;&lt;%=path%&gt;/img/logo.png&quot; alt=&quot;&quot;&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div class=&quot;collapse navbar-collapse&quot;&gt;</div><div class="line">            &lt;ul class=&quot;nav navbar-nav navbar-right login-ul&quot;&gt;</div><div class="line">                &lt;li&gt;</div><div class="line">                    &lt;div class=&quot;login-info&quot;&gt;</div><div class="line">                        &lt;div class=&quot;media-left media-top&quot;&gt;</div><div class="line">                            &lt;a href=&quot;#&quot;&gt;</div><div class="line">                            &lt;img class=&quot;media-object&quot; src=&quot;$&#123;_HEAD_URL&#125;&quot; alt=&quot;...&quot;&gt;</div><div class="line">                            &lt;/a&gt;</div><div class="line">                        &lt;/div&gt;</div><div class="line">                        &lt;div class=&quot;media-body&quot;&gt;</div><div class="line">                            &lt;h4 class=&quot;media-heading&quot; data-type=&quot;$&#123;_TYPE&#125;&quot;&gt;&lt;span class=&quot;label label-primary&quot;&gt;$&#123;_TYPE_TEXT&#125;&lt;/span&gt;&lt;/h4&gt;</div><div class="line">                            &lt;p class=&quot;login-name&quot; data-token=&quot;$&#123;_TOKEN&#125;&quot;&gt;$&#123;_USER_NAME&#125;&lt;/p&gt;</div><div class="line">                        &lt;/div&gt;</div><div class="line">                    &lt;/div&gt;</div><div class="line">                &lt;/li&gt;</div><div class="line">                &lt;li&gt;</div><div class="line">                    &lt;div class=&quot;options&quot;&gt;</div><div class="line">                        &lt;%--&lt;a class=&quot;option&quot; href=&quot;#&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-envelope&quot;&gt;&lt;/span&gt;&lt;/a&gt;--%&gt;</div><div class="line">                        &lt;a class=&quot;option&quot; id=&quot;exit&quot; href=&quot;&lt;%=path%&gt;/exit&quot;&gt;退出&lt;/a&gt;</div><div class="line">                    &lt;/div&gt;</div><div class="line">                &lt;/li&gt;</div><div class="line">            &lt;/ul&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/header&gt;</div></pre></td></tr></table></figure>
+<h3 id="2-在对应controller中进行用户认证，包括登录认证和权限认证"><a href="#2-在对应controller中进行用户认证，包括登录认证和权限认证" class="headerlink" title="2. 在对应controller中进行用户认证，包括登录认证和权限认证"></a>2. 在对应controller中进行用户认证，包括登录认证和权限认证</h3><h4 id="注意控制器中添加三个参数"><a href="#注意控制器中添加三个参数" class="headerlink" title="注意控制器中添加三个参数"></a>注意控制器中添加三个参数</h4><ul>
+<li><p>Map&lt;String, Object&gt;map</p>
+<blockquote>
+<p>用于将用户信息传递到前端</p>
 </blockquote>
-<h5 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h5><blockquote>
-<p><a href="http://csuncle.com/2017/06/13/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E3%80%8B-chapter5%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/">http://csuncle.com/2017/06/13/《机器学习实战》-chapter5梯度上升算法-数学推导/</a></p>
+</li>
+<li><p>HttpServletRequest request</p>
+<blockquote>
+<p>用于提取cookie</p>
 </blockquote>
+</li>
+<li><p>RedirectAttributes attr</p>
+<blockquote>
+<p>用于登录失效时跳转后给出提示消息</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">//给出示例，这是永用于显示表单管理页面的控制器</div><div class="line"></div><div class="line"> @RequestMapping(&quot;/formManage&quot;)</div><div class="line">    private String customForm(Map&lt;String, Object&gt; map,HttpServletRequest request,RedirectAttributes attr)</div><div class="line">    &#123;</div><div class="line">       //传到前端页面的变量</div><div class="line">        map.put(&quot;curPage&quot;,1);</div><div class="line">//开始认证</div><div class="line">        int res=comm.Login.validCheck(request,2,attr,map);</div><div class="line">        if(res==0) &#123;</div><div class="line">             // 认证成功</div><div class="line">             // do....</div><div class="line">            return &quot;formManage&quot;;</div><div class="line">        &#125;</div><div class="line">        else</div><div class="line">        &#123;</div><div class="line">          return comm.Login.errRedirect(attr,res);</div><div class="line">        &#125;</div><div class="line"> //结束</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="3-一些API函数介绍"><a href="#3-一些API函数介绍" class="headerlink" title="3. 一些API函数介绍"></a>3. 一些API函数介绍</h3><h4 id="3-1-发生错误时进行跳转"><a href="#3-1-发生错误时进行跳转" class="headerlink" title="3.1 发生错误时进行跳转"></a>3.1 发生错误时进行跳转</h4><p><code>public  static String errRedirect(RedirectAttributes attr,int res)</code></p>
+<ul>
+<li>RedirectAttributes：跳转时传参数使用</li>
+<li><p>int：错误类型</p>
+<blockquote>
+<p>   0:OK</p>
+<pre><code>1:Login failed
+2:Auth failed
+</code></pre></blockquote>
+</li>
+<li><p>return: 跳转到首页</p>
+</li>
+</ul>
+<h4 id="3-2-登陆有效性检测（重载函数）"><a href="#3-2-登陆有效性检测（重载函数）" class="headerlink" title="3.2 登陆有效性检测（重载函数）"></a>3.2 登陆有效性检测（重载函数）</h4><p><code>public  static int validCheck(HttpServletRequest request,int authType,RedirectAttributes attr)</code></p>
+<p><code>public  static int validCheck(HttpServletRequest request,int authType,RedirectAttributes attr,Map&lt;String, Object&gt;  map)</code></p>
+<ul>
+<li>HttpServletRequest ：请求</li>
+<li><p>int：该页面所需要的权限</p>
+<blockquote>
+<p>  1:普通用户</p>
+<pre><code>2:管理员
+</code></pre></blockquote>
+</li>
+<li><p>RedirectAttributes：跳转时传参数使用</p>
+</li>
+<li>Map&lt;String, Object&gt;  map：用于展示用户个人信息。若请求的该页面为API则无需此参数，若为展示页面则必须添加此参数</li>
+</ul>
+<h4 id="3-3-权限检测"><a href="#3-3-权限检测" class="headerlink" title="3.3   权限检测"></a>3.3   权限检测</h4><p><code>public  static boolean authCheck(int authType,PersonPojo pp)</code></p>
+<ul>
+<li>int:该页面所需权限</li>
+<li>PersonPojo：用户信息Pojo</li>
+<li>return:<blockquote>
+<p>true:权限正确<br>false:权限错误</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="3-4-设置登录信息"><a href="#3-4-设置登录信息" class="headerlink" title="3.4 设置登录信息"></a>3.4 设置登录信息</h4><p><code>public static void  setLoginInfo(Map&lt;String, Object&gt;  map,PersonPojo pp)</code></p>
+<ul>
+<li>Map&lt;String, Object&gt;  map：用于展示用户个人信息。若请求的该页面为API则无需此参数，若为展示页面则必须添加此参数</li>
+<li>PersonPojo：用户信息Pojo<h5 id="以下变量用于在前端显示"><a href="#以下变量用于在前端显示" class="headerlink" title="以下变量用于在前端显示"></a>以下变量用于在前端显示</h5></li>
+<li>“_USER_NAME”:用户名</li>
+<li>“_TOKEN”：用户Token值</li>
+<li>“_TYPE”：用户类型</li>
+<li>“_TYPE_TEXT”:类型的文本信息</li>
+<li>“_HEAD_URL”：头像地址</li>
+</ul>
+<h4 id="3-5-设置错误信息"><a href="#3-5-设置错误信息" class="headerlink" title="3.5 设置错误信息"></a>3.5 设置错误信息</h4><p>  <code>public static  String setErrInfo(RedirectAttributes attr,String info)</code></p>
+<ul>
+<li>RedirectAttributes：跳转时传参数使用</li>
+<li>String: 错误信息</li>
+</ul>
 
       
     </div>
@@ -480,14 +500,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
-          
-            <a href="/tags/机器学习实战/" rel="tag"># 机器学习实战</a>
-          
-        </div>
-      
 
       
       
@@ -497,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/13/基于tensorflow的MNIST手写数字识别（三）-神经网络篇/" rel="next" title="基于tensorflow的MNIST手写数字识别（三）--神经网络篇">
-                <i class="fa fa-chevron-left"></i> 基于tensorflow的MNIST手写数字识别（三）--神经网络篇
+              <a href="/2017/08/08/Windows-linux子系统-入门到GUI/" rel="next" title="Windows linux子系统--入门到GUI">
+                <i class="fa fa-chevron-left"></i> Windows linux子系统--入门到GUI
               </a>
             
           </div>
@@ -507,8 +519,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/03/机器学习之梯度下降法数学推导-分类/" rel="prev" title="机器学习之梯度下降法数学推导--分类">
-                机器学习之梯度下降法数学推导--分类 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/" rel="prev" title="【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions">
+                【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -701,7 +713,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有监督回归算法"><span class="nav-number">2.</span> <span class="nav-text">有监督回归算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最小二乘法"><span class="nav-number">3.</span> <span class="nav-text">最小二乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#来源"><span class="nav-number">4.1.</span> <span class="nav-text">来源</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-将jsp页面的header修改成如下代码所示"><span class="nav-number">1.</span> <span class="nav-text">1. 将jsp页面的header修改成如下代码所示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#以下为前端jsp页面使用的变量"><span class="nav-number">1.0.1.</span> <span class="nav-text">以下为前端jsp页面使用的变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以下为为cookie值"><span class="nav-number">1.0.2.</span> <span class="nav-text">以下为为cookie值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以下为jsp代码"><span class="nav-number">1.0.3.</span> <span class="nav-text">以下为jsp代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在对应controller中进行用户认证，包括登录认证和权限认证"><span class="nav-number">2.</span> <span class="nav-text">2. 在对应controller中进行用户认证，包括登录认证和权限认证</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注意控制器中添加三个参数"><span class="nav-number">2.1.</span> <span class="nav-text">注意控制器中添加三个参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-一些API函数介绍"><span class="nav-number">3.</span> <span class="nav-text">3. 一些API函数介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-发生错误时进行跳转"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 发生错误时进行跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-登陆有效性检测（重载函数）"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 登陆有效性检测（重载函数）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-权限检测"><span class="nav-number">3.3.</span> <span class="nav-text">3.3   权限检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-设置登录信息"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 设置登录信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#以下变量用于在前端显示"><span class="nav-number">3.4.1.</span> <span class="nav-text">以下变量用于在前端显示</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-设置错误信息"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 设置错误信息</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -855,7 +867,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94255, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94255, xid: "2017/06/13/机器学习之梯度下降法数学推导--回归/"});
+		_hcwp.push({widget:"Stream", widget_id: 94255, xid: "2017/09/28/登录模块使用/"});
 		
 
 		(function() {
