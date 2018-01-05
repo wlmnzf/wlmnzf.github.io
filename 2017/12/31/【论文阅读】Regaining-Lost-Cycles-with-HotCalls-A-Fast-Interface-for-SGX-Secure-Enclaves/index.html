@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="William,王立敏,会打代码的扫地王大爷,wlmnzf,中科院信工所,IIE,CAS" />
+  <meta name="keywords" content="Paper,SGX," />
 
 
 
@@ -93,16 +93,17 @@
 
 
 
-<meta name="description" content="一、瞎扯   最近在折腾人工智能，今天写了段tensorflow，用来分辨手写字体的图片，跑的时间有点久，所以就跑回来跟前端玩耍了，其实代码早就写好了，只是补上文章。 二、Html5原生拖拽介绍   Html5的很多特性十分激动人心，比如这里的拖拽功能，还有websockeet，从此网页聊天程序就能更轻松的编写出来，再有就是canvas，于是撼动了flash长久的统治地位，H5还开始进入手机APP">
+<meta name="description" content="背景   应对不信任的服务器">
+<meta name="keywords" content="Paper,SGX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自定义表单（二）">
-<meta property="og:url" content="http://csuncle.com/2017/06/11/自定义表单（二）/index.html">
+<meta property="og:title" content="【论文阅读】Regaining Lost Cycles with HotCalls: A Fast Interface for SGX Secure Enclaves">
+<meta property="og:url" content="http://csuncle.com/2017/12/31/【论文阅读】Regaining-Lost-Cycles-with-HotCalls-A-Fast-Interface-for-SGX-Secure-Enclaves/index.html">
 <meta property="og:site_name" content="会打代码的扫地王大爷">
-<meta property="og:description" content="一、瞎扯   最近在折腾人工智能，今天写了段tensorflow，用来分辨手写字体的图片，跑的时间有点久，所以就跑回来跟前端玩耍了，其实代码早就写好了，只是补上文章。 二、Html5原生拖拽介绍   Html5的很多特性十分激动人心，比如这里的拖拽功能，还有websockeet，从此网页聊天程序就能更轻松的编写出来，再有就是canvas，于是撼动了flash长久的统治地位，H5还开始进入手机APP">
-<meta property="og:updated_time" content="2018-01-04T16:36:38.433Z">
+<meta property="og:description" content="背景   应对不信任的服务器">
+<meta property="og:updated_time" content="2018-01-05T15:37:14.463Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自定义表单（二）">
-<meta name="twitter:description" content="一、瞎扯   最近在折腾人工智能，今天写了段tensorflow，用来分辨手写字体的图片，跑的时间有点久，所以就跑回来跟前端玩耍了，其实代码早就写好了，只是补上文章。 二、Html5原生拖拽介绍   Html5的很多特性十分激动人心，比如这里的拖拽功能，还有websockeet，从此网页聊天程序就能更轻松的编写出来，再有就是canvas，于是撼动了flash长久的统治地位，H5还开始进入手机APP">
+<meta name="twitter:title" content="【论文阅读】Regaining Lost Cycles with HotCalls: A Fast Interface for SGX Secure Enclaves">
+<meta name="twitter:description" content="背景   应对不信任的服务器">
 
 
 
@@ -130,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://csuncle.com/2017/06/11/自定义表单（二）/"/>
+  <link rel="canonical" href="http://csuncle.com/2017/12/31/【论文阅读】Regaining-Lost-Cycles-with-HotCalls-A-Fast-Interface-for-SGX-Secure-Enclaves/"/>
 
 
 
 
 
-  <title>自定义表单（二） | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【论文阅读】Regaining Lost Cycles with HotCalls: A Fast Interface for SGX Secure Enclaves | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -286,7 +287,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（二）/">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/12/31/【论文阅读】Regaining-Lost-Cycles-with-HotCalls-A-Fast-Interface-for-SGX-Secure-Enclaves/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
@@ -303,7 +304,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">自定义表单（二）</h2>
+          <h2 class="post-title" itemprop="name headline">【论文阅读】Regaining Lost Cycles with HotCalls: A Fast Interface for SGX Secure Enclaves</h2>
         
 
         <div class="post-meta">
@@ -315,8 +316,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T05:57:22+08:00">
-                2017-06-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T00:17:22+08:00">
+                2017-12-31
               </time>
             
 
@@ -338,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
-                    <span itemprop="name">WebDesign</span>
+                  <a href="/categories/Paper/" itemprop="url" rel="index">
+                    <span itemprop="name">Paper</span>
                   </a>
                 </span>
 
@@ -357,8 +358,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/06/11/自定义表单（二）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/06/11/自定义表单（二）/" itemprop="commentsCount"></span>
+                <a href="/2017/12/31/【论文阅读】Regaining-Lost-Cycles-with-HotCalls-A-Fast-Interface-for-SGX-Secure-Enclaves/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/12/31/【论文阅读】Regaining-Lost-Cycles-with-HotCalls-A-Fast-Interface-for-SGX-Secure-Enclaves/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -384,100 +385,7 @@
       
 
       
-        <p>一、瞎扯</p>
-<p>  最近在折腾人工智能，今天写了段tensorflow，用来分辨手写字体的图片，跑的时间有点久，所以就跑回来跟前端玩耍了，其实代码早就写好了，只是补上文章。</p>
-<p>二、Html5原生拖拽介绍</p>
-<p>  Html5的很多特性十分激动人心，比如这里的拖拽功能，还有websockeet，从此网页聊天程序就能更轻松的编写出来，再有就是canvas，于是撼动了flash长久的统治地位，H5还开始进入手机APP领域，开始在制作APP的不归路上越走越远了。</p>
-<p>  H5的拖拽十分好用，玩过js拖拽的人知道，在那里，拖拽的效果什么的都需要自己实现，十分地麻烦和复杂，但是在H5中都予以了封装，连移动效果都有，相当不错，简化了开发，不过事实上，对于深入学习并不利，因此想要深入理解原理的小伙伴们建议去实现一下js版本的拖拽。</p>
-<p>三、HTML拖拽实现</p>
-<p>  跟JS版本的原理一样，H5的拖拽也分为三个步骤，开始拖拽，拖拽时，拖拽后</p>
-<p>  前提：拖拽的元素要写上draggable=”true”的标签</p>
-<p>1、拖拽元素的 ondragstart，里面写的代码表示开始拖拽的时候发生的事</p>
-<p>2、拖放元素所处位置的ondragover，比如拖拽一个img到div上方额，就会触发div的这个事件</p>
-<p>3、拖放元素所处位置的ondrop，里面写的代码表示放置后所触发的事件</p>
-<p>  很多人肯定会问，那该如何传递数据呢，这里H5也考虑到了，在这里可以通过dataTransfer来传递数据</p>
-<p>四、dataTransfer的使用</p>
-<p>这里借用W3CSCHOOL中的例子来说明，</p>
-<pre><code>functiondragStart(ev)
-
-{
-
-ev.dataTransfer.setData(&quot;Text&quot;,ev.target.id);
-
-}
-</code></pre><p>这里其实就是利用setData传递一个文本格式的参数（拖拽元素的id）</p>
-<pre><code>functiondrop(ev)
-
-{
-
-ev.preventDefault();
-
-vardata=ev.dataTransfer.getData(&quot;Text&quot;);
-
-ev.target.appendChild(document.getElementById(data));
-
-}
-</code></pre><p>  这里则是通过getData来获取这个参数。大吃一惊了吧，方便到爆了。</p>
-<p>  因为这个html5拖拽很简单，因此本文其实着重想讲解一下这个dataTransfer。（其实也就是官方api上抄来的而已，哈哈哈哈，不要见怪，我也不敢瞎造啊）</p>
-<p>五、dataTransfer API</p>
-<p><strong>Properties</strong></p>
-<p>DataTransfer.dropEffect</p>
-<blockquote>
-<p>Gets the type of drag-and-drop operation currently selected or sets the operation to a new type. The value must be none copy link or move.</p>
-<p>获取或者设置当前被选择元素的拖拽类型，它的值必须为none、copy、link、或者move</p>
-</blockquote>
-<p>DataTransfer.effectAllowed</p>
-<blockquote>
-<p>Provides all of the types of operations that are possible. Must be one ofnone,copy,copyLink,copyMove,link,linkMove,move,alloruninitialized.</p>
-<p>提供所有可能的操作种类，必须是none,copy,copyLink,copyMove,link,linkMove,move,all或者uninitialized.中的一个。</p>
-</blockquote>
-<p>DataTransfer.files</p>
-<blockquote>
-<p>Contains a list of all the local files available on the data transfer. If the drag operation doesn’t involve dragging files, this property is an empty list.</p>
-<p>包含一组可获取的本地文件列表，如果拖拽操作不包含文件，则这个文件列表将会是空的。这个属性超棒，很多拖拽上传功能就是这样子开发出来的</p>
-</blockquote>
-<p>DataTransfer.items    Read only</p>
-<blockquote>
-<p>Gives aDataTransferItemListobject which is a list of all of the drag data.</p>
-<p>只读，给定一个DataTransferItemList的对象，其中包含了一个所有拖拽数据的列表。</p>
-</blockquote>
-<p>DataTransfer.types Read only</p>
-<blockquote>
-<p>An array ofstringgiving the formats that were set in thedragstartevent.</p>
-<p>只读，一组字符串数组，给定了在dragstart事件中设置的一组格式。</p>
-</blockquote>
-<p><strong>Methods</strong></p>
-<p>void dataTransfer.clearData([format]);</p>
-<p>DataTransfer.clearData()</p>
-<blockquote>
-<p>Remove the data associated with a given type. The type argument is optional. If the type is empty or not specified, the data associated with all types is removed. If data for the specified type does not exist, or the data transfer contains no data, this method will have no effect.</p>
-<p>清除给定类别的数据，type这个参数是可选的，如果类别是空或者不明确，跟所有类别相关的数据都将清除掉，如果特定类别的数据不存在，或者dataTransfer不包含数据，则这个方法将没有任何效果。</p>
-</blockquote>
-<p>DOM String dataTransfer.getData(format);</p>
-<p>DataTransfer.getData()</p>
-<blockquote>
-<p>Retrieves the data for a given type, or an empty string if data for that type does not exist or the data transfer contains no data.</p>
-<p>取回给定类别的数据，如果给定类别的数据不存在或者dataTransfer不包含任何数据，则将返回一个空字符串。</p>
-</blockquote>
-<p>DataTransfer.setData()</p>
-<blockquote>
-<p>Set the data for a given type. If data for the type does not exist, it is added at the end, such that the last item in the types list will be the new format. If data for the type already exists, the existing data is replaced in the same position.</p>
-<p>设置一个给定类别的数据，如果这个类别的数据不存在，则将被添加到末尾，因此这个类别的列表的最后一项将是一个新的格式，如果这个类别已经存在，则存在的数据将被取代为这个新的数据</p>
-</blockquote>
-<p>void dataTransfer.setDragImage(img, xOffset, yOffset);</p>
-<p>DataTransfer.setDragImage()</p>
-<blockquote>
-<p>Set the image to be used for dragging if a custom one is desired.      </p>
-<p>设置拖拽的时候显示的图片（默认是拖拽元素的缩略图）</p>
-</blockquote>
-<p>六、代码</p>
-<blockquote>
-<p><a href="https://github.com/wlmnzf/javascript-train/tree/master/customForm" target="_blank" rel="external">https://github.com/wlmnzf/javascript-train/tree/master/customForm</a></p>
-</blockquote>
-<p>七、感谢</p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer" target="_blank" rel="external">1、MDN  DataTransfer   API</a></p>
-<p><a href="http://www.w3school.com.cn/html5/html_5_draganddrop.asp" target="_blank" rel="external">2.、W3CSCHOOL  HTML5拖放</a></p>
-<p>3、太兴奋的时候要听伤感的歌，感谢 网易云音乐 –《岛歌》</p>
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>   应对不信任的服务器</p>
 
       
     </div>
@@ -531,6 +439,14 @@ ev.target.appendChild(document.getElementById(data));
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Paper/" rel="tag"># Paper</a>
+          
+            <a href="/tags/SGX/" rel="tag"># SGX</a>
+          
+        </div>
+      
 
       
       
@@ -540,8 +456,8 @@ ev.target.appendChild(document.getElementById(data));
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/11/自定义表单（一）/" rel="next" title="自定义表单（一）">
-                <i class="fa fa-chevron-left"></i> 自定义表单（一）
+              <a href="/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/" rel="next" title="【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions">
+                <i class="fa fa-chevron-left"></i> 【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions
               </a>
             
           </div>
@@ -549,10 +465,6 @@ ev.target.appendChild(document.getElementById(data));
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/11/自定义表单（完）/" rel="prev" title="自定义表单（完）">
-                自定义表单（完） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -624,8 +536,17 @@ ev.target.appendChild(document.getElementById(data));
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -725,6 +646,22 @@ ev.target.appendChild(document.getElementById(data));
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -875,7 +812,7 @@ ev.target.appendChild(document.getElementById(data));
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94255, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94255, xid: "2017/06/11/自定义表单（二）/"});
+		_hcwp.push({widget:"Stream", widget_id: 94255, xid: "2017/12/31/【论文阅读】Regaining-Lost-Cycles-with-HotCalls-A-Fast-Interface-for-SGX-Secure-Enclaves/"});
 		
 
 		(function() {
