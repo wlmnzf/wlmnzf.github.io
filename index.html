@@ -287,7 +287,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/02/11/meltdown分析和防御/">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/02/11/Meltdown &  Spectre原理简要梳理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
@@ -306,7 +306,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/11/meltdown分析和防御/" itemprop="url">Meltdown &  Spectre原理简要梳理</a></h2>
+                <a class="post-title-link" href="/2018/02/11/Meltdown &  Spectre原理简要梳理/" itemprop="url">Meltdown &  Spectre原理简要梳理</a></h2>
         
 
         <div class="post-meta">
@@ -360,8 +360,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/11/meltdown分析和防御/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/11/meltdown分析和防御/" itemprop="commentsCount"></span>
+                <a href="/2018/02/11/Meltdown &  Spectre原理简要梳理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/11/Meltdown &  Spectre原理简要梳理/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -426,7 +426,7 @@
 <p>我们可以通过侧信道攻击来确认刚才访问的数据是什么。</p>
 <p><img src="http://img.blog.csdn.net/20180219141345764?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>这段代码揭示了攻击的关键部分<br>首先我们将访问内核地址并取内容到寄存器内，<br>若这一举动可以触发异常，则对应的寄存器清零，若异常未处理，则应用程序将会被终止，并且取出的值将会存入应用程序核心转储的寄存器中。我们要做的就是通过第5行将相应的寄存器清零，从而可以判断这是一个错误的值。然后再次重试，直到遇到一个不为0的值，然后将秘密的值作为地址，去做读取操作，以便cache记录到这个地址，实现侧信道攻击。</p>
 <h4 id="六、Spectre"><a href="#六、Spectre" class="headerlink" title="六、Spectre"></a>六、Spectre</h4><p><img src="http://img.blog.csdn.net/20180221225303439?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spectre主要利用了分支预测和乱序执行的漏洞实现的，如图所示的代码，看起来十分地正常，若x小于array1的长度的时候，循环顺利执行。但是我们假设这里有一个存储密码的变量地址为secret，并且令a=secret-array1，于是我们可以使用array1[a]来表示secret的值。当多次执行循环的时候，我们的x满足循环条件，则我们的分支预测模块会认为下一个循环也满足循环条件而去预执行这个循环，若此时我们将a的值赋值给x，则分支预测模块预测本次循环为执行（其实并不会执行），CPU会预执行这个循环体，然后将我们存储密码的secret值取出来，并将其作为地址去访问array2，但是最终发现循环不应该被执行，于是刚才取出来的值将会被作废。但是我们的这个secret值的地址已经被存入到缓存中去。我们最终可以将array2读取一遍，若读取某个地址的时候，访问的时间特别短，则说明这个地址就是那个被存入缓存的地址（即我们的密码值）。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://googleprojectzero.blogspot.co.at/2018/01/reading-privileged-memory-with-side.html" target="_blank" rel="external">https://googleprojectzero.blogspot.co.at/2018/01/reading-privileged-memory-with-side.html</a></p>
+<h4 id="七、参考"><a href="#七、参考" class="headerlink" title="七、参考"></a>七、参考</h4><p><a href="https://googleprojectzero.blogspot.co.at/2018/01/reading-privileged-memory-with-side.html" target="_blank" rel="external">https://googleprojectzero.blogspot.co.at/2018/01/reading-privileged-memory-with-side.html</a></p>
 <p><a href="https://lwn.net/Articles/738975/" target="_blank" rel="external">https://lwn.net/Articles/738975/</a></p>
 <p><a href="http://lib.csdn.net/article/linux/29085" target="_blank" rel="external">http://lib.csdn.net/article/linux/29085</a></p>
 <p><a href="https://bugs.chromium.org/p/project-zero/issues/detail?id=1272" target="_blank" rel="external">https://bugs.chromium.org/p/project-zero/issues/detail?id=1272</a></p>
