@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Paper,RISC-V," />
+  <meta name="keywords" content="meltdown,分析和防御,spectre," />
 
 
 
@@ -93,19 +93,26 @@
 
 
 
-<meta name="description" content="一、背景&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;由于计算核芯和电子商务的兴起，有必要在硬件层面保护我们的数据安全，目前面临的主要威胁是来自内存的攻击，包括时间和空间上两方面的侵入，团队制造出了一个名为Shakti-T的轻量级安全扩展芯片来解决这些问题，本处理器仅使用194个LUTs以及2197个触发器。 二、攻击类型刚刚提到了基于内存的攻击">
-<meta name="keywords" content="Paper,RISC-V">
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Spectre以及meltdown漏洞是前段时间，十分热门的两个漏洞，它们之所以广受重视，是因为它们根据的是体系结构的设计漏洞，而非针对某个系统或者某个软件，因此它几乎可以遍及大多数近代的CPU。 这里主要有三个漏洞:  Variant 1: bounds check bypass (CVE-2017-">
+<meta name="keywords" content="meltdown,分析和防御,spectre">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions">
-<meta property="og:url" content="http://csuncle.com/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/index.html">
+<meta property="og:title" content="Meltdown &amp;  Spectre原理简要梳理">
+<meta property="og:url" content="http://csuncle.com/2018/02/11/meltdown分析和防御/index.html">
 <meta property="og:site_name" content="会打代码的扫地王大爷">
-<meta property="og:description" content="一、背景&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;由于计算核芯和电子商务的兴起，有必要在硬件层面保护我们的数据安全，目前面临的主要威胁是来自内存的攻击，包括时间和空间上两方面的侵入，团队制造出了一个名为Shakti-T的轻量级安全扩展芯片来解决这些问题，本处理器仅使用194个LUTs以及2197个触发器。 二、攻击类型刚刚提到了基于内存的攻击">
-<meta property="og:image" content="http://img.blog.csdn.net/20171020205034999?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-01-04T16:36:38.389Z">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Spectre以及meltdown漏洞是前段时间，十分热门的两个漏洞，它们之所以广受重视，是因为它们根据的是体系结构的设计漏洞，而非针对某个系统或者某个软件，因此它几乎可以遍及大多数近代的CPU。 这里主要有三个漏洞:  Variant 1: bounds check bypass (CVE-2017-">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201412/10/1418199587_2134.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201412/10/1418199588_1395.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201412/10/1418199588_9675.jpg">
+<meta property="og:image" content="http://img.blog.csdn.net/20180218090637365?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="http://img.blog.csdn.net/20180218094832431?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="http://img.blog.csdn.net/20180219090041489?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="http://img.blog.csdn.net/20180219141345764?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="http://img.blog.csdn.net/20180221225303439?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2018-02-23T01:00:32.714Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions">
-<meta name="twitter:description" content="一、背景&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;由于计算核芯和电子商务的兴起，有必要在硬件层面保护我们的数据安全，目前面临的主要威胁是来自内存的攻击，包括时间和空间上两方面的侵入，团队制造出了一个名为Shakti-T的轻量级安全扩展芯片来解决这些问题，本处理器仅使用194个LUTs以及2197个触发器。 二、攻击类型刚刚提到了基于内存的攻击">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20171020205034999?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:title" content="Meltdown &amp;  Spectre原理简要梳理">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Spectre以及meltdown漏洞是前段时间，十分热门的两个漏洞，它们之所以广受重视，是因为它们根据的是体系结构的设计漏洞，而非针对某个系统或者某个软件，因此它几乎可以遍及大多数近代的CPU。 这里主要有三个漏洞:  Variant 1: bounds check bypass (CVE-2017-">
+<meta name="twitter:image" content="http://img.my.csdn.net/uploads/201412/10/1418199587_2134.jpg">
 
 
 
@@ -133,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="http://csuncle.com/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/"/>
+  <link rel="canonical" href="http://csuncle.com/2018/02/11/meltdown分析和防御/"/>
 
 
 
 
 
-  <title>【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Meltdown &  Spectre原理简要梳理 | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -289,7 +296,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/02/11/meltdown分析和防御/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
@@ -306,7 +313,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions</h2>
+          <h2 class="post-title" itemprop="name headline">Meltdown &  Spectre原理简要梳理</h2>
         
 
         <div class="post-meta">
@@ -318,8 +325,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-20T15:24:49+08:00">
-                2017-10-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-11T09:43:13+08:00">
+                2018-02-11
               </time>
             
 
@@ -341,8 +348,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Paper/" itemprop="url" rel="index">
-                    <span itemprop="name">Paper</span>
+                  <a href="/categories/vulnerability-analysis/" itemprop="url" rel="index">
+                    <span itemprop="name">vulnerability analysis</span>
                   </a>
                 </span>
 
@@ -360,8 +367,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/" itemprop="commentsCount"></span>
+                <a href="/2018/02/11/meltdown分析和防御/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/02/11/meltdown分析和防御/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -387,34 +394,50 @@
       
 
       
-        <h4 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于计算核芯和电子商务的兴起，有必要在硬件层面保护我们的数据安全，目前面临的主要威胁是来自内存的攻击，包括时间和空间上两方面的侵入，团队制造出了一个名为Shakti-T的轻量级安全扩展芯片来解决这些问题，本处理器仅使用194个LUTs以及2197个触发器。</p>
-<h4 id="二、攻击类型"><a href="#二、攻击类型" class="headerlink" title="二、攻击类型"></a>二、攻击类型</h4><p>刚刚提到了基于内存的攻击</p>
-<pre><code>1. 基于空间上的攻击 -指针访问了它不允许被访问的地方。
-   比较著名的例子有buffer-overflow，blaster-worm以及用于DDoS的slammer worm,安卓的Root也是利用了这个原理.
-2. 基于时间上的攻击 -指针访问了已经被释放的地方。
-</code></pre><h4 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前人对这两个问题提出了许多解决方案，为了解决问题一，有人提出了Lock and Key的方案，或者</p>
-<pre><code>- Stack Canaries,
-- Encryption of The Code Pointer,
-- Rearranging argument locations,
-- 以及the Address Space Layout Randomization(ASLR)
-</code></pre><p>等方法，而对于问题二，也有人提出富指针的方案，其中ASLR是抵御ROP(Return Oriented Programming)问题最好的方法，但是它依然存在一些问题，攻击者可以通过改变控制流的方法来绕过它们的检查。同时富指针方案也存在着高开销，缺乏稳定性等问题，即便有硬件层面的解决方案，当多个指针同时存在时也会失效。</p>
-<h4 id="四、富指针（Fat-Pointer）"><a href="#四、富指针（Fat-Pointer）" class="headerlink" title="四、富指针（Fat-Pointer）"></a>四、富指针（Fat-Pointer）</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所谓富指针就是指，在原先指针的数据结构上再加上基地址和限长两个元素，每次为指针分配一个地址空间的时候，都会自动写入这块地址的起始位置和长度，而每次访问指针时，都会检查是否越界，以此来防止指针在释放后再次读取的问题.但是传统的方法有一个十分遗憾的问题，假如存在{P1，P2…..Pn}n个指针，它们同时指向同一个空间，当释放其中一个以后，由于是各存一份，访问其它指针依然会认为是正常访问，但实际上已经出现了空间上的攻击。</p>
-<h4 id="五、提出的方案"><a href="#五、提出的方案" class="headerlink" title="五、提出的方案"></a>五、提出的方案</h4><p> 我们使用的是基于硬件的富指针:</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spectre以及meltdown漏洞是前段时间，十分热门的两个漏洞，它们之所以广受重视，是因为它们根据的是体系结构的设计漏洞，而非针对某个系统或者某个软件，因此它几乎可以遍及大多数近代的CPU。</p>
+<p>这里主要有三个漏洞:</p>
+<ul>
+<li>Variant 1: bounds check bypass (CVE-2017-5753)【绕过边界检查】</li>
+<li>Variant 2: branch target injection (CVE-2017-5715)【分支目标注入】</li>
+<li>Variant 3: rogue data cache load (CVE-2017-5754)【恶意数据缓存载入】<br>Spectre 主要利用前两个漏洞进行攻击，而meltdown则主要利用第三个漏洞进行攻击。</li>
+</ul>
+<h4 id="一、内存映射"><a href="#一、内存映射" class="headerlink" title="一、内存映射"></a>一、内存映射</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux和Windows的内存映射方法是不同的，在linux中，虚拟空间地址有4G，0~3G为用户空间，3~4G为内核空间<br><img src="http://img.my.csdn.net/uploads/201412/10/1418199587_2134.jpg" alt="虚拟空间"></p>
+<p>其中内核空间都相同，准确的讲是每个进程共享同一个内核空间<br><img src="http://img.my.csdn.net/uploads/201412/10/1418199588_1395.jpg" alt="虚拟内存"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux在启动时会初始化一个进程，然后通过fork()生成子进程，Linux的fork机制会把父进程的页表和堆栈等一模一样地复制一份，然后在运行时，子进程通过缺页异常等操作来改变用户空间，如果内核空间部分也改变了，则只修改初始化进程的内核空间，其它子进程访问该页时，再通过缺页中断将这部分内容从父进程更新过来。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一般来讲，当进程进行系统调用进入内核态的时候，它应该能够访问整个地址空间的，但是在这里只能访问自己的1G的地址空间，于是我们需要通过地址的映射，来使他可以访问整个空间，内核空间分为：ZONE_DMA（内存开始的16MB） 、ZONE_NORMAL（16MB~896MB）、ZONE_HIGHMEM（896MB ~ 结束）三个区域，其中0~896M是直接映射的，其余部分会进行非线性映射。</p>
+<p><img src="http://img.my.csdn.net/uploads/201412/10/1418199588_9675.jpg" alt="这里写图片描述"></p>
+<h4 id="二、Tomasulo算法"><a href="#二、Tomasulo算法" class="headerlink" title="二、Tomasulo算法"></a>二、Tomasulo算法</h4><p><img src="http://img.blog.csdn.net/20180218090637365?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="tomasylo"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原始的Tomasulo算法是为了寄存器重命名以便消除指令的数据相关，数据一到就可以执行指令。</p>
 <ol>
-<li>基地址和边界统一存放于一个PLM（Pointer Limits Memory），而PLM的地址存于PLBR寄存器</li>
-<li>每一个指针对应一个ptr_id</li>
-<li>每次调用指针时使用ptr_id调取对应的基地址和边界，<br><img src="http://img.blog.csdn.net/20171020205034999?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="表格"></li>
+<li>指令首先存在于指令队列之中。</li>
+<li>指令一条一条地从队列中取出来，进行译码，然后放到对应的操作保留站中，比如加法指令放到加法保留站中。乘法指令放到乘除法保留站中。Vj和Vk中是用来存储源操作数的（已经就绪的源操作数值取自于浮点寄存器），若源操作数还没有准备好，则通过Qj和Qk指向操作数的保留站号，等到被指向的保留站中的操作计算出了结果，则结果可以通过结果总线传回到保留站中需要的指令，然后将其Qj和Qk中的值改为0（表示已经准备好）。</li>
+<li>当Qj和Qk都为0时，那一条指令就可以送到乘/除器中执行。</li>
 </ol>
-<p>我们使用如图表格来作为缓存，</p>
+<h4 id="三、乱序执行"><a href="#三、乱序执行" class="headerlink" title="三、乱序执行"></a>三、乱序执行</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最早期 CPU都是顺序执行的，前一条指令未执行完毕，则后一条指令必须等待着，就像我们烧水，必须洗茶壶，烧水，洗茶杯，倒水必须按照顺序来做，但是事实上烧水和洗茶杯可以同时执行，其实有很多指令也是如此，调整它们的顺序可以加快程序执行的速度</p>
+<p>可能会造成乱序执行的原因：</p>
 <ol>
-<li>其中左边的GPR（General Purpose Register）分两个部分一个是Tag bits，用于标记是数据还是指针，另一部分是寄存器的数值。</li>
-<li>右边的BnBIndex和BnBLookUp包含在一个名为BnBCache的寄存器中，BnBIndex中的index表示BnBLookUp的位置，有效位V的值若为1，则表示可以从BnBLookUp中取到值，若为0，则说明需要从内存中去取所需的信息，当BnBLookUp中的信息被更新时，BnBindex中的信息也会被同步更新。BnBLookUp中的有效位V为1则表示它目前可用，为0则表示它可能被释放了。当BnBLookUp中的空间不足，则用LRU(最近最少使用)算法进行替换。</li>
+<li>编译器为了优化而实现指令重排（静态调度）</li>
+<li>CPU实现指令的多发射，以及并行执行，并为了优化实现指令的重排（动态调度）</li>
 </ol>
-<h4 id="六、副作用及解决方案"><a href="#六、副作用及解决方案" class="headerlink" title="六、副作用及解决方案"></a>六、副作用及解决方案</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比如有的时候调用函数，某个寄存器被push了，若此时正好这个寄存器被替换出去，但是当数据再次被pop的时候那个寄存器已经是无效的了。于是需要新设计一个BnBStack（Base and Bound Stack）用于专门存放暂时被push的指针ptr_id.</p>
-<h4 id="七、结果"><a href="#七、结果" class="headerlink" title="七、结果"></a>七、结果</h4><ol>
-<li>安全性：还是同样的问题，此处有（P1，P2….Pn）n个指针，若它们指向同一个地址，其中一个释放以后，BnBLookUp中有效位被置0，其它指针再访问它时，就可以得知它是无效的消息。</li>
-<li>节约内存 :（P1，P2….Pn）n个指针,若他们指向同一个地址，则需要存n个ptr_id和1个base，一个bound，共n+2个空间。但传统的方法，每一个指针都需要存一份，则需要2n个空间。但如果这些指针分别指向不同的空间，则本方案更耗费一些空间。</li>
-</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程序的乱序执行并不意味着在所有步骤中，指令的顺序都是混乱的，事实上，指令在发射时和提交时依然是顺序的，只是在执行的过程中会打乱顺序。</p>
+<p>为了支持乱序执行<br><img src="http://img.blog.csdn.net/20180218094832431?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="带有ROB的Tomasulo算法"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们在Tomasulo  算法中加入了ROB来使得提交结果的时候能够按照顺序提交，执行的结暂时存放于ROB而不直接写入寄存器堆，然后再按顺序提交数据。从而可以不出问题。</p>
+<p>本次的漏洞就是利用了这一特性来实现的</p>
+<h4 id="四、分支预测"><a href="#四、分支预测" class="headerlink" title="四、分支预测"></a>四、分支预测</h4><p>由于在指令中存在许多跳转和分支，为了提前访问分支中的代码以解决时间，我们加入了分支预测功能</p>
+<h6 id="静态分支"><a href="#静态分支" class="headerlink" title="静态分支"></a>静态分支</h6><p>对于所有的跳转指令，我们都预测执行跳转或者执行不跳转，则称其为静态跳转</p>
+<h6 id="动态分支"><a href="#动态分支" class="headerlink" title="动态分支"></a>动态分支</h6><p>动态分支将会通过历史跳转信息来预测下一次分支应该选择跳转还是选择不跳转。在intel设计中有一个称为BTB(Branch Target Buffer)的部件，当我们执行分支指令时，会将执行结果和分支指令地址记录在其中，当下次取址时，查询其中的记录，若存在，则根据历史执行记录进行预测是否跳转。</p>
+<p>若不存在此记录，我们将会使用静态分支预测器，我们一般将向上跳转的分支指令看作循环，对于循环我们倾向于接受跳转，而对于向下跳转，我们倾向于不跳转。</p>
+<h4 id="五、Meltdown攻击"><a href="#五、Meltdown攻击" class="headerlink" title="五、Meltdown攻击"></a>五、Meltdown攻击</h4><p><img src="http://img.blog.csdn.net/20180219090041489?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在第一行，我们引发了一个异常，若程序按照顺序执行，第三行的access将不会被执行，但是由于程序是乱序执行的，因此在异常引发之前，第三行的access将被执行，但是执行结果存在ROB中不会被提交，当异常触发以后，第三行的执行结果将被撤销掉，从计算机外部看来第三行的access就跟从未被执行过一样，但是事实上它只是在后期被撤销了，这会带来一个小问题，就是在执行过程中，刚才读取的数据已经被存储到高速缓存中。</p>
+<p>我们可以通过侧信道攻击来确认刚才访问的数据是什么。</p>
+<p><img src="http://img.blog.csdn.net/20180219141345764?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>这段代码揭示了攻击的关键部分<br>首先我们将访问内核地址并取内容到寄存器内，<br>若这一举动可以触发异常，则对应的寄存器清零，若异常未处理，则应用程序将会被终止，并且取出的值将会存入应用程序核心转储的寄存器中。我们要做的就是通过第5行将相应的寄存器清零，从而可以判断这是一个错误的值。然后再次重试，直到遇到一个不为0的值，然后将秘密的值作为地址，去做读取操作，以便cache记录到这个地址，实现侧信道攻击。</p>
+<h4 id="六、Spectre"><a href="#六、Spectre" class="headerlink" title="六、Spectre"></a>六、Spectre</h4><p><img src="http://img.blog.csdn.net/20180221225303439?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spectre主要利用了分支预测和乱序执行的漏洞实现的，如图所示的代码，看起来十分地正常，若x小于array1的长度的时候，循环顺利执行。但是我们假设这里有一个存储密码的变量地址为secret，并且令a=secret-array1，于是我们可以使用array1[a]来表示secret的值。当多次执行循环的时候，我们的x满足循环条件，则我们的分支预测模块会认为下一个循环也满足循环条件而去预执行这个循环，若此时我们将a的值赋值给x，则分支预测模块预测本次循环为执行（其实并不会执行），CPU会预执行这个循环体，然后将我们存储密码的secret值取出来，并将其作为地址去访问array2，但是最终发现循环不应该被执行，于是刚才取出来的值将会被作废。但是我们的这个secret值的地址已经被存入到缓存中去。我们最终可以将array2读取一遍，若读取某个地址的时候，访问的时间特别短，则说明这个地址就是那个被存入缓存的地址（即我们的密码值）。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://googleprojectzero.blogspot.co.at/2018/01/reading-privileged-memory-with-side.html" target="_blank" rel="external">https://googleprojectzero.blogspot.co.at/2018/01/reading-privileged-memory-with-side.html</a></p>
+<p><a href="https://lwn.net/Articles/738975/" target="_blank" rel="external">https://lwn.net/Articles/738975/</a></p>
+<p><a href="http://lib.csdn.net/article/linux/29085" target="_blank" rel="external">http://lib.csdn.net/article/linux/29085</a></p>
+<p><a href="https://bugs.chromium.org/p/project-zero/issues/detail?id=1272" target="_blank" rel="external">https://bugs.chromium.org/p/project-zero/issues/detail?id=1272</a></p>
+<p><a href="http://blog.csdn.net/yiyeguzhou100/article/details/72875122" target="_blank" rel="external">http://blog.csdn.net/yiyeguzhou100/article/details/72875122</a></p>
+<p><a href="https://bbs.pediy.com/thread-61327.htm" target="_blank" rel="external">https://bbs.pediy.com/thread-61327.htm</a></p>
+<p><a href="http://blog.csdn.net/muxiqingyang/article/details/6686738" target="_blank" rel="external">http://blog.csdn.net/muxiqingyang/article/details/6686738</a></p>
 
       
     </div>
@@ -470,9 +493,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Paper/" rel="tag"># Paper</a>
+            <a href="/tags/meltdown/" rel="tag"># meltdown</a>
           
-            <a href="/tags/RISC-V/" rel="tag"># RISC-V</a>
+            <a href="/tags/分析和防御/" rel="tag"># 分析和防御</a>
+          
+            <a href="/tags/spectre/" rel="tag"># spectre</a>
           
         </div>
       
@@ -485,8 +510,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/28/登录模块使用/" rel="next" title="登录模块使用">
-                <i class="fa fa-chevron-left"></i> 登录模块使用
+              <a href="/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/" rel="next" title="【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions">
+                <i class="fa fa-chevron-left"></i> 【论文阅读】Shakti-T: A RISC-V Processor with Light Weight Security Extensions
               </a>
             
           </div>
@@ -494,10 +519,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/11/meltdown分析和防御/" rel="prev" title="Meltdown &  Spectre原理简要梳理">
-                Meltdown &  Spectre原理简要梳理 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -689,7 +710,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、背景"><span class="nav-number">1.</span> <span class="nav-text">一、背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、攻击类型"><span class="nav-number">2.</span> <span class="nav-text">二、攻击类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、解决方案"><span class="nav-number">3.</span> <span class="nav-text">三、解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、富指针（Fat-Pointer）"><span class="nav-number">4.</span> <span class="nav-text">四、富指针（Fat-Pointer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、提出的方案"><span class="nav-number">5.</span> <span class="nav-text">五、提出的方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、副作用及解决方案"><span class="nav-number">6.</span> <span class="nav-text">六、副作用及解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、结果"><span class="nav-number">7.</span> <span class="nav-text">七、结果</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、内存映射"><span class="nav-number">1.</span> <span class="nav-text">一、内存映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、Tomasulo算法"><span class="nav-number">2.</span> <span class="nav-text">二、Tomasulo算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、乱序执行"><span class="nav-number">3.</span> <span class="nav-text">三、乱序执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、分支预测"><span class="nav-number">4.</span> <span class="nav-text">四、分支预测</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#静态分支"><span class="nav-number">4.0.1.</span> <span class="nav-text">静态分支</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#动态分支"><span class="nav-number">4.0.2.</span> <span class="nav-text">动态分支</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、Meltdown攻击"><span class="nav-number">5.</span> <span class="nav-text">五、Meltdown攻击</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、Spectre"><span class="nav-number">6.</span> <span class="nav-text">六、Spectre</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
@@ -845,7 +866,7 @@
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94255, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94255, xid: "2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/"});
+		_hcwp.push({widget:"Stream", widget_id: 94255, xid: "2018/02/11/meltdown分析和防御/"});
 		
 
 		(function() {
