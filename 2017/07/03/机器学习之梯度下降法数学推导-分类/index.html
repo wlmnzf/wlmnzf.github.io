@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="会打代码的扫地王大爷">
 <meta property="og:description" content="PS:本文中的log等同于我们国内的ln  sigmoid函数&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;之前那一文中提到了一般的梯度上升的公式推导，但是在《机器学习实战》一书中，实现的是分类方法，因此，虽然最终的结果相似，但是其实本质有很大的不同。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一般来讲我们把实物分成两类，因此我们需要将结果映射到两个结果(是或非)，因为一般的阶跃函数在求">
 <meta property="og:image" content="http://img.blog.csdn.net/20170702143445883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-01-04T16:36:38.417Z">
+<meta property="og:updated_time" content="2018-02-25T02:54:56.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之梯度下降法数学推导--分类">
 <meta name="twitter:description" content="PS:本文中的log等同于我们国内的ln  sigmoid函数&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;之前那一文中提到了一般的梯度上升的公式推导，但是在《机器学习实战》一书中，实现的是分类方法，因此，虽然最终的结果相似，但是其实本质有很大的不同。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一般来讲我们把实物分成两类，因此我们需要将结果映射到两个结果(是或非)，因为一般的阶跃函数在求">
@@ -408,6 +408,7 @@
 <h4 id="2-sigmoid函数求导"><a href="#2-sigmoid函数求导" class="headerlink" title="2. sigmoid函数求导"></a>2. sigmoid函数求导</h4><p>$$<br>\begin{equation}<br>\begin{split}<br>&amp;h’(x)=\frac{d}{dx}\frac{1}{1+e^{-x}}\\<br>&amp;=\frac{1}{(1+e^{-x})^2} (e^{-x})\\<br>&amp;=\frac{1}{(1+e^{-x})}(1-\frac{1}{(1+e^{-x})})\\<br>&amp;=h(x)(1-h(x))<br>\end{split}<br>\end{equation}         \tag{6}<br>$$</p>
 <h4 id="3-似然估计后续"><a href="#3-似然估计后续" class="headerlink" title="3.  似然估计后续"></a>3.  似然估计后续</h4><p>&nbsp;&nbsp;&nbsp;&nbsp; 从上一篇文章，或者从《机器学习实战》chapter5 中可得sigmoid函数h(x)的输入函数是$w=\theta^Tx$,将其代入公式(4)，得到</p>
 <p>$$<br>\begin{equation}<br>\begin{split}<br>&amp;l’(\theta)=(y\frac{1}{h(\theta^Tx)}-(1-y)\frac{1}{1-h{(\theta^Tx)}}) \frac{\partial}{\partial\theta_j}h(\theta^Tx)\\<br>&amp;=(\frac{1}{h(\theta^Tx)}-(1-y)\frac{1}{1-h(\theta^Tx)})h(\theta^Tx)(1-h(\theta^Tx)\frac{\partial}{\partial_j}\theta^Tx)\\<br>&amp;=(y(1-h(\theta^Tx))-(1-y)h(\theta^T x))x_j\\<br>&amp;=(y-h_\theta(x))x_j<br>\end{split}<br>\end{equation}         \tag{7}<br>$$</p>
+<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
       
     </div>
