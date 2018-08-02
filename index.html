@@ -288,6 +288,294 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/02/基于无保护AES算法的CPA攻击/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="William Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/02/基于无保护AES算法的CPA攻击/" itemprop="url">基于无保护AES芯片的 CPA攻击</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T19:30:08+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cryptology/" itemprop="url" rel="index">
+                    <span itemprop="name">密码学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/02/基于无保护AES算法的CPA攻击/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/02/基于无保护AES算法的CPA攻击/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基于无保护AES芯片的-CPA攻击"><a href="#基于无保护AES芯片的-CPA攻击" class="headerlink" title="基于无保护AES芯片的 CPA攻击"></a>基于无保护AES芯片的 CPA攻击</h1><h2 id="王立敏1-丁洁2"><a href="#王立敏1-丁洁2" class="headerlink" title="王立敏1,丁洁2 "></a>王立敏1,丁洁2 </h2><p>1中国科学院信息工程研究所 第五实验室 北京 中国 100093</p>
+<p>2 中国科学院信息工程研究所 第五实验室 北京 中国 100093</p>
+<p>摘要 高级加密标准（Advanced Encryption Standard，AES）是最常用的加密算法之一。<br>为了提升实际应用中加解密操作的速度，或者在小型芯片上完成加密工作，AES通常被集成在加密芯片中。这使得其容易遭受侧信道攻击，尤其是能量分析攻击。本文中将采用相关能量分析<br>（Correlation Power<br>Analysis，CPA）对AES的能量迹和字节替换环节之间的关系进行统计分析来猜测其对应的密钥。其结果表明对于普通的无保护AES芯片，CPA攻击十分有效。</p>
+<p>关键词 <strong>侧信道攻击，AES，密码芯片，相关能量分析，能量迹</strong></p>
+<blockquote>
+<p>  The CPA Attack For Unprotected AES Chips</p>
+</blockquote>
+<p>Wang Limin1, Ding jie2</p>
+<p>1 Institute of Information Engineering, Chinese Academy of Sciences, Beijing<br>100093, China<br>2 Institute of Information Engineering, Chinese Academy of Sciences, Beijing<br>100093, China</p>
+<p><strong>Abstract</strong> Advanced Encryption Standard is one of the most commonly used<br>encryption algorithms. In order to improve the speed of encrypted and decrypted<br>operations or encrypt data on chips , the independent AES chip is used for<br>encryption, which makes the chip vulnerable to Side-Channel Attack, especially<br>to Power Analysis. This paper will guess the key of the AES by analyzing the<br>correlation between power trace and SubBytes operation. This experiment shows<br>that CPA attack can help crack secret keys more efficiently.</p>
+<p><strong>Key words</strong> Side-Channel Attack, AES, Cipher Chip, Correlation Power Analysis,<br>Power Trace</p>
+<h4 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a><strong>1</strong> 引言</h4><p>侧信道分析技术在硬件安全领域中应用十分广泛。其中较为常见的一种是能量分析，它主要包括三种分析方法，简单能量分析（Simple<br>Power Analysis, SPA），差分能量分析(Differential Power Analysis,<br>DPA)以及相关能量分析(Correlation Power Analysis, CPA)。 SPA和DPA最初由Paul<br>Kocher, Joshua Jae, 和 Benjamin Jun 在1999年提出[1]。<br>SPA利用的是密码芯片在进行不同的指令操作时所消耗的能量也不同这一特性，例如AES芯片在执行10轮操作时，它的10个能量消耗峰值将会十分明显。而DPA则更加复杂，它将测出来的能量迹分为几类，并计算它们均值的差，若假设的密钥是正确的，则会出现一个能量波峰，否则差值会在0附近波动。DPA是十分有效的能量攻击方法，但是它依然存在诸如幽灵峰值的问题，而本试验中给出的能量迹又足够多，因此为了提高破译密钥的正确性，本文将采用CPA来对AES进行攻击。CPA由E.Brier提出，是从DPA改进而来，它采用的是汉明重量模型[2]。</p>
+<h4 id="2-AES介绍"><a href="#2-AES介绍" class="headerlink" title="2 AES介绍"></a><strong>2</strong> AES介绍</h4><p>AES在安全性不低于三重数据加密算法（Triple Data Encryption<br>Algorithm，TDEA，也叫3DES）的同时，运算速度还比它快，因此被采用来替代原先的数据加密标准（Data<br>Encryption Standard，DES），它具有很好的抗差分密码分析和线性密码分析的能力。</p>
+<p>AES根据密钥的长度的不同有三种不同的版本分别为AES-128，AES-192以及AES-256。本文只讨论利用CPA攻击无保护的AES-128算法，如算法1所示。</p>
+<table>
+<thead>
+<tr>
+<th>算法1：无保护的AES-128算法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入：明文X[0-15],轮密钥RoundKey[0-10] 输出：密文X[0-15]</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><p><strong>for</strong> r = 0;r ≤ 8;r++ <strong>do</strong></p>
+</li>
+<li><p>X = X ⊕ <em>RoundKey</em>[r]; /*加轮密钥*/</p>
+</li>
+<li><p><strong>for</strong> i = 0; i≤15; i++ <strong>do</strong></p>
+</li>
+<li><p>Xi = <em>SubBytes</em>(Xi); /*字节替换*/</p>
+</li>
+<li><p><strong>end</strong></p>
+</li>
+<li><p>X = <em>ShiftRows</em>(X); /*行变换*/</p>
+</li>
+<li><p>X = <em>MixColumns</em>(X); /*列混淆*/</p>
+</li>
+<li><p><strong>end</strong></p>
+</li>
+<li><p>X = X⊕<em>RoundKey</em>[9]; /*最后一轮*/</p>
+</li>
+<li><p><strong>for</strong> I = 0; i≤15; i++ <strong>do</strong></p>
+</li>
+<li><p>Xi = <em>SubBytes</em>(Xi);</p>
+</li>
+<li><p><strong>end</strong></p>
+</li>
+<li><p>X = <em>ShiftRows</em>（X）</p>
+</li>
+<li><p>X = X⊕<em>RoundKey</em>[10] /*获取密文*/</p>
+</li>
+</ol>
+<p>AES-128算法需要经过10轮的操作，除了最后一轮之外，前9轮都包括加轮密钥，字节替换，行变换，列混淆这四个步骤，而第十轮则少一个列混淆。这里的11个128位的轮密钥是原始的128位密钥经过密钥扩展得到的。</p>
+<h6 id="2-1-密钥扩展"><a href="#2-1-密钥扩展" class="headerlink" title="2.1 密钥扩展"></a><strong>2.1</strong> 密钥扩展</h6><p>密钥扩展是将最初始的128位密钥扩展成11个轮密钥，方便每一轮中的操作。假设有这样一个128位的密钥，如图1所示。然后按每4字节为一列排列成图2所示的阵列。</p>
+<p><img src="media/aca5694048fc85eeac005c7b6336a1e1.emf" alt=""></p>
+<p>图1 给定的 AES密钥</p>
+<p><img src="media/1163391914f36f5fe76d003b63cd7db3.emf" alt=""></p>
+<p>图2 密钥的排布</p>
+<p>图2中每一列分配一个标记wi，第一列为w0，第二列为w1，以此类推。每一个轮密钥的第一列生成方式都较为复杂，这里以生成第5列（w4）为例。</p>
+<p><img src="media/705066a518a55a090419c032332e6b59.emf" alt=""></p>
+<p>图3 w3左移一位</p>
+<p>如图3所示，当将最初的密钥排列完毕以后，需要将最后一列进行循环左移。并且左移后的每个元素都要经过S-BOX的字节替换处理，图四表示了这一过程。关于S-BOX字节替换的详细描述可参看2.3部分。</p>
+<p><img src="media/0b1e1036038e9eba86871740baab9001.emf" alt=""></p>
+<p>图4 左移后经过S-BOX进行字节替换</p>
+<p>假设正在生成第i列密钥，这里是第5列，即为w4。由于此处是第二个轮密钥的第一列，则经过字节替换后的结果，需要与wi-4即w0以及rcon[i/4-1]即rcon[0]进行异或才能最终得出w4。其中rcon是如图6所示的10列数字。</p>
+<p><img src="media/fdbf1101b1ccda713c625604d0402128.emf" alt=""></p>
+<p>图5 轮密钥第一列生成</p>
+<p><img src="media/f14bc5f92674dd6c2f94a5b44ad838d5.emf" alt=""></p>
+<p>图6 RCON数组</p>
+<p>只有轮密钥的第一列需要按照上述方法生成，接下来的三列则通过图7所示的方法，通过将wi-1以及wi-4异或来求得，例如这里轮密钥第二列w5，则是通过w4和w1异或得来的。</p>
+<p><img src="media/c2defc5546c881cf571fc1155b5b445d.emf" alt=""></p>
+<p>图7 轮密钥第二列生成</p>
+<p>之后的每一个轮密钥都将按照上述方法进行计算得出，轮密钥第一列wi=SubByte（LeftShift（wi-1））⊕wi-4⊕rcon[i/4-1],而第二，三，四列的计算规则为wi=<br>wi-1⊕wi-4。图8即为新生成的轮密钥，可以很明显看出轮密钥0就是最开始输入的密钥，通常对AES的能量分析，都只分析第一轮，这一轮的轮密钥加操作使用的是轮密钥0，即原始输入的密钥。因此在进行CPA攻击时不需要经过密钥扩展这一步。</p>
+<p><img src="media/dade39c5e0464c751004532cf7a9b8e9.emf" alt=""></p>
+<p>图8 新生成的轮密钥</p>
+<h6 id="2-2-加轮密钥"><a href="#2-2-加轮密钥" class="headerlink" title="2.2 加轮密钥"></a><strong>2.2</strong> 加轮密钥</h6><p>AES经过密钥扩展得到轮密钥之后，将进行10轮操作，在每一轮操作中都需要加轮密钥。<br>首先需要将明文和轮密钥按4字节为一列排成4列，分别命名为P0-P15和C0-C15,然后将明文和密文，按字节进行异或，即P0⊕C0-P15⊕C15。得到的最终结果可用于后续的字节替换。</p>
+<p><img src="media/2b5e5ffcdf53d981f28da7b8bcf74053.emf" alt=""></p>
+<p>图9 轮密钥加</p>
+<h6 id="2-3-字节替换"><a href="#2-3-字节替换" class="headerlink" title="2.3 字节替换"></a><strong>2.3</strong> 字节替换</h6><p>字节替换一般使用的是Rijndael<br>S-box[3],它将需要替换的字节的高四位作为横坐标，低四位作为纵坐标从S-BOX中选中对应的字节作为替代值。</p>
+<p>如图10，待替代字节为0x01,则横坐标为高四位0x0,纵坐标为低四位0x1，从S-BOX中找到对应坐标的值0x7c，然后将其替换，图10展示S-BOX的替换过程，其中的S-BOX只是完整表格的一部分。</p>
+<p><img src="media/0ea04053bf44136b749c7781422b42e6.emf" alt=""></p>
+<p>图10 S-BOX替换</p>
+<h4 id="3-CPA攻击"><a href="#3-CPA攻击" class="headerlink" title="3 CPA攻击"></a><strong>3</strong> CPA攻击</h4><p>CPA攻击主要采用汉明重量模型。计算汉明重量与对应能量迹之间的相关系数，若相关系数越大，则说明他们之间的相关性越强，若数据中某一猜测密钥对应的相关系数相比于其他相关系数要大的多，就可以说明这一猜测密钥是正确的。</p>
+<h6 id="3-1-汉明重量"><a href="#3-1-汉明重量" class="headerlink" title="3.1 汉明重量"></a><strong>3.1</strong> 汉明重量</h6><p>汉明重量可以表示一个二进制字符串中1的个数。已经有论文通过实验证明了输出结果的汉明重量与能量消耗之间有明确的关系，能量消耗随着汉明重量的增大而增大，而且有较为明确的界限，经过计算，它们的相关系数甚至能够达到0.9919[4]。这也说明CPA使用汉明重量模型是合理的。</p>
+<h6 id="3-2-CPA攻击方法"><a href="#3-2-CPA攻击方法" class="headerlink" title="3.2 CPA攻击方法"></a><strong>3.2</strong> CPA攻击方法</h6><p>由于字节替换占用了总能量消耗的大部分[5]，因此在CPA攻击时可以只考虑S-BOX的输出与能量迹之间的关系。</p>
+<p>本文将密钥分成16个子密钥分别破解，每一子密钥为一个字节。首先考虑第一个子密钥GuessKey的破解，这里需要将其从0遍历到255，然后每遍历一个值，就参照AES的一轮加密过程，将其与明文pt进行异或，异或之后再经过S-BOX的字节替换即可得到用于求解汉明重量的输入字符串input，如算法2第6行所示。值得注意的是AES加密需要对原始密钥进行密钥扩展，将一个原始密钥扩展成11个轮密钥，但是如算法2第4行所示，这里轮秘钥并不是密钥扩展得到的，而是直接对原始密钥进行了异或。这是因为，从本文2.1部分密钥扩展的过程可以看出，第一个轮密钥就是原始密钥本身，而且此处我们也只需要考虑AES的第一轮能量消耗和汉明重量之间的关系即可，因此在这里进行AES第一轮操作时可以不用进行密钥扩展而直接使用原始密钥。而后将输入字符串input的汉明重量求出，存在数组中，并求出他们与能量迹的Pearson相关系数。于是便可以得到横坐标为256个GuessKey，纵坐标为相关系数的统计图（请参看附件文件夹中的图），若遍历到的密钥不正确，则相关系数的波动幅度并不大，而当猜测的密钥正确时，对应的相关系数将会是一个明显的波峰。</p>
+<table>
+<thead>
+<tr>
+<th>算法2：CPA攻击算法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入：能量迹traces，明文pt 输出：密钥keys</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li><p><strong>for</strong> i = 0; i\&lt;16 ;i++ <strong>do</strong></p>
+</li>
+<li><p><strong>for</strong> <em>GuessKey</em>=0;<em>GuessKey</em>\&lt;256;<em>GuessKey</em>++ <strong>do</strong></p>
+</li>
+<li><p><strong>for</strong> j = 0;j\&lt;<em>TraceCnt</em>;j++ <strong>do</strong></p>
+</li>
+<li><p>input=pt[j][i]⊕<em>GuessKey</em>;</p>
+</li>
+<li><p>input=<em>SubBytes</em>(input);</p>
+</li>
+<li><p>hws[j]=<em>HammingWeight</em>(input);</p>
+</li>
+<li><p><strong>end</strong></p>
+</li>
+<li><p><strong>for</strong> j = 0;j\&lt;<em>PointsCnt</em>;j++ <strong>do</strong></p>
+</li>
+<li><p>pccs[j]=<em>PCC</em>(<em>Trans</em>(traces)[j],hws);</p>
+</li>
+<li><p>/*PCC为求Pearson相关系数*/</p>
+</li>
+<li><p>/*Trans为矩阵转置*/</p>
+</li>
+<li><p><strong>end</strong></p>
+</li>
+<li><p>CPA[<em>GuessKey</em>]=<em>Max</em>(pccs)</p>
+</li>
+<li><p><strong>end</strong></p>
+</li>
+<li><p>keys[i]=<em>Argmax</em>(CPA)</p>
+</li>
+<li><p><strong>end</strong></p>
+</li>
+</ol>
+<h4 id="4-结论"><a href="#4-结论" class="headerlink" title="4 结论"></a><strong>4</strong> 结论</h4><p>本次实验所得到的能量迹数据为第36组，攻击源代码可以参看source目录，先通过ReadFile.py读取实验数据,并将其转为攻击代码需要的格式。再执行CPA.py进行攻击，执行过程中通过matplolt画图，可以很清晰地看出相关系数峰值，这些图可以在附件文件夹中看到。最终测算出来的密钥为0x77<br>70 26 8a 51 bf a9 b2 2f 6f 40 69 c3 95 db<br>5b。使用source目录下的AES代码[6]加密明文，并将得到的密文与给定的密文进行对比，可确定其为正确的密钥。因此可以认为本攻击手段采用CPA攻击是合理的。</p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>[1] KOCHER P, JAFFE J, JUN B. Differential power analysis[C]//Annual<br>International Cryptology Conference. Springer, 1999: 388–397.</p>
+<p>[2] BRIER E, CLAVIER C, OLIVIER F. Correlation Power Analysis with a Leakage<br>Model[G]//JOYE M, QUISQUATER J-J. Cryptographic Hardware and Embedded Systems -<br>CHES 2004. Berlin, Heidelberg: Springer Berlin Heidelberg, 2004, 3156: 16–29.</p>
+<p>[3] DAEMEN J. The Rijndael Block Cipher[J]. : 45.</p>
+<p>[4] LO O, BUCHANAN W J, CARSON D. Power analysis attacks on the AES-128 S-box<br>using differential power analysis (DPA) and correlation power analysis (CPA)[J].<br>Journal of Cyber Security Technology, 2017, 1(2): 88–107.</p>
+<p>[5] MORIOKA S, SATOH A. An Optimized S-Box Circuit Architecture for Low Power<br>AES Design[G]//KALISKI B S, KOÇ çetin K, PAAR C. Cryptographic Hardware and<br>Embedded Systems - CHES 2002. Berlin, Heidelberg: Springer Berlin Heidelberg,<br>2003, 2523: 172–186.</p>
+<p>[6] Skycker/AES: Rijndael cipher algorithm[EB/OL]. [2018-07-31].<br><a href="https://github.com/Skycker/AES" target="_blank" rel="noopener">https://github.com/Skycker/AES</a>.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/02/11/Meltdown &  Spectre原理简要梳理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2165,168 +2453,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（完）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会打代码的扫地王大爷">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/11/自定义表单（完）/" itemprop="url">自定义表单（完）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T05:57:32+08:00">
-                2017-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
-                    <span itemprop="name">WebDesign</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/11/自定义表单（完）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/06/11/自定义表单（完）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一、实现的功能</p>
-<p>  1、拖拽插入表单元素，从右边拖拽如左边的表单区</p>
-<p>  2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除</p>
-<p>  3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置</p>
-<p>二、关键部分实现思路</p>
-<p>2.1拖拽插入<br><img src="http://upload-images.jianshu.io/upload_images/685455-4e08de27926deac9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请输入图片描述"></p>
-<p>1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就算完成准备工作了</p>
-<p>2、在ondragover中，因为要显示一根线来提示用户这个正在拖拽的表单元素会被放在哪里，因此就需要计算</p>
-<p>   这个黑色的就是浏览器页面，白色的是表单元素调用getBoundingClientRect()获取的最小覆盖矩形区，他会返回一个对象，其中top表示白色部分的距离（上边界到浏览器顶部的距离），bottom表示黄色线 距离。我们可以获取鼠标在浏览器页面上的坐标，然后判断鼠标正在哪个表单元素里。然后再对这个元素对半分，在粉色上面部分，则对其上边界标记为蓝色，否则就是下部分标记为蓝色。</p>
-<p>3、ondrop中，根据上一步判断的位置，放置拖拽的元素，如果是新增，则克隆一份，再插入，是替换的话则直接插进去就可以了。</p>
-<p>2.2拖拽删除</p>
-<p>  其实原理差不多，只不过在ondrop中绑定的函数中，是把正在拖拽的那个元素删掉就可以了。代码中有很多注释，这里就不一一讲解了。</p>
-<p>3、代码</p>
-<blockquote>
-<p><a href="https://github.com/wlmnzf/javascript-train/tree/master/customForm" target="_blank" rel="noopener">https://github.com/wlmnzf/javascript-train/tree/master/customForm</a></p>
-</blockquote>
-  <div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2376,7 +2502,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2387,7 +2513,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -2398,7 +2524,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
