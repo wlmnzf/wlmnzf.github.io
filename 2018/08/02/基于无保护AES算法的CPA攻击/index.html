@@ -93,13 +93,13 @@
 
 
 
-<meta name="description" content="基于无保护AES芯片的 CPA攻击===========================王立敏1,丁洁2    1中国科学院信息工程研究所 第五实验室 北京 中国 100093  2 中国科学院信息工程研究所 第五实验室 北京 中国 100093  摘要 高级加密标准（Advanced Encryption Standard，AES）是最常用的加密算法之一。为了提升实际应用中加解密操作的速度，或者">
+<meta name="description" content="基于无保护AES芯片的 CPA攻击===========================   王立敏1,丁洁2    1中国科学院信息工程研究所 第五实验室 北京 中国 100093  2 中国科学院信息工程研究所 第五实验室 北京 中国 100093  摘要 高级加密标准（Advanced Encryption Standard，AES）是最常用的加密算法之一。为了提升实际应用中加解密操作的速度">
 <meta name="keywords" content="AES,CPA,能量分析,密码学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于无保护AES芯片的 CPA攻击">
 <meta property="og:url" content="http://csuncle.com/2018/08/02/基于无保护AES算法的CPA攻击/index.html">
 <meta property="og:site_name" content="会打代码的扫地王大爷">
-<meta property="og:description" content="基于无保护AES芯片的 CPA攻击===========================王立敏1,丁洁2    1中国科学院信息工程研究所 第五实验室 北京 中国 100093  2 中国科学院信息工程研究所 第五实验室 北京 中国 100093  摘要 高级加密标准（Advanced Encryption Standard，AES）是最常用的加密算法之一。为了提升实际应用中加解密操作的速度，或者">
+<meta property="og:description" content="基于无保护AES芯片的 CPA攻击===========================   王立敏1,丁洁2    1中国科学院信息工程研究所 第五实验室 北京 中国 100093  2 中国科学院信息工程研究所 第五实验室 北京 中国 100093  摘要 高级加密标准（Advanced Encryption Standard，AES）是最常用的加密算法之一。为了提升实际应用中加解密操作的速度">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://csuncle.com/uploads/基于无保护AES算法的CPA攻击/key-line.svg">
 <meta property="og:image" content="http://csuncle.com/uploads/基于无保护AES算法的CPA攻击/key-table.svg">
@@ -111,10 +111,10 @@
 <meta property="og:image" content="http://csuncle.com/uploads/基于无保护AES算法的CPA攻击/allround.svg">
 <meta property="og:image" content="http://csuncle.com/uploads/基于无保护AES算法的CPA攻击/add.svg">
 <meta property="og:image" content="http://csuncle.com/uploads/基于无保护AES算法的CPA攻击/sbox.svg">
-<meta property="og:updated_time" content="2018-08-03T02:51:24.422Z">
+<meta property="og:updated_time" content="2018-08-03T03:11:26.429Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于无保护AES芯片的 CPA攻击">
-<meta name="twitter:description" content="基于无保护AES芯片的 CPA攻击===========================王立敏1,丁洁2    1中国科学院信息工程研究所 第五实验室 北京 中国 100093  2 中国科学院信息工程研究所 第五实验室 北京 中国 100093  摘要 高级加密标准（Advanced Encryption Standard，AES）是最常用的加密算法之一。为了提升实际应用中加解密操作的速度，或者">
+<meta name="twitter:description" content="基于无保护AES芯片的 CPA攻击===========================   王立敏1,丁洁2    1中国科学院信息工程研究所 第五实验室 北京 中国 100093  2 中国科学院信息工程研究所 第五实验室 北京 中国 100093  摘要 高级加密标准（Advanced Encryption Standard，AES）是最常用的加密算法之一。为了提升实际应用中加解密操作的速度">
 <meta name="twitter:image" content="http://csuncle.com/uploads/基于无保护AES算法的CPA攻击/key-line.svg">
 
 
@@ -397,7 +397,10 @@
       
 
       
-        <p style="text-align: center;">基于无保护AES芯片的 CPA攻击</p><br>===========================<br><br><br><p style="text-align: center;">王立敏<sup>1</sup>,丁洁<sup>2</sup> </p>
+        <p style="text-align: center;"><br>基于无保护AES芯片的 CPA攻击<br>===========================<br></p>
+
+
+<p style="text-align: center;">王立敏<sup>1</sup>,丁洁<sup>2</sup> </p>
 
 
 <p style="text-align: center;"><sup>1</sup>中国科学院信息工程研究所 第五实验室 北京 中国 100093</p>
@@ -411,7 +414,7 @@
 </blockquote>
 <p style="text-align: center;">Wang Limin<sup>1</sup>, Ding jie<sup>2</sup></p>
 
-<p style="text-align: center;">1 Institute of Information Engineering, Chinese Academy of Sciences, Beijing<br>100093, China  </p><br><p>2 Institute of Information Engineering, Chinese Academy of Sciences, Beijing<br>100093, China</p>
+<p style="text-align: center;"><sup>1</sup> Institute of Information Engineering, Chinese Academy of Sciences, Beijing<br>100093, China  </p><br><p style="text-align: center;"><sup>2</sup> Institute of Information Engineering, Chinese Academy of Sciences, Beijing<br>100093, China</p>
 
 <p><strong>Abstract</strong> Advanced Encryption Standard is one of the most commonly used encryption algorithms. In order to improve the speed of encrypted and decrypted operations or encrypt data on chips , the independent AES chip is used for encryption, which makes the chip vulnerable to Side-Channel Attack, especially to Power Analysis. This paper will guess the key of the AES by analyzing the correlation between power trace and SubBytes operation. This experiment shows that CPA attack can help crack secret keys more efficiently.</p>
 <p><strong>Key words</strong> Side-Channel Attack, AES, Cipher Chip, Correlation,Power Analysis,Power Trace</p>
@@ -433,23 +436,52 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AES-128算法需要经过10轮的操作，除了最后一轮之外，前9轮都包括加轮密钥，字节替换，行变换，列混淆这四个步骤，而第十轮则少一个列混淆。这里的11个128位的轮密钥是原始的128位密钥经过密钥扩展得到的。</p>
 <h6 id="2-1-密钥扩展"><a href="#2-1-密钥扩展" class="headerlink" title="2.1 密钥扩展"></a><strong>2.1</strong> 密钥扩展</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密钥扩展是将最初始的128位密钥扩展成11个轮密钥，方便每一轮中的操作。假设有这样一个128位的密钥，如图1所示。然后按每4字节为一列排列成图2所示的阵列。</p>
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/key-line.svg" alt="图1 给定的 AES密钥"></p>
+<p style="text-align: center;">图1 给定的 AES密钥</p>
+
+
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/key-table.svg" alt="图2 密钥的排布"></p>
+<p style="text-align: center;">图2 密钥的排布</p>
+
+
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图2中每一列分配一个标记wi，第一列为w0，第二列为w1，以此类推。每一个轮密钥的第一列生成方式都较为复杂，这里以生成第5列（w4）为例。</p>
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/leftShift.svg" alt="图3 w3左移一位"></p>
+<p style="text-align: center;">图3 w3左移一位</p>
+
+
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如图3所示，当将最初的密钥排列完毕以后，需要将最后一列进行循环左移。并且左移后的每个元素都要经过S-BOX的字节替换处理，图四表示了这一过程。关于S-BOX字节替换的详细描述可参看2.3部分。</p>
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/key_xbox.svg" alt="图4 左移后经过S-BOX进行字节替换"></p>
+<p style="text-align: center;">图4 左移后经过S-BOX进行字节替换</p>
+
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设正在生成第i列密钥，这里是第5列，即为w4。由于此处是第二个轮密钥的第一列，则经过字节替换后的结果，需要与wi-4即w0以及rcon[i/4-1]即rcon[0]进行异或才能最终得出w4。其中rcon是如图6所示的10列数字。</p>
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/firstcolumn.svg" alt="图5 轮密钥第一列生成"></p>
+<p style="text-align: center;">图5 轮密钥第一列生成</p>
+
+
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/rcon.svg" alt="图6 RCON数组"></p>
+<p style="text-align: center;">图6 RCON数组</p>
+
+
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;只有轮密钥的第一列需要按照上述方法生成，接下来的三列则通过图7所示的方法，通过将wi-1以及wi-4异或来求得，例如这里轮密钥第二列w5，则是通过w4和w1异或得来的。</p>
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/nextColumn.svg" alt="图7 轮密钥第二列生成"></p>
+<p style="text-align: center;">图7 轮密钥第二列生成</p>
+
+
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之后的每一个轮密钥都将按照上述方法进行计算得出，轮密钥第一列wi=SubByte（LeftShift（wi-1））⊕wi-4⊕rcon[i/4-1],而第二，三，四列的计算规则为wi=wi-1⊕wi-4。图8即为新生成的轮密钥，可以很明显看出轮密钥0就是最开始输入的密钥，通常对AES的能量分析，都只分析第一轮，这一轮的轮密钥加操作使用的是轮密钥0，即原始输入的密钥。因此在进行CPA攻击时不需要经过密钥扩展这一步。</p>
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/allround.svg" alt="图8 新生成的轮密钥"></p>
+<p style="text-align: center;">图8 新生成的轮密钥</p>
+
+
 <h6 id="2-2-加轮密钥"><a href="#2-2-加轮密钥" class="headerlink" title="2.2 加轮密钥"></a><strong>2.2</strong> 加轮密钥</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AES经过密钥扩展得到轮密钥之后，将进行10轮操作，在每一轮操作中都需要加轮密钥。首先需要将明文和轮密钥按4字节为一列排成4列，分别命名为P0-P15和C0-C15,然后将明文和密文，按字节进行异或，即P0⊕C0-P15⊕C15。得到的最终结果可用于后续的字节替换。</p>
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/add.svg" alt="图9 轮密钥加"></p>
+<p style="text-align: center;">图9 轮密钥加</p>
+
+
 <h6 id="2-3-字节替换"><a href="#2-3-字节替换" class="headerlink" title="2.3 字节替换"></a><strong>2.3</strong> 字节替换</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字节替换一般使用的是Rijndael S-box[3],它将需要替换的字节的高四位作为横坐标，低四位作为纵坐标从S-BOX中选中对应的字节作为替代值。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如图10，待替代字节为0x01,则横坐标为高四位0x0,纵坐标为低四位0x1，从S-BOX中找到对应坐标的值0x7c，然后将其替换，图10展示S-BOX的替换过程，其中的S-BOX只是完整表格的一部分。</p>
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/sbox.svg" alt="图10 S-BOX替换"></p>
+<p style="text-align: center;">图10 S-BOX替换</p>
+
+
 <h4 id="3-CPA攻击"><a href="#3-CPA攻击" class="headerlink" title="3 CPA攻击"></a><strong>3</strong> CPA攻击</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CPA攻击主要采用汉明重量模型。计算汉明重量与对应能量迹之间的相关系数，若相关系数越大，则说明他们之间的相关性越强，若数据中某一猜测密钥对应的相关系数相比于其他相关系数要大的多，就可以说明这一猜测密钥是正确的。</p>
 <h6 id="3-1-汉明重量"><a href="#3-1-汉明重量" class="headerlink" title="3.1 汉明重量"></a><strong>3.1</strong> 汉明重量</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;汉明重量可以表示一个二进制字符串中1的个数。已经有论文通过实验证明了输出结果的汉明重量与能量消耗之间有明确的关系，能量消耗随着汉明重量的增大而增大，而且有较为明确的界限，经过计算，它们的相关系数甚至能够达到0.9919[4]。这也说明CPA使用汉明重量模型是合理的。</p>
 <h6 id="3-2-CPA攻击方法"><a href="#3-2-CPA攻击方法" class="headerlink" title="3.2 CPA攻击方法"></a><strong>3.2</strong> CPA攻击方法</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于字节替换占用了总能量消耗的大部分[5]，因此在CPA攻击时可以只考虑S-BOX的输出与能量迹之间的关系。</p>
