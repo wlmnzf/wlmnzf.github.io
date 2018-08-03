@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://csuncle.com/uploads/梅森旋转安全性分析及改进/ca660b0cad783b2adf8904c1670f940d.png">
 <meta property="og:image" content="http://csuncle.com/uploads/梅森旋转安全性分析及改进/Hash.svg">
 <meta property="og:image" content="http://csuncle.com/uploads/梅森旋转安全性分析及改进/output.svg">
-<meta property="og:updated_time" content="2018-08-03T06:27:53.096Z">
+<meta property="og:updated_time" content="2018-08-03T06:34:09.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="梅森旋转算法安全性分析及改进">
 <meta name="twitter:description" content="梅森旋转算法安全性分析及改进======================  王立敏1,丁洁2   1中国科学院信息工程研究所 第五实验室 北京 中国100093  2中国科学院信息工程研究所 第五实验室 北京 中国100093  摘要梅森旋转算法是目前最流行的伪随机数发生器算法之一。梅森旋转算法存在许多缺点，例如当生成的伪随机数数量庞大时可预测以及无法通过部分统计测试。为了更好地深入了解和分析梅森">
@@ -357,18 +357,6 @@
           
 
           
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/梅森旋转安全性分析及改进/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/02/梅森旋转安全性分析及改进/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
             
           
 
@@ -648,7 +636,10 @@
           
   <div class="comments" id="comments">
     
-      <div id="hypercomments_widget"></div>
+       
+         <div onclick="ShowGitment()" id="gitment-display-button">Show comments from Gitment</div>
+         <div id="gitment-container" style="display:none"></div>
+       
     
   </div>
 
@@ -955,37 +946,52 @@
 
 	
 
-		<script type="text/javascript">
-		_hcwp = window._hcwp || [];
 
-		_hcwp.push({widget:"Bloggerstream", widget_id: 94255, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
-		
-		_hcwp.push({widget:"Stream", widget_id: 94255, xid: "2018/08/02/梅森旋转安全性分析及改进/"});
-		
 
-		(function() {
-		if("HC_LOAD_INIT" in window)return;
-		HC_LOAD_INIT = true;
-		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
-		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
-		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/94255/"+lang+"/widget.js";
-		var s = document.getElementsByTagName("script")[0];
-		s.parentNode.insertBefore(hcc, s.nextSibling);
-		})();
-		</script>
 
-	
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
 
 
 
 
 
 
-
-
-
-
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           function ShowGitment(){
+               document.getElementById("gitment-display-button").style.display = "none";
+               document.getElementById("gitment-container").style.display = "block";
+               var gitment = new Gitment({
+                   id: document.location.href, 
+                   owner: 'wlmnzf',
+                   repo: 'wlmnzf.github.io',
+                   oauth: {
+                       client_id: 'a8bc66fc03c165358b9b',
+                       client_secret: '21860ee458dee914048f630f9f1a23ff3fc2f96b',
+                   }});
+               gitment.render('gitment-container');
+           }
+       </script>
+   
 
 
   

@@ -355,18 +355,6 @@
 
           
             
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/11/自定义表单（一）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/06/11/自定义表单（一）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
           
 
           
@@ -580,7 +568,10 @@ function：Callthismethod during the handling of a mousedown event to retarget a
           
   <div class="comments" id="comments">
     
-      <div id="hypercomments_widget"></div>
+       
+         <div onclick="ShowGitment()" id="gitment-display-button">Show comments from Gitment</div>
+         <div id="gitment-container" style="display:none"></div>
+       
     
   </div>
 
@@ -862,37 +853,52 @@ function：Callthismethod during the handling of a mousedown event to retarget a
 
 	
 
-		<script type="text/javascript">
-		_hcwp = window._hcwp || [];
 
-		_hcwp.push({widget:"Bloggerstream", widget_id: 94255, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
-		
-		_hcwp.push({widget:"Stream", widget_id: 94255, xid: "2017/06/11/自定义表单（一）/"});
-		
 
-		(function() {
-		if("HC_LOAD_INIT" in window)return;
-		HC_LOAD_INIT = true;
-		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
-		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
-		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/94255/"+lang+"/widget.js";
-		var s = document.getElementsByTagName("script")[0];
-		s.parentNode.insertBefore(hcc, s.nextSibling);
-		})();
-		</script>
 
-	
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
 
 
 
 
 
 
-
-
-
-
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           function ShowGitment(){
+               document.getElementById("gitment-display-button").style.display = "none";
+               document.getElementById("gitment-container").style.display = "block";
+               var gitment = new Gitment({
+                   id: document.location.href, 
+                   owner: 'wlmnzf',
+                   repo: 'wlmnzf.github.io',
+                   oauth: {
+                       client_id: 'a8bc66fc03c165358b9b',
+                       client_secret: '21860ee458dee914048f630f9f1a23ff3fc2f96b',
+                   }});
+               gitment.render('gitment-container');
+           }
+       </script>
+   
 
 
   
