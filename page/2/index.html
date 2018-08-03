@@ -288,6 +288,168 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（完）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="William Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/11/自定义表单（完）/" itemprop="url">自定义表单（完）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T05:57:32+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
+                    <span itemprop="name">WebDesign</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/11/自定义表单（完）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/06/11/自定义表单（完）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、实现的功能</p>
+<p>  1、拖拽插入表单元素，从右边拖拽如左边的表单区</p>
+<p>  2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除</p>
+<p>  3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置</p>
+<p>二、关键部分实现思路</p>
+<p>2.1拖拽插入<br><img src="http://upload-images.jianshu.io/upload_images/685455-4e08de27926deac9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请输入图片描述"></p>
+<p>1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就算完成准备工作了</p>
+<p>2、在ondragover中，因为要显示一根线来提示用户这个正在拖拽的表单元素会被放在哪里，因此就需要计算</p>
+<p>   这个黑色的就是浏览器页面，白色的是表单元素调用getBoundingClientRect()获取的最小覆盖矩形区，他会返回一个对象，其中top表示白色部分的距离（上边界到浏览器顶部的距离），bottom表示黄色线 距离。我们可以获取鼠标在浏览器页面上的坐标，然后判断鼠标正在哪个表单元素里。然后再对这个元素对半分，在粉色上面部分，则对其上边界标记为蓝色，否则就是下部分标记为蓝色。</p>
+<p>3、ondrop中，根据上一步判断的位置，放置拖拽的元素，如果是新增，则克隆一份，再插入，是替换的话则直接插进去就可以了。</p>
+<p>2.2拖拽删除</p>
+<p>  其实原理差不多，只不过在ondrop中绑定的函数中，是把正在拖拽的那个元素删掉就可以了。代码中有很多注释，这里就不一一讲解了。</p>
+<p>3、代码</p>
+<blockquote>
+<p><a href="https://github.com/wlmnzf/javascript-train/tree/master/customForm" target="_blank" rel="noopener">https://github.com/wlmnzf/javascript-train/tree/master/customForm</a></p>
+</blockquote>
+  <div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -796,7 +958,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -818,7 +980,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

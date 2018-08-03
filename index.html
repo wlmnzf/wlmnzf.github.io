@@ -542,6 +542,272 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/02/梅森旋转安全性分析及改进/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="William Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/02/梅森旋转安全性分析及改进/" itemprop="url">梅森旋转算法安全性分析及改进</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T19:30:08+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cryptology/" itemprop="url" rel="index">
+                    <span itemprop="name">密码学</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/02/梅森旋转安全性分析及改进/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2018/08/02/梅森旋转安全性分析及改进/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p style="text-align: center;"><br>梅森旋转算法安全性分析及改进<br>======================<br></p>
+
+<p style="text-align: center;">王立敏<sup>1</sup>,丁洁<sup>2</sup></p>
+
+
+<p style="text-align: center;"><sup>1</sup>中国科学院信息工程研究所 第五实验室 北京 中国100093</p>
+
+<p style="text-align: center;"><sup>2</sup>中国科学院信息工程研究所 第五实验室 北京 中国100093</p>
+
+<p><strong>摘要</strong><br>梅森旋转算法是目前最流行的伪随机数发生器算法之一。梅森旋转算法存在许多缺点，例如当生成的伪随机数数量庞大时可预测以及无法通过部分统计测试。为了更好地深入了解和分析梅森旋转算法的安全性，本文将使用NIST<br>800-22文档中提到的统计测试等方法来对其生成的伪随机数进行静态的质量评估，并通过伪代码对该算法进行理论安全分析。由于梅森旋转算法生成伪随机数的速度十分快，而且开发者和研究人员们已经开发了许多梅森旋转算法的改进版本，甚至密码学安全的版本，因此当需要伪随机数时，选用梅森旋转算法作为伪随机数生成器是合理的。</p>
+<p>关键词 <strong>梅森旋转算法，MT19937标准，统计测试，安全性分析</strong></p>
+<p style="text-align: center;">The Analysis And Improvement Of Mersenne Twister</p>
+
+<p style="text-align: center;">Wang Limin<sup>1</sup>, Ding Jie<sup>2</sup></p>
+
+<p><sup>1</sup>Institute of Information Engineering, Chinese Academy of Sciences, Beijing<br>100093, China<br><sup>2</sup>Institute of Information Engineering, Chinese Academy of Sciences, Beijing<br>100093, China</p>
+<p><strong>Abstract</strong> Mersenne Twister is one of the most useful pseudo random number generator algorithms. There are many shortcomings in Mersenne Twister. For example, it would be predictable and could not pass some of statistical tests when the algorithm generates plenty of pseudo random number generator algorithms. To analyze the security of algorithm, the statistical tests mentioned in NIST 800-22 would be used to evaluate the quality of Mersenne Twister and the pseudocode would be used to analyze the security of the algorithm. Mersenne Twister is very fast, and the developers and researchers have developed the improved versions of this algorithm, even the cryptographically secure version. For these reasons, choosing Mersenne Twister as the alternative pseudo random number generator is reasonable.</p>
+<p><strong>Key words</strong> Mersenne Twister, MT19937, statistical test, the analysis of security</p>
+<h4 id="1-前言"><a href="#1-前言" class="headerlink" title="1 前言"></a><strong>1</strong> 前言</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随机数在许多领域中都有着大量应用，例如密码学，游戏，数学统计。随机数主要分两类，分别是确定性随机数和非确定性随机数。非确定性随机数也可称为真随机数（True Random Number Generator, TRNG），主要来源于不可预测的物理或者化学熵源，例如电路噪声。真随机数发生器产生的随机数质量十分高，是最理想的随机数来源，但是由于产生的速度太慢，无法满足目前的信息的传输速度，因此目前确定性随机数依然被广泛使用。确定性随机数发生器也称作伪随机数发生器（Pseudorandom Number Generator，PRNG）,它一般是一个随机数生成算法，由于算法是固定的，因此生成的随机数存在许多诸如可预测，质量不高的缺点。因此在使用一个伪随机数发生器之前对其进行评估是十分有必要的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;梅森旋转是目前应用十分广泛的伪随机数生成器算法之一，已经集成在C++等编程语言的标准库中。梅森旋转生成的随机数能通过常见的静态统计测试，并且生成速度十分快，但是它依然存在许多缺点，例如当随机数数量足够时可预测。本文主要对该方法进行质量评估和安全性分析，并且提出一些改进意见。</p>
+<h4 id="2-梅森旋转"><a href="#2-梅森旋转" class="headerlink" title="2 梅森旋转"></a><strong>2</strong> 梅森旋转</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MT19937以及MT19937-64标准分别实现了梅森旋转的32位以及64位算法，由于这两者只是参数不同，因此为方便起见，只实现和讨论MT19937标准。MT19937标准采用的梅森素数为219937<br>-1，因此它可生成的随机数范围为[0, 219937 -1]。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;梅森旋转算法实际使用的是旋转的广义反馈移位寄存器（Twisted Generalized Feedback Shift Register,GFSR）[2]，它主要分初始化，旋转生成随机数以及Xorshift后期处理三个步骤。由于MT19937的梅森算法中生成的随机数为32位，因此算法需要624个32位长的状态。在初始化阶段，算法的工作是将我们获得的随机种子经处理填充到所有的624个状态中</p>
+<table>
+<thead>
+<tr>
+<th>算法1：初始化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入: 一个随机种子<em>seed</em></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mt[0] = seed </span><br><span class="line">a=1812433253  </span><br><span class="line">FOR i FROM 1 TO 623 </span><br><span class="line">  &#123; </span><br><span class="line">     mt[i] = f * (mt[i-1] XOR (mt[i-1] &gt;&gt; 30)) + i    </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MT19937规定了算法1中的f值为1812433253 ，算法将输入的随机种子赋值给第0个状态，剩余的623个状态则用前一状态值的一系列操作进行赋值更新。当执行完这一算法后，全部的624个状态已经填充完毕，之后梅森算法便可以不断地生成伪随机数。</p>
+<table>
+<thead>
+<tr>
+<th>算法2：旋转生成随机数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">lower_mask = (1 &lt;&lt; 31) - 1, </span><br><span class="line">upper_mask = (1 &lt;&lt; 31)</span><br><span class="line">a = 0x9908B0DF</span><br><span class="line">FOR i FROM 0 TO 623</span><br><span class="line">  &#123;</span><br><span class="line">    x = (mt[i] AND upper_mask) +(mt[(i+1) MOD 32] AND lower_mask)</span><br><span class="line">    xA = x &gt;&gt; 1</span><br><span class="line">    IF (x MOD 2) != 0</span><br><span class="line">    &#123;</span><br><span class="line">      xA = xA XOR a</span><br><span class="line">    &#125;</span><br><span class="line">    mt[i] = mt[(i + 397) MOD 624] XOR xA</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MT19937标准中定义a的值为0x9908B0DF，如算2所示，这部分是进行旋转操作。每生成624个伪随机数后，将执行一次算法2，重新更新624个状态，为生成下一批624个伪随机数做准备。</p>
+<table>
+<thead>
+<tr>
+<th>算法3:Xorshift后期处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出：生成的伪随机数y</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">b = 0x9d2c5680 </span><br><span class="line">c = 0xefc60000 </span><br><span class="line">y = mt[i] </span><br><span class="line">y = y XOR (y &gt;&gt; 11) </span><br><span class="line">y = y XOR ((y &lt;&lt; 7) AND b) </span><br><span class="line">y = y XOR ((y &lt;&lt; 15) AND c) </span><br><span class="line">y = y XOR (y &gt;&gt; 18)</span><br></pre></td></tr></table></figure>
+<p>每个状态都需要经过Xorshift操作[3]以后才能成为最终输出的伪随机数，由于其中几乎都是移位，因此对CPU来说是十分快的。</p>
+<h4 id="3-伪随机数发生器的评估"><a href="#3-伪随机数发生器的评估" class="headerlink" title="3 伪随机数发生器的评估"></a><strong>3</strong> 伪随机数发生器的评估</h4><p>正如前言部分所述，伪随机数发生器的评估是十分有必要的。伪随机数的质量和安全性一般有如下4个评判标准:</p>
+<ol>
+<li><p>随机数应该有很好的统计属性。例如各态遍历性</p>
+</li>
+<li><p>不能根据随机数的子序列合理推出其之前或者之后的随机数序列。并且子序列不能提高推出其之前和之后的伪随机序列的可能性。</p>
+</li>
+<li><p>不能根据内部状态合理推出其之前的内部状态。同样的也不能通过内部状态提高推出其之前的内部状态的可能性。</p>
+</li>
+<li><p>不能根据内部状态合理推出其之后的内部状态。也不能通过内部状态提高推出其之后的内部状态。</p>
+</li>
+</ol>
+<h4 id="梅森旋转伪随机数的质量评估"><a href="#梅森旋转伪随机数的质量评估" class="headerlink" title="梅森旋转伪随机数的质量评估"></a>梅森旋转伪随机数的质量评估</h4><h6 id="4-1-NIST-800-22测试"><a href="#4-1-NIST-800-22测试" class="headerlink" title="4.1 NIST 800-22测试"></a>4.1 NIST 800-22测试</h6><p><img src="/uploads/梅森旋转安全性分析及改进/f71b3e0010ed24b848ba2860ab7d23f2.png" alt="图1 NIST 800-22随机数测试"></p>
+<p style="text-align: center;">图1 NIST 800-22随机数测试</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NIST 800-22文档中提到了许多静态测试[4]，并且提供了测试程序NIST STS-2.1.2。David Johnston认为STS程序存在许多问题，例如经常奔溃，并且给出错误的测试结果，因此他修正了这些错误，并且给出了修正后的程序[5]。本测试采用了该自动化测试程序，在Summary一栏中左侧为测试名称，右侧为测试的统计参数P值，如图可见该梅森旋转算法可以通过文档中提到的所有静态测试。</p>
+<h6 id="4-2-PractRand测试"><a href="#4-2-PractRand测试" class="headerlink" title="4.2 PractRand测试"></a><strong>4.2</strong> PractRand测试</h6><p><img src="/uploads/梅森旋转安全性分析及改进/ca660b0cad783b2adf8904c1670f940d.png" alt="图2 PractRand随机数测试"></p>
+<p style="text-align: center;">图2 PractRand随机数测试</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PractRand也是目前常采用的测试程序。由图2所示，我们可以看到当随机数输出大小为128G时可以满足常见的静态统计测试，但是当输出随机数的数量达到256G时，BRANK测试无法通过。</p>
+<h6 id="4-3-安全性分析"><a href="#4-3-安全性分析" class="headerlink" title="4.3 安全性分析"></a>4.3 安全性分析</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三部分的算法3将状态进行移位和亦或，最终输出为伪随机数，但是这一过程是可逆的。逆过程的具体证明和分析方法可参看oupo和plusletool的博客[6,7]。</p>
+<table>
+<thead>
+<tr>
+<th>算法4: 算法3的逆过程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出：梅森旋转的中间状态value 1.<em>value</em> = <em>y</em> 2.<em>value</em> = <em>value</em> XOR (<em>value</em>>>18); 3.<em>value = value</em> XOR (<em>value</em> \&lt;\&lt; 15) AND 0xefc60000 4.<em>value</em> = <em>value</em> 5. XOR ((<em>value</em> \&lt;\&lt; 7) &amp; 0x9d2c5680) 6. XOR ((<em>value</em> \&lt;\&lt; 14) &amp; 0x94284000) 7. XOR ((<em>value</em> \&lt;\&lt; 21) &amp; 0x14200000) 8. XOR ((<em>value</em> \&lt;\&lt; 28) &amp; 0x10000000) 9. <em>value</em> =<em>value</em> 10. XOR (<em>value</em> >> 11) 11. XOR (<em>value</em> >> 22);</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;算法4描述了如何由伪随机数逆向恢复到梅森旋转算法的状态，因此若我们有624个梅森旋转算法生成的伪随机数，则我们可以由算法4恢复得到624个中间状态。再通过算法2和算法3即可得到接下来的伪随机数了。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是由算法2可知，在进行旋转的时候，需要用到第i个状态，第i+1个状态以及第i+397个状态。因此如果敌手所得到的伪随机数量或者状态不足，则不能恢复所有的624个状态，便也不能继续预测接下来的伪随机数。而且算法2中的旋转操作会直接覆盖之前的内部状态，而且算法中跟mask进行与操作以及右移操作使得它无法再逆向推导出之前的状态，因此所幸的是即使敌手获取到足够量的伪随机数，也无法推出之前的伪随机数。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;梅森旋转算法可以满足常见应用的随机数需求，但是对于加密过程中所需的伪随机数，还是需要使用密码学安全的伪随机数（Cryptographically<br>Secure Pseudo-Random Number<br>Generator，CSPRNG），例如改进版的梅森旋转算法CryptMT。</p>
+<h4 id="5-梅森旋转的改进方案"><a href="#5-梅森旋转的改进方案" class="headerlink" title="5 梅森旋转的改进方案"></a><strong>5</strong> 梅森旋转的改进方案</h4><h6 id="5-1-Hash输出"><a href="#5-1-Hash输出" class="headerlink" title="5.1 Hash输出"></a><strong>5.1</strong> Hash输出</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于梅森旋转算法可逆，我们可以通过泄露的伪随机数逆向推算出其内部状态，因此若将最终输出再进行Hash处理，如图3所示，即可使其生成的伪随机数不可逆，这样便可一定程度上提高梅森旋转算法的安全性。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hash算法不可逆，并且可以被用来生成伪随机数[8]，生成的随机数也具有很好的安全性。此外，SHA-3之所以拥有安全，不可逆等良好的特性，是因为采用了海绵结构，而且目前已经存在基于海绵结构的伪随机数生成器了[9,10]。综上所述，Hash算法可以用于生成质量较高的伪随机数，而且不可逆，若想要更灵活方便地移植使用，则也可以直接使用海绵结构。因此改进方案中采用Hash对梅森算法的输出做最后的处理使其不可逆是合理的。</p>
+<p><img src="/uploads/梅森旋转安全性分析及改进/Hash.svg" alt="图3 经过Hash的梅森算法"></p>
+<p style="text-align: center;">图3 经过Hash的梅森算法</p>
+
+<h6 id="5-2-间隔输出"><a href="#5-2-间隔输出" class="headerlink" title="5.2 间隔输出"></a><strong>5.2</strong> 间隔输出</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由算法2可知，当梅森算法更新当前第i个状态时必须要用到第i+1个状态以及第i+397个状态。因此如图4所示假设将这些状态每隔一个进行处理输出为伪随机数，则即使敌手获取到大量的间隔伪随机数，并且将他们逆向恢复为算法的内部状态，也无法得到完整的624个状态。若没有完整的624个状态，则也无法继续预测生成接下去的伪随机数。</p>
+<p><img src="/uploads/梅森旋转安全性分析及改进/output.svg" alt="图4 间隔输出的梅森算法"></p>
+<p style="text-align: center;">图4 间隔输出的梅森算法</p>
+
+<h4 id="6-结论"><a href="#6-结论" class="headerlink" title="6 结论"></a><strong>6</strong> 结论</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据第3部分所描述的4个评估标准可知梅森旋转算法并不完美。它依然无法通过其中的小部分统计测试，例如当生成的伪随机数达到256G时，无法通过BRANK测试。当敌手可以获得超过624个伪随机数时，可以通过逆向推导出其内部状态来预测其接下来生成的伪随机数。不过所幸的是由于其更新内部状态时的操作不可逆，使得它无法推导出已经生成过的伪随机数。对于第四个评估标准，事实上包括梅森旋转在内的确定性的伪随机数发生器都无法满足，因为算法固定，因此只要获取到内部状态，就一定可以推算出之后的伪随机数。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;梅森旋转算法虽然存在许多的缺点，比如当获取到的伪随机数数量足够多时是可以预测的，并且无法通过一些静态统计测试。但是由于它的许多操作都是基于移位的，因此速度更快一些。并且近些年来，许多开发者和研究人员都为改进梅森旋转算法做出了许多努力，诞生了许多更优秀的基于梅森旋转算法的随机数生成器，例如CryptMT，MTGP。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此在通用的软件上使用改进版的梅森旋转算法，以及在加密时使用密码学安全的梅森旋转算法（CryptMT）是十分合理的。</p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>[1] 徐恒. 确定性随机数产生器安全性分析及改进[D]. 上海交通大学, 2009.</p>
+<p>[2] MATSUMOTO M, KURITA Y. Twisted GFSR generators[J]. ACM Transactions on<br>Modeling and Computer Simulation, 1992, 2(3): 179–194.</p>
+<p>[3] MARSAGLIA G, OTHERS. Xorshift rngs[J]. Journal of Statistical Software,<br>2003, 8(14): 1–6.</p>
+<p>[4] NIST S. 800-22[J]. A Statistical Test Suite for Random and Pseudorandom<br>Number Generators for Cryptographic Applications, 2000, 120.</p>
+<p>[5] JOHNSTON D. sp800_22_tests: A python implementation of the SP800-22 Rev 1a<br>PRNG test suite[M]. 2018.</p>
+<p>[6] PLUSLETOOL. メルセンヌ・ツイスタのtemperingの逆関数に関する考察[EB/OL]. Plus<br>Le Blog, 1414154296. (1414154296)[2018-07-15].<br><a href="http://plusletool.hatenablog.jp/entry/2014/10/24/213816" target="_blank" rel="noopener">http://plusletool.hatenablog.jp/entry/2014/10/24/213816</a>.</p>
+<p>[7] 2014-10-16[EB/OL]. oupoの日記, [2018-07-15].<br><a href="http://d.hatena.ne.jp/oupo/20141016" target="_blank" rel="noopener">http://d.hatena.ne.jp/oupo/20141016</a>.</p>
+<p>[8] BOLDYREVA A, KUMAR V. A New Pseudorandom Generator from Collision-Resistant<br>Hash Functions[G]//DUNKELMAN O. Topics in Cryptology – CT-RSA 2012. Berlin,<br>Heidelberg: Springer Berlin Heidelberg, 2012, 7178: 187–202.</p>
+<p>[9] BERTONI G, DAEMEN J, PEETERS M等. Sponge-Based Pseudo-Random Number<br>Generators[G]//MANGARD S, STANDAERT F-X. Cryptographic Hardware and Embedded<br>Systems, CHES 2010. Berlin, Heidelberg: Springer Berlin Heidelberg, 2010, 6225:<br>33–47.</p>
+<p>[10] BERTONI G, DAEMEN J, PEETERS M等. Duplexing the Sponge: Single-Pass<br>Authenticated Encryption and Other Applications[G]//MIRI A, VAUDENAY S. Selected<br>Areas in Cryptography</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/02/11/Meltdown &  Spectre原理简要梳理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2210,168 +2476,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（完）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会打代码的扫地王大爷">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/11/自定义表单（完）/" itemprop="url">自定义表单（完）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T05:57:32+08:00">
-                2017-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
-                    <span itemprop="name">WebDesign</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/11/自定义表单（完）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/06/11/自定义表单（完）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一、实现的功能</p>
-<p>  1、拖拽插入表单元素，从右边拖拽如左边的表单区</p>
-<p>  2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除</p>
-<p>  3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置</p>
-<p>二、关键部分实现思路</p>
-<p>2.1拖拽插入<br><img src="http://upload-images.jianshu.io/upload_images/685455-4e08de27926deac9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请输入图片描述"></p>
-<p>1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就算完成准备工作了</p>
-<p>2、在ondragover中，因为要显示一根线来提示用户这个正在拖拽的表单元素会被放在哪里，因此就需要计算</p>
-<p>   这个黑色的就是浏览器页面，白色的是表单元素调用getBoundingClientRect()获取的最小覆盖矩形区，他会返回一个对象，其中top表示白色部分的距离（上边界到浏览器顶部的距离），bottom表示黄色线 距离。我们可以获取鼠标在浏览器页面上的坐标，然后判断鼠标正在哪个表单元素里。然后再对这个元素对半分，在粉色上面部分，则对其上边界标记为蓝色，否则就是下部分标记为蓝色。</p>
-<p>3、ondrop中，根据上一步判断的位置，放置拖拽的元素，如果是新增，则克隆一份，再插入，是替换的话则直接插进去就可以了。</p>
-<p>2.2拖拽删除</p>
-<p>  其实原理差不多，只不过在ondrop中绑定的函数中，是把正在拖拽的那个元素删掉就可以了。代码中有很多注释，这里就不一一讲解了。</p>
-<p>3、代码</p>
-<blockquote>
-<p><a href="https://github.com/wlmnzf/javascript-train/tree/master/customForm" target="_blank" rel="noopener">https://github.com/wlmnzf/javascript-train/tree/master/customForm</a></p>
-</blockquote>
-  <div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2421,7 +2525,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2443,7 +2547,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
