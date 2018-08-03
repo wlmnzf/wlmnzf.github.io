@@ -568,6 +568,11 @@ function：Callthismethod during the handling of a mousedown event to retarget a
           
   <div class="comments" id="comments">
     
+       
+         <div onclick="ShowGitment()" id="gitment-display-button">Show comments from Gitment</div>
+         <div id="gitment-container" style="display:none"></div>
+       
+    
   </div>
 
 
@@ -870,6 +875,30 @@ function：Callthismethod during the handling of a mousedown event to retarget a
 
 
 
+
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           function ShowGitment(){
+               document.getElementById("gitment-display-button").style.display = "none";
+               document.getElementById("gitment-container").style.display = "block";
+               var gitment = new Gitment({
+                   id: '自定义表单（一）, 
+                   owner: 'wlmnzf',
+                   repo: 'wlmnzf.github.io',
+                   oauth: {
+                       client_id: 'a8bc66fc03c165358b9b',
+                       client_secret: '21860ee458dee914048f630f9f1a23ff3fc2f96b',
+                   }});
+               gitment.render('gitment-container');
+           }
+       </script>
+   
 
 
   
