@@ -390,11 +390,14 @@
       
         
           
-            <h1 id="基于无保护AES芯片的-CPA攻击"><a href="#基于无保护AES芯片的-CPA攻击" class="headerlink" title="基于无保护AES芯片的 CPA攻击"></a>基于无保护AES芯片的 CPA攻击</h1><p style="text-align: center;">王立敏<sup>1</sup>,丁洁<sup>2</sup> </p><br>————–<br><br><p style="text-align: center;"> 1中国科学院信息工程研究所 第五实验室 北京 中国 100093</p>
+            <p style="text-align: center;">基于无保护AES芯片的 CPA攻击</p><br>===========================<br><br><br><p style="text-align: center;">王立敏<sup>1</sup>,丁洁<sup>2</sup> </p>
 
-<p style="text-align: center;">2 中国科学院信息工程研究所 第五实验室 北京 中国 100093</p>
 
-<p><strong>摘要</strong> 高级加密标准（Advanced Encryption Standard，AES）是最常用的加密算法之一。<br>为了提升实际应用中加解密操作的速度，或者在小型芯片上完成加密工作，AES通常被集成在加密芯片中。这使得其容易遭受侧信道攻击，尤其是能量分析攻击。本文中将采用相关能量分析<br>（Correlation Power<br>Analysis，CPA）对AES的能量迹和字节替换环节之间的关系进行统计分析来猜测其对应的密钥。其结果表明对于普通的无保护AES芯片，CPA攻击十分有效。</p>
+<p style="text-align: center;"><sup>1</sup>中国科学院信息工程研究所 第五实验室 北京 中国 100093</p>
+
+<p style="text-align: center;"><sup>2</sup> 中国科学院信息工程研究所 第五实验室 北京 中国 100093</p>
+
+<p><strong>摘要</strong> 高级加密标准（Advanced Encryption Standard，AES）是最常用的加密算法之一。为了提升实际应用中加解密操作的速度，或者在小型芯片上完成加密工作，AES通常被集成在加密芯片中。这使得其容易遭受侧信道攻击，尤其是能量分析攻击。本文中将采用相关能量分析（Correlation Power Analysis，CPA）对AES的能量迹和字节替换环节之间的关系进行统计分析来猜测其对应的密钥。其结果表明对于普通的无保护AES芯片，CPA攻击十分有效。</p>
 <p>关键词 <strong>侧信道攻击，AES，密码芯片，相关能量分析，能量迹</strong></p>
 <blockquote>
 <p>  The CPA Attack For Unprotected AES Chips</p>
@@ -403,11 +406,10 @@
 
 <p style="text-align: center;">1 Institute of Information Engineering, Chinese Academy of Sciences, Beijing<br>100093, China  </p><br><p>2 Institute of Information Engineering, Chinese Academy of Sciences, Beijing<br>100093, China</p>
 
-<p><strong>Abstract</strong> Advanced Encryption Standard is one of the most commonly used<br>encryption algorithms. In order to improve the speed of encrypted and decrypted<br>operations or encrypt data on chips , the independent AES chip is used for<br>encryption, which makes the chip vulnerable to Side-Channel Attack, especially<br>to Power Analysis. This paper will guess the key of the AES by analyzing the<br>correlation between power trace and SubBytes operation. This experiment shows<br>that CPA attack can help crack secret keys more efficiently.</p>
-<p><strong>Key words</strong> Side-Channel Attack, AES, Cipher Chip, Correlation Power Analysis,<br>Power Trace</p>
-<h4 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a><strong>1</strong> 引言</h4><p>　　侧信道分析技术在硬件安全领域中应用十分广泛。其中较为常见的一种是能量分析，它主要包括三种分析方法，简单能量分析（Simple<br>Power Analysis, SPA），差分能量分析(Differential Power Analysis,<br>DPA)以及相关能量分析(Correlation Power Analysis, CPA)。 SPA和DPA最初由Paul<br>Kocher, Joshua Jae, 和 Benjamin Jun 在1999年提出[1]。<br>SPA利用的是密码芯片在进行不同的指令操作时所消耗的能量也不同这一特性，例如AES芯片在执行10轮操作时，它的10个能量消耗峰值将会十分明显。而DPA则更加复杂，它将测出来的能量迹分为几类，并计算它们均值的差，若假设的密钥是正确的，则会出现一个能量波峰，否则差值会在0附近波动。DPA是十分有效的能量攻击方法，但是它依然存在诸如幽灵峰值的问题，而本试验中给出的能量迹又足够多，因此为了提高破译密钥的正确性，本文将采用CPA来对AES进行攻击。CPA由E.Brier提出，是从DPA改进而来，它采用的是汉明重量模型[2]。</p>
-<h4 id="2-AES介绍"><a href="#2-AES介绍" class="headerlink" title="2 AES介绍"></a><strong>2</strong> AES介绍</h4><p>AES在安全性不低于三重数据加密算法（Triple Data Encryption<br>Algorithm，TDEA，也叫3DES）的同时，运算速度还比它快，因此被采用来替代原先的数据加密标准（Data<br>Encryption Standard，DES），它具有很好的抗差分密码分析和线性密码分析的能力。</p>
-<p>AES根据密钥的长度的不同有三种不同的版本分别为AES-128，AES-192以及AES-256。本文只讨论利用CPA攻击无保护的AES-128算法，如算法1所示。</p>
+<p><strong>Abstract</strong> Advanced Encryption Standard is one of the most commonly used encryption algorithms. In order to improve the speed of encrypted and decrypted operations or encrypt data on chips , the independent AES chip is used for encryption, which makes the chip vulnerable to Side-Channel Attack, especially to Power Analysis. This paper will guess the key of the AES by analyzing the correlation between power trace and SubBytes operation. This experiment shows that CPA attack can help crack secret keys more efficiently.</p>
+<p><strong>Key words</strong> Side-Channel Attack, AES, Cipher Chip, Correlation,Power Analysis,Power Trace</p>
+<h4 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a><strong>1</strong> 引言</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;侧信道分析技术在硬件安全领域中应用十分广泛。其中较为常见的一种是能量分析，它主要包括三种分析方法，简单能量分析（Simple Power Analysis, SPA），差分能量分析(Differential Power Analysis,DPA)以及相关能量分析(Correlation Power Analysis, CPA)。SPA和DPA最初由Paul Kocher, Joshua Jae, 和 Benjamin Jun 在1999年提出[1]。SPA利用的是密码芯片在进行不同的指令操作时所消耗的能量也不同这一特性，例如AES芯片在执行10轮操作时，它的10个能量消耗峰值将会十分明显。而DPA则更加复杂，它将测出来的能量迹分为几类，并计算它们均值的差，若假设的密钥是正确的，则会出现一个能量波峰，否则差值会在0附近波动。DPA是十分有效的能量攻击方法，但是它依然存在诸如幽灵峰值的问题，而本试验中给出的能量迹又足够多，因此为了提高破译密钥的正确性，本文将采用CPA来对AES进行攻击。CPA由E.Brier提出，是从DPA改进而来，它采用的是汉明重量模型[2]。</p>
+<h4 id="2-AES介绍"><a href="#2-AES介绍" class="headerlink" title="2 AES介绍"></a><strong>2</strong> AES介绍</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AES在安全性不低于三重数据加密算法（Triple Data Encryption Algorithm，TDEA，也叫3DES）的同时，运算速度还比它快，因此被采用来替代原先的数据加密标准（Data Encryption Standard，DES），它具有很好的抗差分密码分析和线性密码分析的能力。AES根据密钥的长度的不同有三种不同的版本分别为AES-128，AES-192以及AES-256。本文只讨论利用CPA攻击无保护的AES-128算法，如算法1所示。</p>
 <table>
 <thead>
 <tr>
@@ -420,41 +422,31 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight plain"><figcaption><span>**for** r </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2.  X = X ⊕ *RoundKey*[r]; /\*加轮密钥\*/</span><br><span class="line"></span><br><span class="line">3.  **for** i = 0; i≤15; i++ **do**</span><br><span class="line"></span><br><span class="line">4.  Xi = *SubBytes*(Xi); /\*字节替换\*/</span><br><span class="line"></span><br><span class="line">5.  **end**</span><br><span class="line"></span><br><span class="line">6.  X = *ShiftRows*(X); /\*行变换\*/</span><br><span class="line"></span><br><span class="line">7.  X = *MixColumns*(X); /\*列混淆\*/</span><br><span class="line"></span><br><span class="line">8.  **end**</span><br><span class="line"></span><br><span class="line">9.  X = X⊕*RoundKey*[9]; /\*最后一轮\*/</span><br><span class="line"></span><br><span class="line">10. **for** I = 0; i≤15; i++ **do**</span><br><span class="line"></span><br><span class="line">11. Xi = *SubBytes*(Xi);</span><br><span class="line"></span><br><span class="line">12. **end**</span><br><span class="line"></span><br><span class="line">13. X = *ShiftRows*（X）</span><br><span class="line"></span><br><span class="line">14. X = X⊕*RoundKey*[10] /\*获取密文\*/</span><br></pre></td></tr></table></figure>
-<p>AES-128算法需要经过10轮的操作，除了最后一轮之外，前9轮都包括加轮密钥，字节替换，行变换，列混淆这四个步骤，而第十轮则少一个列混淆。这里的11个128位的轮密钥是原始的128位密钥经过密钥扩展得到的。</p>
-<h6 id="2-1-密钥扩展"><a href="#2-1-密钥扩展" class="headerlink" title="2.1 密钥扩展"></a><strong>2.1</strong> 密钥扩展</h6><p>密钥扩展是将最初始的128位密钥扩展成11个轮密钥，方便每一轮中的操作。假设有这样一个128位的密钥，如图1所示。然后按每4字节为一列排列成图2所示的阵列。</p>
-<p><img src="/uploads/基于无保护AES算法的CPA攻击/key-line.svg" alt=""></p>
-<p>图1 给定的 AES密钥</p>
-<p><img src="/uploads/基于无保护AES算法的CPA攻击/key-table.svg" alt=""></p>
-<p>图2 密钥的排布</p>
-<p>图2中每一列分配一个标记wi，第一列为w0，第二列为w1，以此类推。每一个轮密钥的第一列生成方式都较为复杂，这里以生成第5列（w4）为例。</p>
-<p><img src="/uploads/基于无保护AES算法的CPA攻击/leftShift.svg" alt=""></p>
-<p>图3 w3左移一位</p>
-<p>如图3所示，当将最初的密钥排列完毕以后，需要将最后一列进行循环左移。并且左移后的每个元素都要经过S-BOX的字节替换处理，图四表示了这一过程。关于S-BOX字节替换的详细描述可参看2.3部分。</p>
-<p><img src="/uploads/基于无保护AES算法的CPA攻击/key_xbox.svg" alt=""></p>
-<p>图4 左移后经过S-BOX进行字节替换</p>
-<p>假设正在生成第i列密钥，这里是第5列，即为w4。由于此处是第二个轮密钥的第一列，则经过字节替换后的结果，需要与wi-4即w0以及rcon[i/4-1]即rcon[0]进行异或才能最终得出w4。其中rcon是如图6所示的10列数字。</p>
-<p><img src="/uploads/基于无保护AES算法的CPA攻击/firstcolumn.svg" alt=""></p>
-<p>图5 轮密钥第一列生成</p>
-<p><img src="/uploads/基于无保护AES算法的CPA攻击/rcon.svg" alt=""></p>
-<p>图6 RCON数组</p>
-<p>只有轮密钥的第一列需要按照上述方法生成，接下来的三列则通过图7所示的方法，通过将wi-1以及wi-4异或来求得，例如这里轮密钥第二列w5，则是通过w4和w1异或得来的。</p>
-<p><img src="/uploads/基于无保护AES算法的CPA攻击/nextColumn.svg" alt=""></p>
-<p>图7 轮密钥第二列生成</p>
-<p>之后的每一个轮密钥都将按照上述方法进行计算得出，轮密钥第一列wi=SubByte（LeftShift（wi-1））⊕wi-4⊕rcon[i/4-1],而第二，三，四列的计算规则为wi=<br>wi-1⊕wi-4。图8即为新生成的轮密钥，可以很明显看出轮密钥0就是最开始输入的密钥，通常对AES的能量分析，都只分析第一轮，这一轮的轮密钥加操作使用的是轮密钥0，即原始输入的密钥。因此在进行CPA攻击时不需要经过密钥扩展这一步。</p>
-<p><img src="/uploads/基于无保护AES算法的CPA攻击/allround.svg" alt=""></p>
-<p>图8 新生成的轮密钥</p>
-<h6 id="2-2-加轮密钥"><a href="#2-2-加轮密钥" class="headerlink" title="2.2 加轮密钥"></a><strong>2.2</strong> 加轮密钥</h6><p>AES经过密钥扩展得到轮密钥之后，将进行10轮操作，在每一轮操作中都需要加轮密钥。<br>首先需要将明文和轮密钥按4字节为一列排成4列，分别命名为P0-P15和C0-C15,然后将明文和密文，按字节进行异或，即P0⊕C0-P15⊕C15。得到的最终结果可用于后续的字节替换。</p>
-<p><img src="/uploads/基于无保护AES算法的CPA攻击/add.svg" alt=""></p>
-<p>图9 轮密钥加</p>
-<h6 id="2-3-字节替换"><a href="#2-3-字节替换" class="headerlink" title="2.3 字节替换"></a><strong>2.3</strong> 字节替换</h6><p>字节替换一般使用的是Rijndael<br>S-box[3],它将需要替换的字节的高四位作为横坐标，低四位作为纵坐标从S-BOX中选中对应的字节作为替代值。</p>
-<p>如图10，待替代字节为0x01,则横坐标为高四位0x0,纵坐标为低四位0x1，从S-BOX中找到对应坐标的值0x7c，然后将其替换，图10展示S-BOX的替换过程，其中的S-BOX只是完整表格的一部分。</p>
-<p><img src="/uploads/基于无保护AES算法的CPA攻击/sbox.svg" alt=""></p>
-<p>图10 S-BOX替换</p>
-<h4 id="3-CPA攻击"><a href="#3-CPA攻击" class="headerlink" title="3 CPA攻击"></a><strong>3</strong> CPA攻击</h4><p>CPA攻击主要采用汉明重量模型。计算汉明重量与对应能量迹之间的相关系数，若相关系数越大，则说明他们之间的相关性越强，若数据中某一猜测密钥对应的相关系数相比于其他相关系数要大的多，就可以说明这一猜测密钥是正确的。</p>
-<h6 id="3-1-汉明重量"><a href="#3-1-汉明重量" class="headerlink" title="3.1 汉明重量"></a><strong>3.1</strong> 汉明重量</h6><p>汉明重量可以表示一个二进制字符串中1的个数。已经有论文通过实验证明了输出结果的汉明重量与能量消耗之间有明确的关系，能量消耗随着汉明重量的增大而增大，而且有较为明确的界限，经过计算，它们的相关系数甚至能够达到0.9919[4]。这也说明CPA使用汉明重量模型是合理的。</p>
-<h6 id="3-2-CPA攻击方法"><a href="#3-2-CPA攻击方法" class="headerlink" title="3.2 CPA攻击方法"></a><strong>3.2</strong> CPA攻击方法</h6><p>由于字节替换占用了总能量消耗的大部分[5]，因此在CPA攻击时可以只考虑S-BOX的输出与能量迹之间的关系。</p>
-<p>本文将密钥分成16个子密钥分别破解，每一子密钥为一个字节。首先考虑第一个子密钥GuessKey的破解，这里需要将其从0遍历到255，然后每遍历一个值，就参照AES的一轮加密过程，将其与明文pt进行异或，异或之后再经过S-BOX的字节替换即可得到用于求解汉明重量的输入字符串input，如算法2第6行所示。值得注意的是AES加密需要对原始密钥进行密钥扩展，将一个原始密钥扩展成11个轮密钥，但是如算法2第4行所示，这里轮秘钥并不是密钥扩展得到的，而是直接对原始密钥进行了异或。这是因为，从本文2.1部分密钥扩展的过程可以看出，第一个轮密钥就是原始密钥本身，而且此处我们也只需要考虑AES的第一轮能量消耗和汉明重量之间的关系即可，因此在这里进行AES第一轮操作时可以不用进行密钥扩展而直接使用原始密钥。而后将输入字符串input的汉明重量求出，存在数组中，并求出他们与能量迹的Pearson相关系数。于是便可以得到横坐标为256个GuessKey，纵坐标为相关系数的统计图（请参看附件文件夹中的图），若遍历到的密钥不正确，则相关系数的波动幅度并不大，而当猜测的密钥正确时，对应的相关系数将会是一个明显的波峰。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">**for** r = 0;r ≤ 8;r++ **do**</span><br><span class="line">     X = X ⊕ *RoundKey*[r]; /\*加轮密钥\*/</span><br><span class="line">     </span><br><span class="line">     **for** i = 0; i≤15; i++ **do**</span><br><span class="line">       Xi = *SubBytes*(Xi); /\*字节替换\*/</span><br><span class="line">     **end**</span><br><span class="line"></span><br><span class="line">     X = *ShiftRows*(X); /\*行变换\*/</span><br><span class="line">     X = *MixColumns*(X); /\*列混淆\*/</span><br><span class="line"></span><br><span class="line">**end**</span><br><span class="line"></span><br><span class="line">X = X⊕*RoundKey*[9]; /\*最后一轮\*/</span><br><span class="line"></span><br><span class="line">**for** I = 0; i≤15; i++ **do**</span><br><span class="line">    Xi = *SubBytes*(Xi);</span><br><span class="line">**end**</span><br><span class="line"></span><br><span class="line">X = *ShiftRows*（X）</span><br><span class="line">X = X⊕*RoundKey*[10] /\*获取密文\*/</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AES-128算法需要经过10轮的操作，除了最后一轮之外，前9轮都包括加轮密钥，字节替换，行变换，列混淆这四个步骤，而第十轮则少一个列混淆。这里的11个128位的轮密钥是原始的128位密钥经过密钥扩展得到的。</p>
+<h6 id="2-1-密钥扩展"><a href="#2-1-密钥扩展" class="headerlink" title="2.1 密钥扩展"></a><strong>2.1</strong> 密钥扩展</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密钥扩展是将最初始的128位密钥扩展成11个轮密钥，方便每一轮中的操作。假设有这样一个128位的密钥，如图1所示。然后按每4字节为一列排列成图2所示的阵列。</p>
+<p><img src="/uploads/基于无保护AES算法的CPA攻击/key-line.svg" alt="图1 给定的 AES密钥"></p>
+<p><img src="/uploads/基于无保护AES算法的CPA攻击/key-table.svg" alt="图2 密钥的排布"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图2中每一列分配一个标记wi，第一列为w0，第二列为w1，以此类推。每一个轮密钥的第一列生成方式都较为复杂，这里以生成第5列（w4）为例。</p>
+<p><img src="/uploads/基于无保护AES算法的CPA攻击/leftShift.svg" alt="图3 w3左移一位"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如图3所示，当将最初的密钥排列完毕以后，需要将最后一列进行循环左移。并且左移后的每个元素都要经过S-BOX的字节替换处理，图四表示了这一过程。关于S-BOX字节替换的详细描述可参看2.3部分。</p>
+<p><img src="/uploads/基于无保护AES算法的CPA攻击/key_xbox.svg" alt="图4 左移后经过S-BOX进行字节替换"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设正在生成第i列密钥，这里是第5列，即为w4。由于此处是第二个轮密钥的第一列，则经过字节替换后的结果，需要与wi-4即w0以及rcon[i/4-1]即rcon[0]进行异或才能最终得出w4。其中rcon是如图6所示的10列数字。</p>
+<p><img src="/uploads/基于无保护AES算法的CPA攻击/firstcolumn.svg" alt="图5 轮密钥第一列生成"></p>
+<p><img src="/uploads/基于无保护AES算法的CPA攻击/rcon.svg" alt="图6 RCON数组"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;只有轮密钥的第一列需要按照上述方法生成，接下来的三列则通过图7所示的方法，通过将wi-1以及wi-4异或来求得，例如这里轮密钥第二列w5，则是通过w4和w1异或得来的。</p>
+<p><img src="/uploads/基于无保护AES算法的CPA攻击/nextColumn.svg" alt="图7 轮密钥第二列生成"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;之后的每一个轮密钥都将按照上述方法进行计算得出，轮密钥第一列wi=SubByte（LeftShift（wi-1））⊕wi-4⊕rcon[i/4-1],而第二，三，四列的计算规则为wi=wi-1⊕wi-4。图8即为新生成的轮密钥，可以很明显看出轮密钥0就是最开始输入的密钥，通常对AES的能量分析，都只分析第一轮，这一轮的轮密钥加操作使用的是轮密钥0，即原始输入的密钥。因此在进行CPA攻击时不需要经过密钥扩展这一步。</p>
+<p><img src="/uploads/基于无保护AES算法的CPA攻击/allround.svg" alt="图8 新生成的轮密钥"></p>
+<h6 id="2-2-加轮密钥"><a href="#2-2-加轮密钥" class="headerlink" title="2.2 加轮密钥"></a><strong>2.2</strong> 加轮密钥</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AES经过密钥扩展得到轮密钥之后，将进行10轮操作，在每一轮操作中都需要加轮密钥。首先需要将明文和轮密钥按4字节为一列排成4列，分别命名为P0-P15和C0-C15,然后将明文和密文，按字节进行异或，即P0⊕C0-P15⊕C15。得到的最终结果可用于后续的字节替换。</p>
+<p><img src="/uploads/基于无保护AES算法的CPA攻击/add.svg" alt="图9 轮密钥加"></p>
+<h6 id="2-3-字节替换"><a href="#2-3-字节替换" class="headerlink" title="2.3 字节替换"></a><strong>2.3</strong> 字节替换</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;字节替换一般使用的是Rijndael S-box[3],它将需要替换的字节的高四位作为横坐标，低四位作为纵坐标从S-BOX中选中对应的字节作为替代值。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如图10，待替代字节为0x01,则横坐标为高四位0x0,纵坐标为低四位0x1，从S-BOX中找到对应坐标的值0x7c，然后将其替换，图10展示S-BOX的替换过程，其中的S-BOX只是完整表格的一部分。</p>
+<p><img src="/uploads/基于无保护AES算法的CPA攻击/sbox.svg" alt="图10 S-BOX替换"></p>
+<h4 id="3-CPA攻击"><a href="#3-CPA攻击" class="headerlink" title="3 CPA攻击"></a><strong>3</strong> CPA攻击</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CPA攻击主要采用汉明重量模型。计算汉明重量与对应能量迹之间的相关系数，若相关系数越大，则说明他们之间的相关性越强，若数据中某一猜测密钥对应的相关系数相比于其他相关系数要大的多，就可以说明这一猜测密钥是正确的。</p>
+<h6 id="3-1-汉明重量"><a href="#3-1-汉明重量" class="headerlink" title="3.1 汉明重量"></a><strong>3.1</strong> 汉明重量</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;汉明重量可以表示一个二进制字符串中1的个数。已经有论文通过实验证明了输出结果的汉明重量与能量消耗之间有明确的关系，能量消耗随着汉明重量的增大而增大，而且有较为明确的界限，经过计算，它们的相关系数甚至能够达到0.9919[4]。这也说明CPA使用汉明重量模型是合理的。</p>
+<h6 id="3-2-CPA攻击方法"><a href="#3-2-CPA攻击方法" class="headerlink" title="3.2 CPA攻击方法"></a><strong>3.2</strong> CPA攻击方法</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于字节替换占用了总能量消耗的大部分[5]，因此在CPA攻击时可以只考虑S-BOX的输出与能量迹之间的关系。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文将密钥分成16个子密钥分别破解，每一子密钥为一个字节。首先考虑第一个子密钥GuessKey的破解，这里需要将其从0遍历到255，然后每遍历一个值，就参照AES的一轮加密过程，将其与明文pt进行异或，异或之后再经过S-BOX的字节替换即可得到用于求解汉明重量的输入字符串input，如算法2第6行所示。值得注意的是AES加密需要对原始密钥进行密钥扩展，将一个原始密钥扩展成11个轮密钥，但是如算法2第4行所示，这里轮秘钥并不是密钥扩展得到的，而是直接对原始密钥进行了异或。这是因为，从本文2.1部分密钥扩展的过程可以看出，第一个轮密钥就是原始密钥本身，而且此处我们也只需要考虑AES的第一轮能量消耗和汉明重量之间的关系即可，因此在这里进行AES第一轮操作时可以不用进行密钥扩展而直接使用原始密钥。而后将输入字符串input的汉明重量求出，存在数组中，并求出他们与能量迹的Pearson相关系数。于是便可以得到横坐标为256个GuessKey，纵坐标为相关系数的统计图（请参看附件文件夹中的图），若遍历到的密钥不正确，则相关系数的波动幅度并不大，而当猜测的密钥正确时，对应的相关系数将会是一个明显的波峰。</p>
 <table>
 <thead>
 <tr>
@@ -501,7 +493,7 @@
 <li><p><strong>end</strong></p>
 </li>
 </ol>
-<h4 id="4-结论"><a href="#4-结论" class="headerlink" title="4 结论"></a><strong>4</strong> 结论</h4><p>本次实验所得到的能量迹数据为第36组，攻击源代码可以参看source目录，先通过ReadFile.py读取实验数据,并将其转为攻击代码需要的格式。再执行CPA.py进行攻击，执行过程中通过matplolt画图，可以很清晰地看出相关系数峰值，这些图可以在附件文件夹中看到。最终测算出来的密钥为0x77<br>70 26 8a 51 bf a9 b2 2f 6f 40 69 c3 95 db<br>5b。使用source目录下的AES代码[6]加密明文，并将得到的密文与给定的密文进行对比，可确定其为正确的密钥。因此可以认为本攻击手段采用CPA攻击是合理的。</p>
+<h4 id="4-结论"><a href="#4-结论" class="headerlink" title="4 结论"></a><strong>4</strong> 结论</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本次实验所得到的能量迹数据为第36组，攻击源代码可以参看source目录，先通过ReadFile.py读取实验数据,并将其转为攻击代码需要的格式。再执行CPA.py进行攻击，执行过程中通过matplolt画图，可以很清晰地看出相关系数峰值，这些图可以在附件文件夹中看到。最终测算出来的密钥为0x77 70 26 8a 51 bf a9 b2 2f 6f 40 69 c3 95 db 5b。使用source目录下的AES代码[6]加密明文，并将得到的密文与给定的密文进行对比，可确定其为正确的密钥。因此可以认为本攻击手段采用CPA攻击是合理的。</p>
 <h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>[1] KOCHER P, JAFFE J, JUN B. Differential power analysis[C]//Annual<br>International Cryptology Conference. Springer, 1999: 388–397.</p>
 <p>[2] BRIER E, CLAVIER C, OLIVIER F. Correlation Power Analysis with a Leakage<br>Model[G]//JOYE M, QUISQUATER J-J. Cryptographic Hardware and Embedded Systems -<br>CHES 2004. Berlin, Heidelberg: Springer Berlin Heidelberg, 2004, 3156: 16–29.</p>
 <p>[3] DAEMEN J. The Rijndael Block Cipher[J]. : 45.</p>
