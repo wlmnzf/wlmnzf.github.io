@@ -424,7 +424,7 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">**for** r = 0;r ≤ 8;r++ **do**</span><br><span class="line">     X = X ⊕ *RoundKey*[r]; /\*加轮密钥\*/</span><br><span class="line">     </span><br><span class="line">     **for** i = 0; i≤15; i++ **do**</span><br><span class="line">       Xi = *SubBytes*(Xi); /\*字节替换\*/</span><br><span class="line">     **end**</span><br><span class="line"></span><br><span class="line">     X = *ShiftRows*(X); /\*行变换\*/</span><br><span class="line">     X = *MixColumns*(X); /\*列混淆\*/</span><br><span class="line"></span><br><span class="line">**end**</span><br><span class="line"></span><br><span class="line">X = X⊕*RoundKey*[9]; /\*最后一轮\*/</span><br><span class="line"></span><br><span class="line">**for** I = 0; i≤15; i++ **do**</span><br><span class="line">    Xi = *SubBytes*(Xi);</span><br><span class="line">**end**</span><br><span class="line"></span><br><span class="line">X = *ShiftRows*（X）</span><br><span class="line">X = X⊕*RoundKey*[10] /\*获取密文\*/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">for r = 0;r ≤ 8;r++ do</span><br><span class="line">     X = X ⊕ RoundKey[r]; /*加轮密钥*/</span><br><span class="line">     </span><br><span class="line">     for i = 0; i≤15; i++ do</span><br><span class="line">       Xi = SubBytes(Xi); /*字节替换*/</span><br><span class="line">     end</span><br><span class="line"></span><br><span class="line">     X = ShiftRows(X); /*行变换*/</span><br><span class="line">     X = *MixColumns*(X); /*列混淆*/</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">X = X⊕*RoundKey*[9]; /*最后一轮*/</span><br><span class="line"></span><br><span class="line">for I = 0; i≤15; i++ do</span><br><span class="line">    Xi = SubBytes(Xi);</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">X = ShiftRows（X）</span><br><span class="line">X = X⊕RoundKey[10] /\*获取密文\*/</span><br></pre></td></tr></table></figure>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AES-128算法需要经过10轮的操作，除了最后一轮之外，前9轮都包括加轮密钥，字节替换，行变换，列混淆这四个步骤，而第十轮则少一个列混淆。这里的11个128位的轮密钥是原始的128位密钥经过密钥扩展得到的。</p>
 <h6 id="2-1-密钥扩展"><a href="#2-1-密钥扩展" class="headerlink" title="2.1 密钥扩展"></a><strong>2.1</strong> 密钥扩展</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密钥扩展是将最初始的128位密钥扩展成11个轮密钥，方便每一轮中的操作。假设有这样一个128位的密钥，如图1所示。然后按每4字节为一列排列成图2所示的阵列。</p>
 <p><img src="/uploads/基于无保护AES算法的CPA攻击/key-line.svg" alt="图1 给定的 AES密钥"></p>
@@ -490,7 +490,7 @@
 </tr>
 </tbody>
 </table>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">**for** i = 0; i\&lt;16 ;i++ **do**</span><br><span class="line">    **for** *GuessKey*=0;*GuessKey*\&lt;256;*GuessKey*++ **do**</span><br><span class="line">       **for** j = 0;j\&lt;*TraceCnt*;j++ **do**</span><br><span class="line">             input=pt[j][i]⊕*GuessKey*;</span><br><span class="line">             input=*SubBytes*(input);</span><br><span class="line">             hws[j]=*HammingWeight*(input);</span><br><span class="line">       **end**</span><br><span class="line"></span><br><span class="line">       **for** j = 0;j\&lt;*PointsCnt*;j++ **do**</span><br><span class="line">             pccs[j]=*PCC*(*Trans*(traces)[j],hws);</span><br><span class="line">              /\*PCC为求Pearson相关系数\*/</span><br><span class="line">              /\*Trans为矩阵转置\*/</span><br><span class="line">       **end**</span><br><span class="line"></span><br><span class="line">       CPA[*GuessKey*]=*Max*(pccs)</span><br><span class="line">     **end**</span><br><span class="line"></span><br><span class="line">     keys[i]=*Argmax*(CPA)</span><br><span class="line">**end**</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">for i = 0; i&lt;16 ;i++ do</span><br><span class="line">    for GuessKey=0;GuessKey&lt;256;GuessKey++ do</span><br><span class="line">       for j = 0;j&lt;TraceCnt;j++ do</span><br><span class="line">             input=pt[j][i]⊕GuessKey;</span><br><span class="line">             input=SubBytes(input);</span><br><span class="line">             hws[j]=HammingWeight(input);</span><br><span class="line">       end</span><br><span class="line"></span><br><span class="line">       for j = 0;j&lt;PointsCnt;j++ do</span><br><span class="line">             pccs[j]=PCC(Trans(traces)[j],hws);</span><br><span class="line">              /*PCC为求Pearson相关系数*/</span><br><span class="line">              /*Trans为矩阵转置*/</span><br><span class="line">       end</span><br><span class="line"></span><br><span class="line">       CPA[GuessKey]=Max(pccs)</span><br><span class="line">     end</span><br><span class="line"></span><br><span class="line">     keys[i]=Argmax(CPA)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <h4 id="4-结论"><a href="#4-结论" class="headerlink" title="4 结论"></a><strong>4</strong> 结论</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本次实验所得到的能量迹数据为第36组，攻击源代码可以参看source目录，先通过ReadFile.py读取实验数据,并将其转为攻击代码需要的格式。再执行CPA.py进行攻击，执行过程中通过matplolt画图，可以很清晰地看出相关系数峰值，这些图可以在附件文件夹中看到。最终测算出来的密钥为0x77 70 26 8a 51 bf a9 b2 2f 6f 40 69 c3 95 db 5b。使用source目录下的AES代码[6]加密明文，并将得到的密文与给定的密文进行对比，可确定其为正确的密钥。因此可以认为本攻击手段采用CPA攻击是合理的。</p>
 <h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>[1] KOCHER P, JAFFE J, JUN B. Differential power analysis[C]//Annual<br>International Cryptology Conference. Springer, 1999: 388–397.</p>
 <p>[2] BRIER E, CLAVIER C, OLIVIER F. Correlation Power Analysis with a Leakage<br>Model[G]//JOYE M, QUISQUATER J-J. Cryptographic Hardware and Embedded Systems -<br>CHES 2004. Berlin, Heidelberg: Springer Berlin Heidelberg, 2004, 3156: 16–29.</p>
@@ -863,215 +863,6 @@
 </ol>
 <div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/09/28/登录模块使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会打代码的扫地王大爷">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/28/登录模块使用/" itemprop="url">登录模块使用</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-28T14:58:47+08:00">
-                2017-09-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/28/登录模块使用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/28/登录模块使用/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="1-将jsp页面的header修改成如下代码所示"><a href="#1-将jsp页面的header修改成如下代码所示" class="headerlink" title="1. 将jsp页面的header修改成如下代码所示"></a>1. 将jsp页面的header修改成如下代码所示</h3><ul>
-<li>用户信息会在这段前端代码中给出，也会存一份在cookie中，但是因为cookie开启了HttpOnly，因此js将提取不到cookie.</li>
-</ul>
-<h5 id="以下为前端jsp页面使用的变量"><a href="#以下为前端jsp页面使用的变量" class="headerlink" title="以下为前端jsp页面使用的变量"></a>以下为前端jsp页面使用的变量</h5><ul>
-<li>“_USER_NAME”:用户名</li>
-<li>“_TOKEN”：用户Token值</li>
-<li>“_TYPE”：用户类型</li>
-<li>“_TYPE_TEXT”:类型的文本信息</li>
-<li>“_HEAD_URL”：头像地址</li>
-</ul>
-<h5 id="以下为为cookie值"><a href="#以下为为cookie值" class="headerlink" title="以下为为cookie值"></a>以下为为cookie值</h5><ul>
-<li>“account”：账号</li>
-<li>“type”：用户权限类型</li>
-<li>“token”：用户登陆token</li>
-</ul>
-<h5 id="以下为jsp代码"><a href="#以下为jsp代码" class="headerlink" title="以下为jsp代码"></a>以下为jsp代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;header&gt;</span><br><span class="line">    &lt;div class=&quot;container-fluid&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;navbar-header&quot;&gt;</span><br><span class="line">            &lt;img class=&quot;brand&quot; src=&quot;&lt;%=path%&gt;/img/logo.png&quot; alt=&quot;&quot;&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &lt;div class=&quot;collapse navbar-collapse&quot;&gt;</span><br><span class="line">            &lt;ul class=&quot;nav navbar-nav navbar-right login-ul&quot;&gt;</span><br><span class="line">                &lt;li&gt;</span><br><span class="line">                    &lt;div class=&quot;login-info&quot;&gt;</span><br><span class="line">                        &lt;div class=&quot;-left -top&quot;&gt;</span><br><span class="line">                            &lt;a href=&quot;#&quot;&gt;</span><br><span class="line">                            &lt;img class=&quot;-object&quot; src=&quot;$&#123;_HEAD_URL&#125;&quot; alt=&quot;...&quot;&gt;</span><br><span class="line">                            &lt;/a&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                        &lt;div class=&quot;-body&quot;&gt;</span><br><span class="line">                            &lt;h4 class=&quot;-heading&quot; data-type=&quot;$&#123;_TYPE&#125;&quot;&gt;&lt;span class=&quot;label label-primary&quot;&gt;$&#123;_TYPE_TEXT&#125;&lt;/span&gt;&lt;/h4&gt;</span><br><span class="line">                            &lt;p class=&quot;login-name&quot; data-token=&quot;$&#123;_TOKEN&#125;&quot;&gt;$&#123;_USER_NAME&#125;&lt;/p&gt;</span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">                &lt;li&gt;</span><br><span class="line">                    &lt;div class=&quot;options&quot;&gt;</span><br><span class="line">                        &lt;%--&lt;a class=&quot;option&quot; href=&quot;#&quot;&gt;&lt;span class=&quot;glyphicon glyphicon-envelope&quot;&gt;&lt;/span&gt;&lt;/a&gt;--%&gt;</span><br><span class="line">                        &lt;a class=&quot;option&quot; id=&quot;exit&quot; href=&quot;&lt;%=path%&gt;/exit&quot;&gt;退出&lt;/a&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/li&gt;</span><br><span class="line">            &lt;/ul&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/header&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="2-在对应controller中进行用户认证，包括登录认证和权限认证"><a href="#2-在对应controller中进行用户认证，包括登录认证和权限认证" class="headerlink" title="2. 在对应controller中进行用户认证，包括登录认证和权限认证"></a>2. 在对应controller中进行用户认证，包括登录认证和权限认证</h3><h4 id="注意控制器中添加三个参数"><a href="#注意控制器中添加三个参数" class="headerlink" title="注意控制器中添加三个参数"></a>注意控制器中添加三个参数</h4><ul>
-<li><p>Map&lt;String, Object&gt;map</p>
-<blockquote>
-<p>用于将用户信息传递到前端</p>
-</blockquote>
-</li>
-<li><p>HttpServletRequest request</p>
-<blockquote>
-<p>用于提取cookie</p>
-</blockquote>
-</li>
-<li><p>RedirectAttributes attr</p>
-<blockquote>
-<p>用于登录失效时跳转后给出提示消息</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//给出示例，这是永用于显示表单管理页面的控制器</span><br><span class="line"></span><br><span class="line"> @RequestMapping(&quot;/formManage&quot;)</span><br><span class="line">    private String customForm(Map&lt;String, Object&gt; map,HttpServletRequest request,RedirectAttributes attr)</span><br><span class="line">    &#123;</span><br><span class="line">       //传到前端页面的变量</span><br><span class="line">        map.put(&quot;curPage&quot;,1);</span><br><span class="line">//开始认证</span><br><span class="line">        int res=comm.Login.validCheck(request,2,attr,map);</span><br><span class="line">        if(res==0) &#123;</span><br><span class="line">             // 认证成功</span><br><span class="line">             // do....</span><br><span class="line">            return &quot;formManage&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">          return comm.Login.errRedirect(attr,res);</span><br><span class="line">        &#125;</span><br><span class="line"> //结束</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="3-一些API函数介绍"><a href="#3-一些API函数介绍" class="headerlink" title="3. 一些API函数介绍"></a>3. 一些API函数介绍</h3><h4 id="3-1-发生错误时进行跳转"><a href="#3-1-发生错误时进行跳转" class="headerlink" title="3.1 发生错误时进行跳转"></a>3.1 发生错误时进行跳转</h4><p><code>public  static String errRedirect(RedirectAttributes attr,int res)</code></p>
-<ul>
-<li>RedirectAttributes：跳转时传参数使用</li>
-<li><p>int：错误类型</p>
-<blockquote>
-<p>   0:OK</p>
-<pre><code>1:Login failed
-2:Auth failed
-</code></pre></blockquote>
-</li>
-<li><p>return: 跳转到首页</p>
-</li>
-</ul>
-<h4 id="3-2-登陆有效性检测（重载函数）"><a href="#3-2-登陆有效性检测（重载函数）" class="headerlink" title="3.2 登陆有效性检测（重载函数）"></a>3.2 登陆有效性检测（重载函数）</h4><p><code>public  static int validCheck(HttpServletRequest request,int authType,RedirectAttributes attr)</code></p>
-<p><code>public  static int validCheck(HttpServletRequest request,int authType,RedirectAttributes attr,Map&lt;String, Object&gt;  map)</code></p>
-<ul>
-<li>HttpServletRequest ：请求</li>
-<li><p>int：该页面所需要的权限</p>
-<blockquote>
-<p>  1:普通用户</p>
-<pre><code>2:管理员
-</code></pre></blockquote>
-</li>
-<li><p>RedirectAttributes：跳转时传参数使用</p>
-</li>
-<li>Map&lt;String, Object&gt;  map：用于展示用户个人信息。若请求的该页面为API则无需此参数，若为展示页面则必须添加此参数</li>
-</ul>
-<h4 id="3-3-权限检测"><a href="#3-3-权限检测" class="headerlink" title="3.3   权限检测"></a>3.3   权限检测</h4><p><code>public  static boolean authCheck(int authType,PersonPojo pp)</code></p>
-<ul>
-<li>int:该页面所需权限</li>
-<li>PersonPojo：用户信息Pojo</li>
-<li>return:<blockquote>
-<p>true:权限正确<br>false:权限错误</p>
-</blockquote>
-</li>
-</ul>
-<h4 id="3-4-设置登录信息"><a href="#3-4-设置登录信息" class="headerlink" title="3.4 设置登录信息"></a>3.4 设置登录信息</h4><p><code>public static void  setLoginInfo(Map&lt;String, Object&gt;  map,PersonPojo pp)</code></p>
-<ul>
-<li>Map&lt;String, Object&gt;  map：用于展示用户个人信息。若请求的该页面为API则无需此参数，若为展示页面则必须添加此参数</li>
-<li>PersonPojo：用户信息Pojo<h5 id="以下变量用于在前端显示"><a href="#以下变量用于在前端显示" class="headerlink" title="以下变量用于在前端显示"></a>以下变量用于在前端显示</h5></li>
-<li>“_USER_NAME”:用户名</li>
-<li>“_TOKEN”：用户Token值</li>
-<li>“_TYPE”：用户类型</li>
-<li>“_TYPE_TEXT”:类型的文本信息</li>
-<li>“_HEAD_URL”：头像地址</li>
-</ul>
-<h4 id="3-5-设置错误信息"><a href="#3-5-设置错误信息" class="headerlink" title="3.5 设置错误信息"></a>3.5 设置错误信息</h4><p>  <code>public static  String setErrInfo(RedirectAttributes attr,String info)</code></p>
-<ul>
-<li>RedirectAttributes：跳转时传参数使用</li>
-<li>String: 错误信息</li>
-</ul>
-<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
           
         
@@ -2418,6 +2209,168 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（完）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="William Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/11/自定义表单（完）/" itemprop="url">自定义表单（完）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T05:57:32+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/WebDesign/" itemprop="url" rel="index">
+                    <span itemprop="name">WebDesign</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/11/自定义表单（完）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/06/11/自定义表单（完）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一、实现的功能</p>
+<p>  1、拖拽插入表单元素，从右边拖拽如左边的表单区</p>
+<p>  2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除</p>
+<p>  3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置</p>
+<p>二、关键部分实现思路</p>
+<p>2.1拖拽插入<br><img src="http://upload-images.jianshu.io/upload_images/685455-4e08de27926deac9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请输入图片描述"></p>
+<p>1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就算完成准备工作了</p>
+<p>2、在ondragover中，因为要显示一根线来提示用户这个正在拖拽的表单元素会被放在哪里，因此就需要计算</p>
+<p>   这个黑色的就是浏览器页面，白色的是表单元素调用getBoundingClientRect()获取的最小覆盖矩形区，他会返回一个对象，其中top表示白色部分的距离（上边界到浏览器顶部的距离），bottom表示黄色线 距离。我们可以获取鼠标在浏览器页面上的坐标，然后判断鼠标正在哪个表单元素里。然后再对这个元素对半分，在粉色上面部分，则对其上边界标记为蓝色，否则就是下部分标记为蓝色。</p>
+<p>3、ondrop中，根据上一步判断的位置，放置拖拽的元素，如果是新增，则克隆一份，再插入，是替换的话则直接插进去就可以了。</p>
+<p>2.2拖拽删除</p>
+<p>  其实原理差不多，只不过在ondrop中绑定的函数中，是把正在拖拽的那个元素删掉就可以了。代码中有很多注释，这里就不一一讲解了。</p>
+<p>3、代码</p>
+<blockquote>
+<p><a href="https://github.com/wlmnzf/javascript-train/tree/master/customForm" target="_blank" rel="noopener">https://github.com/wlmnzf/javascript-train/tree/master/customForm</a></p>
+</blockquote>
+  <div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -2467,7 +2420,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
