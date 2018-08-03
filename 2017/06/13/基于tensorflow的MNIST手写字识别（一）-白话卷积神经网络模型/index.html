@@ -93,13 +93,13 @@
 
 
 
-<meta name="description" content="一、卷积神经网络模型知识要点卷积卷积 卷积 池化 全连接 梯度下降法 softmax  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。 二、卷积神经网络讲解##### 2.1卷积神经网络作用 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大家应该">
+<meta name="description" content="一、卷积神经网络模型知识要点 卷积 池化 全连接 梯度下降法 softmax  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。 二、卷积神经网络讲解##### 2.1卷积神经网络作用 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大家应该知道大名">
 <meta name="keywords" content="基于tensorflow的MNIST手写数字识别,tensorflow">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于tensorflow的MNIST手写字识别（一）--白话卷积神经网络模型">
+<meta property="og:title" content="基于tensorflow的MNIST手写数字识别（一）--白话卷积神经网络模型">
 <meta property="og:url" content="http://csuncle.com/2017/06/13/基于tensorflow的MNIST手写字识别（一）-白话卷积神经网络模型/index.html">
 <meta property="og:site_name" content="会打代码的扫地王大爷">
-<meta property="og:description" content="一、卷积神经网络模型知识要点卷积卷积 卷积 池化 全连接 梯度下降法 softmax  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。 二、卷积神经网络讲解##### 2.1卷积神经网络作用 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大家应该">
+<meta property="og:description" content="一、卷积神经网络模型知识要点 卷积 池化 全连接 梯度下降法 softmax  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。 二、卷积神经网络讲解##### 2.1卷积神经网络作用 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大家应该知道大名">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/1.png">
 <meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/2.jpg">
@@ -108,10 +108,10 @@
 <meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/5.gif">
 <meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/6.png">
 <meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/7.png">
-<meta property="og:updated_time" content="2018-08-03T09:46:31.568Z">
+<meta property="og:updated_time" content="2018-08-03T10:08:07.935Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于tensorflow的MNIST手写字识别（一）--白话卷积神经网络模型">
-<meta name="twitter:description" content="一、卷积神经网络模型知识要点卷积卷积 卷积 池化 全连接 梯度下降法 softmax  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。 二、卷积神经网络讲解##### 2.1卷积神经网络作用 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大家应该">
+<meta name="twitter:title" content="基于tensorflow的MNIST手写数字识别（一）--白话卷积神经网络模型">
+<meta name="twitter:description" content="一、卷积神经网络模型知识要点 卷积 池化 全连接 梯度下降法 softmax  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。 二、卷积神经网络讲解##### 2.1卷积神经网络作用 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大家应该知道大名">
 <meta name="twitter:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/1.png">
 
 
@@ -146,7 +146,7 @@
 
 
 
-  <title>基于tensorflow的MNIST手写字识别（一）--白话卷积神经网络模型 | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>基于tensorflow的MNIST手写数字识别（一）--白话卷积神经网络模型 | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -313,7 +313,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">基于tensorflow的MNIST手写字识别（一）--白话卷积神经网络模型</h2>
+          <h2 class="post-title" itemprop="name headline">基于tensorflow的MNIST手写数字识别（一）--白话卷积神经网络模型</h2>
         
 
         <div class="post-meta">
@@ -382,7 +382,7 @@
       
 
       
-        <h4 id="一、卷积神经网络模型知识要点卷积卷积"><a href="#一、卷积神经网络模型知识要点卷积卷积" class="headerlink" title="一、卷积神经网络模型知识要点卷积卷积"></a>一、卷积神经网络模型知识要点卷积卷积</h4><ol>
+        <h4 id="一、卷积神经网络模型知识要点"><a href="#一、卷积神经网络模型知识要点" class="headerlink" title="一、卷积神经网络模型知识要点"></a>一、卷积神经网络模型知识要点</h4><ol>
 <li>卷积</li>
 <li>池化</li>
 <li>全连接</li>
@@ -800,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、卷积神经网络模型知识要点卷积卷积"><span class="nav-number">1.</span> <span class="nav-text">一、卷积神经网络模型知识要点卷积卷积</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、卷积神经网络讲解"><span class="nav-number">2.</span> <span class="nav-text">二、卷积神经网络讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2卷积神经网络模型"><span class="nav-number">2.1.</span> <span class="nav-text">2.2卷积神经网络模型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-卷积"><span class="nav-number">3.</span> <span class="nav-text">2.3 卷积</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-1-卷积的原理"><span class="nav-number">3.1.</span> <span class="nav-text">2.3.1 卷积的原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-2-滑动的步长-stride"><span class="nav-number">3.2.</span> <span class="nav-text">2.3.2 滑动的步长-stride</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-3-卷积的边界处理-padding"><span class="nav-number">3.3.</span> <span class="nav-text">2.3.3 卷积的边界处理-padding</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-4-卷积与神经网络"><span class="nav-number">3.4.</span> <span class="nav-text">2.3.4 卷积与神经网络</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-池化"><span class="nav-number">4.</span> <span class="nav-text">2.4 池化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-全连接"><span class="nav-number">5.</span> <span class="nav-text">2.5 全连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-梯度下降法"><span class="nav-number">6.</span> <span class="nav-text">2.6 梯度下降法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7最后-softmax"><span class="nav-number">7.</span> <span class="nav-text">2.7最后 softmax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、总结"><span class="nav-number">8.</span> <span class="nav-text">三、总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、参考"><span class="nav-number">9.</span> <span class="nav-text">四、参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、卷积神经网络模型知识要点"><span class="nav-number">1.</span> <span class="nav-text">一、卷积神经网络模型知识要点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、卷积神经网络讲解"><span class="nav-number">2.</span> <span class="nav-text">二、卷积神经网络讲解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2卷积神经网络模型"><span class="nav-number">2.1.</span> <span class="nav-text">2.2卷积神经网络模型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-卷积"><span class="nav-number">3.</span> <span class="nav-text">2.3 卷积</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-1-卷积的原理"><span class="nav-number">3.1.</span> <span class="nav-text">2.3.1 卷积的原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-2-滑动的步长-stride"><span class="nav-number">3.2.</span> <span class="nav-text">2.3.2 滑动的步长-stride</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-3-卷积的边界处理-padding"><span class="nav-number">3.3.</span> <span class="nav-text">2.3.3 卷积的边界处理-padding</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-4-卷积与神经网络"><span class="nav-number">3.4.</span> <span class="nav-text">2.3.4 卷积与神经网络</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-池化"><span class="nav-number">4.</span> <span class="nav-text">2.4 池化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-全连接"><span class="nav-number">5.</span> <span class="nav-text">2.5 全连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-梯度下降法"><span class="nav-number">6.</span> <span class="nav-text">2.6 梯度下降法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7最后-softmax"><span class="nav-number">7.</span> <span class="nav-text">2.7最后 softmax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、总结"><span class="nav-number">8.</span> <span class="nav-text">三、总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、参考"><span class="nav-number">9.</span> <span class="nav-text">四、参考</span></a></li></ol></div>
             
 
           </div>
