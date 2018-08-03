@@ -101,12 +101,12 @@
 <meta property="og:site_name" content="会打代码的扫地王大爷">
 <meta property="og:description" content="PS:本文中的log等同于我们国内的ln  sigmoid函数&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;之前那一文中提到了一般的梯度上升的公式推导，但是在《机器学习实战》一书中，实现的是分类方法，因此，虽然最终的结果相似，但是其实本质有很大的不同。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一般来讲我们把实物分成两类，因此我们需要将结果映射到两个结果(是或非)，因为一般的阶跃函数在求">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://img.blog.csdn.net/20170702143445883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-02-25T02:54:56.273Z">
+<meta property="og:image" content="http://csuncle.com/uploads/机器学习之梯度下降法数学推导--分类/1.png">
+<meta property="og:updated_time" content="2018-08-03T09:39:34.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之梯度下降法数学推导--分类">
 <meta name="twitter:description" content="PS:本文中的log等同于我们国内的ln  sigmoid函数&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;之前那一文中提到了一般的梯度上升的公式推导，但是在《机器学习实战》一书中，实现的是分类方法，因此，虽然最终的结果相似，但是其实本质有很大的不同。 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一般来讲我们把实物分成两类，因此我们需要将结果映射到两个结果(是或非)，因为一般的阶跃函数在求">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20170702143445883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:image" content="http://csuncle.com/uploads/机器学习之梯度下降法数学推导--分类/1.png">
 
 
 
@@ -381,7 +381,7 @@
 </blockquote>
 <h3 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;之前那一文中提到了一般的梯度上升的公式推导，但是在《机器学习实战》一书中，实现的是分类方法，因此，虽然最终的结果相似，但是其实本质有很大的不同。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;一般来讲我们把实物分成两类，因此我们需要将结果映射到两个结果(是或非)，因为一般的阶跃函数在求导之类的问题上会变得相当复杂，因此我们用一个更加圆滑的sigmoid函数来映射，所有输入到这个函数的实数都会被转化到0-1之间，它的公式为 $ g(z)=\frac{1}{1+e^{-z}} $ </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;同时它对应的图像如图所示:<br><img src="http://img.blog.csdn.net/20170702143445883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="sigmoid"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;同时它对应的图像如图所示:<br><img src="/uploads/机器学习之梯度下降法数学推导--分类/1.png" alt="sigmoid"></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;于是我们可以将得到的结果进行四舍五入，分类成0或1</p>
 <h3 id="Logistic-回归"><a href="#Logistic-回归" class="headerlink" title="Logistic 回归"></a>Logistic 回归</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;这里的意思是，将我们的分类边界线作模型，进行拟合，并以此来分类。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp; 我们假设经过sigmoid函数处理过的结果为 $h_{\Theta}(x)$ ,因为是在0-1之间，因此可以看做是概率，另外，我们可以假设，分类到0或者1的概率。</p>

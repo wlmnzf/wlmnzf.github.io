@@ -101,12 +101,12 @@
 <meta property="og:site_name" content="会打代码的扫地王大爷">
 <meta property="og:description" content="一、瞎扯 之前公司放我一个礼拜写了一个高度定制化，功能完善的自定义表单，然而因为去年9月份，硬盘，u盘，存储卡接连坏掉，代码就没了，不过也多亏这个，避免了日后的官司问题（开个玩笑，此处捂着嘴偷笑），最近一直在恢复之前写过的一些重要的代码，因此顺便更深入地折腾一下这个问题，写一些不会惹官司的demo（这个还真的得严肃对待=_=||）。 二、JS拖拽 2.1原理 拖拽的过程其实只有三个：按下，移动，放">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/685455-2e17975c96bc7ef2?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-25T02:55:25.031Z">
+<meta property="og:image" content="http://csuncle.com/uploads/自定义表单一/1.png">
+<meta property="og:updated_time" content="2018-08-03T09:37:28.826Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义表单（一）">
 <meta name="twitter:description" content="一、瞎扯 之前公司放我一个礼拜写了一个高度定制化，功能完善的自定义表单，然而因为去年9月份，硬盘，u盘，存储卡接连坏掉，代码就没了，不过也多亏这个，避免了日后的官司问题（开个玩笑，此处捂着嘴偷笑），最近一直在恢复之前写过的一些重要的代码，因此顺便更深入地折腾一下这个问题，写一些不会惹官司的demo（这个还真的得严肃对待=_=||）。 二、JS拖拽 2.1原理 拖拽的过程其实只有三个：按下，移动，放">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/685455-2e17975c96bc7ef2?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://csuncle.com/uploads/自定义表单一/1.png">
 
 
 
@@ -421,7 +421,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
 因为在这里我绑定的是document的onmousemove和onmouseup，整个页面中的鼠标事件也能得到响应，拖动速度快了，鼠标超出了拖拽元素依然能得到响应，因此setCapture其实也不需要。
 </code></pre><p>2.3 移动算法</p>
 <p>原先采用的算法是</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/685455-2e17975c96bc7ef2?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请输入图片描述"></p>
+<p><img src="/uploads/自定义表单一/1.png" alt="请输入图片描述"></p>
 <pre><code>黑色部分是浏览器页面，白色部分是拖拽元素，棕色部分是点击的圆点，黄色部分是是鼠标点击处在浏览器上的坐标位置（X，Y），红色部分则是鼠标点击处在拖拽元素中的偏移量（x,y）,因此实际上要设置的top和left值是(X-x,Y-y),这里稍后还得普及一下各种位置信息的区别以及获取方法，不过这种方法的效果并不是很理想，所以就还整了新的方法，在mousedown时记录鼠标位置信息，然后在mousemove中，记录鼠标位移的变化值，把值直接加在拖拽元素的坐标上面就好了。
 </code></pre><p>2.4 区分offsetX layerX PageX clientX 值</p>
 <p>offsetX:</p>
@@ -440,7 +440,6 @@ function：Callthismethod during the handling of a mousedown event to retarget a
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setCapture" target="_blank" rel="noopener">1.MDN-Element.setCapture()</a></p>
 <p><a href="http://blog.csdn.net/hdchangchang/article/details/8443237" target="_blank" rel="noopener">2.各个浏览器中鼠标位置的属性 offsetX layerX PageX clientX （自由拖动框，防止文字选中）</a></p>
 <p><a href="http://www.zhangxinxu.com/wordpress/2010/03/javascript%E5%AE%9E%E7%8E%B0%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C/" target="_blank" rel="noopener">3.JavaScript实现最简单的拖拽效果</a></p>
-<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
       
     </div>

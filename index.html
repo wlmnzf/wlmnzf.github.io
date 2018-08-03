@@ -884,12 +884,12 @@
 <li>Variant 2: branch target injection (CVE-2017-5715)【分支目标注入】</li>
 <li>Variant 3: rogue data cache load (CVE-2017-5754)【恶意数据缓存载入】<br>Spectre 主要利用前两个漏洞进行攻击，而meltdown则主要利用第三个漏洞进行攻击。</li>
 </ul>
-<h4 id="一、内存映射"><a href="#一、内存映射" class="headerlink" title="一、内存映射"></a>一、内存映射</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux和Windows的内存映射方法是不同的，在linux中，虚拟空间地址有4G，0~3G为用户空间，3~4G为内核空间<br><img src="http://img.my.csdn.net/uploads/201412/10/1418199587_2134.jpg" alt="虚拟空间"></p>
-<p>其中内核空间都相同，准确的讲是每个进程共享同一个内核空间<br><img src="http://img.my.csdn.net/uploads/201412/10/1418199588_1395.jpg" alt="虚拟内存"></p>
+<h4 id="一、内存映射"><a href="#一、内存映射" class="headerlink" title="一、内存映射"></a>一、内存映射</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux和Windows的内存映射方法是不同的，在linux中，虚拟空间地址有4G，0~3G为用户空间，3~4G为内核空间<br><img src="/uploads/Meltdown_Spectre原理简要梳理/1.jpg" alt="虚拟空间"></p>
+<p>其中内核空间都相同，准确的讲是每个进程共享同一个内核空间<br><img src="/uploads/Meltdown_Spectre原理简要梳理/2.jpg" alt="虚拟内存"></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linux在启动时会初始化一个进程，然后通过fork()生成子进程，Linux的fork机制会把父进程的页表和堆栈等一模一样地复制一份，然后在运行时，子进程通过缺页异常等操作来改变用户空间，如果内核空间部分也改变了，则只修改初始化进程的内核空间，其它子进程访问该页时，再通过缺页中断将这部分内容从父进程更新过来。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一般来讲，当进程进行系统调用进入内核态的时候，它应该能够访问整个地址空间的，但是在这里只能访问自己的1G的地址空间，于是我们需要通过地址的映射，来使他可以访问整个空间，内核空间分为：ZONE_DMA（内存开始的16MB） 、ZONE_NORMAL（16MB~896MB）、ZONE_HIGHMEM（896MB ~ 结束）三个区域，其中0~896M是直接映射的，其余部分会进行非线性映射。</p>
-<p><img src="http://img.my.csdn.net/uploads/201412/10/1418199588_9675.jpg" alt="这里写图片描述"></p>
-<h4 id="二、Tomasulo算法"><a href="#二、Tomasulo算法" class="headerlink" title="二、Tomasulo算法"></a>二、Tomasulo算法</h4><p><img src="http://img.blog.csdn.net/20180218090637365?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="tomasylo"></p>
+<p><img src="/uploads/Meltdown_Spectre原理简要梳理/3.jpg" alt="这里写图片描述"></p>
+<h4 id="二、Tomasulo算法"><a href="#二、Tomasulo算法" class="headerlink" title="二、Tomasulo算法"></a>二、Tomasulo算法</h4><p><img src="/uploads/Meltdown_Spectre原理简要梳理/4.png" alt="tomasylo"></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;原始的Tomasulo算法是为了寄存器重命名以便消除指令的数据相关，数据一到就可以执行指令。</p>
 <ol>
 <li>指令首先存在于指令队列之中。</li>
@@ -903,17 +903,17 @@
 <li>CPU实现指令的多发射，以及并行执行，并为了优化实现指令的重排（动态调度）</li>
 </ol>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程序的乱序执行并不意味着在所有步骤中，指令的顺序都是混乱的，事实上，指令在发射时和提交时依然是顺序的，只是在执行的过程中会打乱顺序。</p>
-<p>为了支持乱序执行<br><img src="http://img.blog.csdn.net/20180218094832431?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="带有ROB的Tomasulo算法"></p>
+<p>为了支持乱序执行<br><img src="/uploads/Meltdown_Spectre原理简要梳理/5.png" alt="带有ROB的Tomasulo算法"></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们在Tomasulo  算法中加入了ROB来使得提交结果的时候能够按照顺序提交，执行的结暂时存放于ROB而不直接写入寄存器堆，然后再按顺序提交数据。从而可以不出问题。</p>
 <p>本次的漏洞就是利用了这一特性来实现的</p>
 <h4 id="四、分支预测"><a href="#四、分支预测" class="headerlink" title="四、分支预测"></a>四、分支预测</h4><p>由于在指令中存在许多跳转和分支，为了提前访问分支中的代码以解决时间，我们加入了分支预测功能</p>
 <h6 id="静态分支"><a href="#静态分支" class="headerlink" title="静态分支"></a>静态分支</h6><p>对于所有的跳转指令，我们都预测执行跳转或者执行不跳转，则称其为静态跳转</p>
 <h6 id="动态分支"><a href="#动态分支" class="headerlink" title="动态分支"></a>动态分支</h6><p>动态分支将会通过历史跳转信息来预测下一次分支应该选择跳转还是选择不跳转。在intel设计中有一个称为BTB(Branch Target Buffer)的部件，当我们执行分支指令时，会将执行结果和分支指令地址记录在其中，当下次取址时，查询其中的记录，若存在，则根据历史执行记录进行预测是否跳转。</p>
 <p>若不存在此记录，我们将会使用静态分支预测器，我们一般将向上跳转的分支指令看作循环，对于循环我们倾向于接受跳转，而对于向下跳转，我们倾向于不跳转。</p>
-<h4 id="五、Meltdown攻击"><a href="#五、Meltdown攻击" class="headerlink" title="五、Meltdown攻击"></a>五、Meltdown攻击</h4><p><img src="http://img.blog.csdn.net/20180219090041489?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在第一行，我们引发了一个异常，若程序按照顺序执行，第三行的access将不会被执行，但是由于程序是乱序执行的，因此在异常引发之前，第三行的access将被执行，但是执行结果存在ROB中不会被提交，当异常触发以后，第三行的执行结果将被撤销掉，从计算机外部看来第三行的access就跟从未被执行过一样，但是事实上它只是在后期被撤销了，这会带来一个小问题，就是在执行过程中，刚才读取的数据已经被存储到高速缓存中。</p>
+<h4 id="五、Meltdown攻击"><a href="#五、Meltdown攻击" class="headerlink" title="五、Meltdown攻击"></a>五、Meltdown攻击</h4><p><img src="/uploads/Meltdown_Spectre原理简要梳理/6.png" alt="这里写图片描述"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在第一行，我们引发了一个异常，若程序按照顺序执行，第三行的access将不会被执行，但是由于程序是乱序执行的，因此在异常引发之前，第三行的access将被执行，但是执行结果存在ROB中不会被提交，当异常触发以后，第三行的执行结果将被撤销掉，从计算机外部看来第三行的access就跟从未被执行过一样，但是事实上它只是在后期被撤销了，这会带来一个小问题，就是在执行过程中，刚才读取的数据已经被存储到高速缓存中。</p>
 <p>我们可以通过侧信道攻击来确认刚才访问的数据是什么。</p>
-<p><img src="http://img.blog.csdn.net/20180219141345764?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>这段代码揭示了攻击的关键部分<br>首先我们将访问内核地址并取内容到寄存器内，<br>若这一举动可以触发异常，则对应的寄存器清零，若异常未处理，则应用程序将会被终止，并且取出的值将会存入应用程序核心转储的寄存器中。我们要做的就是通过第5行将相应的寄存器清零，从而可以判断这是一个错误的值。然后再次重试，直到遇到一个不为0的值，然后将秘密的值作为地址，去做读取操作，以便cache记录到这个地址，实现侧信道攻击。</p>
-<h4 id="六、Spectre"><a href="#六、Spectre" class="headerlink" title="六、Spectre"></a>六、Spectre</h4><p><img src="http://img.blog.csdn.net/20180221225303439?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spectre主要利用了分支预测和乱序执行的漏洞实现的，如图所示的代码，看起来十分地正常，若x小于array1的长度的时候，循环顺利执行。但是我们假设这里有一个存储密码的变量地址为secret，并且令a=secret-array1，于是我们可以使用array1[a]来表示secret的值。当多次执行循环的时候，我们的x满足循环条件，则我们的分支预测模块会认为下一个循环也满足循环条件而去预执行这个循环，若此时我们将a的值赋值给x，则分支预测模块预测本次循环为执行（其实并不会执行），CPU会预执行这个循环体，然后将我们存储密码的secret值取出来，并将其作为地址去访问array2，但是最终发现循环不应该被执行，于是刚才取出来的值将会被作废。但是我们的这个secret值的地址已经被存入到缓存中去。我们最终可以将array2读取一遍，若读取某个地址的时候，访问的时间特别短，则说明这个地址就是那个被存入缓存的地址（即我们的密码值）。</p>
+<p><img src="/uploads/Meltdown_Spectre原理简要梳理/7.png" alt="这里写图片描述"><br>这段代码揭示了攻击的关键部分<br>首先我们将访问内核地址并取内容到寄存器内，<br>若这一举动可以触发异常，则对应的寄存器清零，若异常未处理，则应用程序将会被终止，并且取出的值将会存入应用程序核心转储的寄存器中。我们要做的就是通过第5行将相应的寄存器清零，从而可以判断这是一个错误的值。然后再次重试，直到遇到一个不为0的值，然后将秘密的值作为地址，去做读取操作，以便cache记录到这个地址，实现侧信道攻击。</p>
+<h4 id="六、Spectre"><a href="#六、Spectre" class="headerlink" title="六、Spectre"></a>六、Spectre</h4><p><img src="/uploads/Meltdown_Spectre原理简要梳理/8.png" alt="这里写图片描述"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Spectre主要利用了分支预测和乱序执行的漏洞实现的，如图所示的代码，看起来十分地正常，若x小于array1的长度的时候，循环顺利执行。但是我们假设这里有一个存储密码的变量地址为secret，并且令a=secret-array1，于是我们可以使用array1[a]来表示secret的值。当多次执行循环的时候，我们的x满足循环条件，则我们的分支预测模块会认为下一个循环也满足循环条件而去预执行这个循环，若此时我们将a的值赋值给x，则分支预测模块预测本次循环为执行（其实并不会执行），CPU会预执行这个循环体，然后将我们存储密码的secret值取出来，并将其作为地址去访问array2，但是最终发现循环不应该被执行，于是刚才取出来的值将会被作废。但是我们的这个secret值的地址已经被存入到缓存中去。我们最终可以将array2读取一遍，若读取某个地址的时候，访问的时间特别短，则说明这个地址就是那个被存入缓存的地址（即我们的密码值）。</p>
 <h4 id="七、参考"><a href="#七、参考" class="headerlink" title="七、参考"></a>七、参考</h4><p><a href="https://googleprojectzero.blogspot.co.at/2018/01/reading-privileged-memory-with-side.html" target="_blank" rel="noopener">https://googleprojectzero.blogspot.co.at/2018/01/reading-privileged-memory-with-side.html</a></p>
 <p><a href="https://lwn.net/Articles/738975/" target="_blank" rel="noopener">https://lwn.net/Articles/738975/</a></p>
 <p><a href="http://lib.csdn.net/article/linux/29085" target="_blank" rel="noopener">http://lib.csdn.net/article/linux/29085</a></p>
@@ -921,7 +921,6 @@
 <p><a href="http://blog.csdn.net/yiyeguzhou100/article/details/72875122" target="_blank" rel="noopener">http://blog.csdn.net/yiyeguzhou100/article/details/72875122</a></p>
 <p><a href="https://bbs.pediy.com/thread-61327.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-61327.htm</a></p>
 <p><a href="http://blog.csdn.net/muxiqingyang/article/details/6686738" target="_blank" rel="noopener">http://blog.csdn.net/muxiqingyang/article/details/6686738</a></p>
-<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
           
         
@@ -1071,7 +1070,7 @@
 <ol>
 <li>基地址和边界统一存放于一个PLM（Pointer Limits Memory），而PLM的地址存于PLBR寄存器</li>
 <li>每一个指针对应一个ptr_id</li>
-<li>每次调用指针时使用ptr_id调取对应的基地址和边界，<br><img src="http://img.blog.csdn.net/20171020205034999?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="表格"></li>
+<li>每次调用指针时使用ptr_id调取对应的基地址和边界，<br><img src="/uploads/A_RISC-V_Processor_with_Light_Weight_Security_Extensions/1.png" alt="表格"></li>
 </ol>
 <p>我们使用如图表格来作为缓存，</p>
 <ol>
@@ -1246,10 +1245,10 @@
 </li>
 <li><p>命令行输入<code>sudo ccsm</code>进入显示界面，这里和后面的打开compiz建议用管理员权限，理论上不加管理员也可以，但是本人在使用过程中出了不少奇怪的问题。</p>
 </li>
-<li><p>如图所示勾选上需要安装的插件<br><img src="http://img.blog.csdn.net/20170807074020805?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<li><p>如图所示勾选上需要安装的插件<br><img src="/uploads/Windows-linux子系统入门到GUI/1.png" alt="这里写图片描述"></p>
 </li>
 </ol>
-<p><img src="http://img.blog.csdn.net/20170807074221090?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20170807074239398?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p><img src="/uploads/Windows-linux子系统入门到GUI/2.png" alt="这里写图片描述"><br><img src="/uploads/Windows-linux子系统入门到GUI/3.png" alt="这里写图片描述"></p>
 <p>   点击close关闭即可。</p>
 <h5 id="PS：如果遇到配置选项无法保存的情况，可尝试以下方法"><a href="#PS：如果遇到配置选项无法保存的情况，可尝试以下方法" class="headerlink" title="PS：如果遇到配置选项无法保存的情况，可尝试以下方法"></a>PS：如果遇到配置选项无法保存的情况，可尝试以下方法</h5><ol>
 <li><p>安装compizconfig-backend-gconf</p>
@@ -1260,9 +1259,8 @@
 <li><p>勾选插件，如果遇到冲突，则把冲突的插件关闭即可（确保上图的几个插件勾选，别的可以关闭，即可）</p>
 </li>
 </ol>
-<h4 id="3-4、开启桌面"><a href="#3-4、开启桌面" class="headerlink" title="3.4、开启桌面"></a>3.4、开启桌面</h4><p>输入<code>sudo compiz</code> 不出意外的话即可在XLaunch上看到桌面的真正面目了。<br><img src="http://img.blog.csdn.net/20170807075233673?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h4 id="3-4、开启桌面"><a href="#3-4、开启桌面" class="headerlink" title="3.4、开启桌面"></a>3.4、开启桌面</h4><p>输入<code>sudo compiz</code> 不出意外的话即可在XLaunch上看到桌面的真正面目了。<br><img src="/uploads/Windows-linux子系统入门到GUI/4.png" alt="这里写图片描述"></p>
 <p>这里如果不用sudo,在我这里就是不加载插件，也没有任何报错提示，就是这么吓人。</p>
-<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
           
         
@@ -1401,7 +1399,7 @@
 </blockquote>
 <h3 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;之前那一文中提到了一般的梯度上升的公式推导，但是在《机器学习实战》一书中，实现的是分类方法，因此，虽然最终的结果相似，但是其实本质有很大的不同。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;一般来讲我们把实物分成两类，因此我们需要将结果映射到两个结果(是或非)，因为一般的阶跃函数在求导之类的问题上会变得相当复杂，因此我们用一个更加圆滑的sigmoid函数来映射，所有输入到这个函数的实数都会被转化到0-1之间，它的公式为 $ g(z)=\frac{1}{1+e^{-z}} $ </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;同时它对应的图像如图所示:<br><img src="http://img.blog.csdn.net/20170702143445883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="sigmoid"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;同时它对应的图像如图所示:<br><img src="/uploads/机器学习之梯度下降法数学推导--分类/1.png" alt="sigmoid"></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;于是我们可以将得到的结果进行四舍五入，分类成0或1</p>
 <h3 id="Logistic-回归"><a href="#Logistic-回归" class="headerlink" title="Logistic 回归"></a>Logistic 回归</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;这里的意思是，将我们的分类边界线作模型，进行拟合，并以此来分类。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp; 我们假设经过sigmoid函数处理过的结果为 $h_{\Theta}(x)$ ,因为是在0-1之间，因此可以看做是概率，另外，我们可以假设，分类到0或者1的概率。</p>
@@ -1553,10 +1551,10 @@
           
             <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。</p>
 <h4 id="有监督回归算法"><a href="#有监督回归算法" class="headerlink" title="有监督回归算法"></a>有监督回归算法</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴恩达《斯坦福机器学习》中的例子，我们需要根据已有的房价信息预测当前房子的房价，于是我们收集到一些房价数据。</p>
-<p><img src="http://img.blog.csdn.net/20170701112345372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="房价信息"></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;再将它们画在二维坐标上，它们就以离散的点分布在平面上，如下所示<br><img src="http://img.blog.csdn.net/20170701112520064?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="房价分布情况"></p>
+<p><img src="/uploads/机器学习之梯度下降法数学推导--回归/1.png" alt="房价信息"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;再将它们画在二维坐标上，它们就以离散的点分布在平面上，如下所示<br><img src="/uploads/机器学习之梯度下降法数学推导--回归/2.png" alt="房价分布情况"></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;我们希望能根据这些已知的点来预测我们想知道的房子的房价，因此我们需要找到一条规律，也就是一条大致经过这些点的线性模型，在数学上我们通常称之为拟合，而这个拟合的过程，我们称之为回归。</p>
-<p><img src="http://img.blog.csdn.net/20170701112938886?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="拟合结果"></p>
+<p><img src="/uploads/机器学习之梯度下降法数学推导--回归/3.png" alt="拟合结果"></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;假设我们建立的模型是一元一次的，将得到这样的拟合结果，于是我们可以x轴上的房屋面积，找到对应的房屋价格。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;有监督的学习算法，可以理解成我们训练模型的时候每一个输入都是有标准答案的，我们通过预测值跟标准答案的比对，不断修改模型的参数才能最终实现较好地的拟合结果。</p>
 <h4 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;最小二乘法是我们经常使用的拟合算法，它通过最小化误差的平方和寻找数据的最佳函数匹配。</p>
@@ -1589,7 +1587,6 @@
 <h5 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h5><blockquote>
 <p><a href="http://csuncle.com/2017/06/13/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E3%80%8B-chapter5%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/">http://csuncle.com/2017/06/13/《机器学习实战》-chapter5梯度上升算法-数学推导/</a></p>
 </blockquote>
-<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
           
         
@@ -1818,17 +1815,17 @@
 <h3 id="RELU激活函数"><a href="#RELU激活函数" class="headerlink" title="RELU激活函数"></a>RELU激活函数</h3><p>激活函数有很多种，最常用的是以下三种</p>
 <h5 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h5><blockquote>
 <p>将数据映射到0-1范围内</p>
-<h4 id="公式如下"><a href="#公式如下" class="headerlink" title="公式如下"></a>公式如下</h4><p> <img src="http://img.blog.csdn.net/20160616235620006" alt="这里写图片描述"></p>
-<p> ####函数图像如下<br><img src="http://img.blog.csdn.net/20160616235541818" alt="函数图像"></p>
+<h4 id="公式如下"><a href="#公式如下" class="headerlink" title="公式如下"></a>公式如下</h4><p> <img src="/uploads/基于tensorflow的MNIST手写数字识别三/1.png" alt="这里写图片描述"></p>
+<p> ####函数图像如下<br><img src="/uploads/基于tensorflow的MNIST手写数字识别三/2.png" alt="函数图像"></p>
 </blockquote>
 <h4 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h4><blockquote>
 <p>将数据映射到-1-1的范围内</p>
-<h4 id="公式如下-1"><a href="#公式如下-1" class="headerlink" title="公式如下"></a>公式如下</h4><p><img src="http://img.blog.csdn.net/20160617000717124" alt="这里写图片描述"></p>
-<p>函数图像如下<br><img src="http://img.blog.csdn.net/20160617001125214" alt="这里写图片描述"></p>
+<h4 id="公式如下-1"><a href="#公式如下-1" class="headerlink" title="公式如下"></a>公式如下</h4><p><img src="/uploads/基于tensorflow的MNIST手写数字识别三/3.png" alt="这里写图片描述"></p>
+<p>函数图像如下<br><img src="/uploads/基于tensorflow的MNIST手写数字识别三/4.png" alt="这里写图片描述"></p>
 </blockquote>
 <h4 id="RELU"><a href="#RELU" class="headerlink" title="RELU"></a>RELU</h4><blockquote>
 <p>小于0的值就变成0，大于0的等于它本身</p>
-<h4 id="函数图像"><a href="#函数图像" class="headerlink" title="函数图像"></a>函数图像</h4><p><img src="http://img.blog.csdn.net/20160617001502250" alt="这里写图片描述"></p>
+<h4 id="函数图像"><a href="#函数图像" class="headerlink" title="函数图像"></a>函数图像</h4><p><img src="/uploads/基于tensorflow的MNIST手写数字识别三/5.png" alt="这里写图片描述"></p>
 </blockquote>
 <p>具体的参考这个<a href="http://blog.csdn.net/u012526120/article/details/49149317" target="_blank" rel="noopener">http://blog.csdn.net/u012526120/article/details/49149317</a></p>
 <p>###dropout的作用</p>
@@ -1851,7 +1848,6 @@
 <li><a href="https://github.com/wlmnzf/tensorflow-train/blob/master/mnist/cnn_mnist.py" target="_blank" rel="noopener">https://github.com/wlmnzf/tensorflow-train/blob/master/mnist/cnn_mnist.py</a></li>
 </ul>
 </blockquote>
-<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
           
         
@@ -1992,9 +1988,9 @@
 </blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;需要识别的图片放到test_num里，然后运行mnist_softmax.py就好了</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;demo截图如下，会将放进去的图片预测，然后输出结果，代码说明请看github的readme（最底下）</p>
-<p><img src="http://img.blog.csdn.net/20160407153351143?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="这里写图片描述"></p>
+<p><img src="/uploads/基于tensorflow的MNIST手写字识别二/1.png" alt="这里写图片描述"></p>
 <h4 id="二、MNIST简介"><a href="#二、MNIST简介" class="headerlink" title="二、MNIST简介"></a>二、MNIST简介</h4><blockquote>
-<p><span style="font-family:Microsoft YaHei;">官网：<a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener">http://yann.lecun.com/exdb/mnist/</a></span></p>
+<p>官网：<a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener">http://yann.lecun.com/exdb/mnist/</a></p>
 </blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;这个MNIST数据库是一个手写数字的数据库，它提供了六万的训练集和一万的测试集。<br>它的图片是被规范处理过的，是一张被放在中间部位的28px*28px的灰度图</p>
 <blockquote>
@@ -2035,7 +2031,7 @@
 </code></pre></li>
 </ol>
 <h5 id="4-2-将待测图片转换为矩阵"><a href="#4-2-将待测图片转换为矩阵" class="headerlink" title="4.2 将待测图片转换为矩阵"></a>4.2 将待测图片转换为矩阵</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;如图所示，根据黑色部分的浓淡将其转化成微一个浮点数的数组，（白色0,黑色1）</p>
-<p><img src="http://img.blog.csdn.net/20160403174832218?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="/uploads/基于tensorflow的MNIST手写字识别二/2.png" alt=""></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;看到这里，如果你跟我一样不熟悉python，是不是开始方了，没事，其实python很厉害，自带的PIL图片库一句话就可以搞定</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img=array(Image.open(filename))         //打开然后就被numpy转化了</span><br></pre></td></tr></table></figure>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;如果是彩色的图片，则需要先将它这样子转换一下（我当初并不知道可以转化，傻不垃圾地自己写了一个转化，所以python还是好好学习啊）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lim  = img=array(im.convert(&quot;L&quot;))</span><br></pre></td></tr></table></figure></p>
@@ -2053,18 +2049,13 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;P(y=0)=p0,P(y=1)=p1,p(y=2)=p2……P(y=9)=p9.这些表示预测为数字i的概率，（跟上面标签的格式正好对应起来了）,它们的和为1，即 ∑(pi)=1。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp; tensorflow实现了这个函数，我们直接调用这个softmax函数即可，对于原理，可以参考下面的引文，这里只说一下我们这个MNIST demo要用softmax做什么。</p>
 <p>  （注：每一个神经元都可以接收来自网络中其他神经元的一个或多个输入信号，神经元与神经元之间都对应着连接权值，所有的输入加权和决定该神经元是处于激活还是抑制状态。感知器网络的输出只能取值0或1，不具备可导性。而基于敏感度的训练算法要求其输出函数必须处处可导，于是引入了常见的S型可导函数，即在每个神经元的输出之前先经过S型激活函数的处理。）</p>
-<h4 id="4-5-交叉熵"><a href="#4-5-交叉熵" class="headerlink" title="4.5 交叉熵"></a>4.5 交叉熵</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;通俗一点就是，方差大家都知道吧，用它可以衡量预测值和实际值的相差程度，交叉熵其实也是一样的作用，那为什么不用方差呢，因为看sigmoid函数的图像就会发现，它的两侧几乎就是平的，导致它的方差在大部分情况下很小，这样在训练参数的时候收敛地就会很慢，交叉熵就是用来解决这个问题的，它的公式是 <img src="http://img.blog.csdn.net/20160407113018732?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">,其中，y 是我们预测的概率分布, y’ 是实际的分布。</p>
+<h4 id="4-5-交叉熵"><a href="#4-5-交叉熵" class="headerlink" title="4.5 交叉熵"></a>4.5 交叉熵</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;通俗一点就是，方差大家都知道吧，用它可以衡量预测值和实际值的相差程度，交叉熵其实也是一样的作用，那为什么不用方差呢，因为看sigmoid函数的图像就会发现，它的两侧几乎就是平的，导致它的方差在大部分情况下很小，这样在训练参数的时候收敛地就会很慢，交叉熵就是用来解决这个问题的，它的公式是 <img src="/uploads/基于tensorflow的MNIST手写字识别二/3.png" alt="">,其中，y 是我们预测的概率分布, y’ 是实际的分布。</p>
 <h4 id="4-6-梯度下降"><a href="#4-6-梯度下降" class="headerlink" title="4.6 梯度下降"></a>4.6 梯度下降</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;上面那步也说了，有个交叉熵，根据大伙对方差的理解，值越小，自然就越好，因此我们也要训练使得交叉熵最小的参数，这里梯度下降法就派上用场了，这个解释见上一篇系列文章吧，什么叫训练参数呢，可以想象一下，我们先用实际的值在二位坐标上画一条线，然后我们希望我们预测出来的那些值要尽可能地贴近这条线，我们假设生成我们这条线的公式ax+ax^2+bx^3+…..，我们需要生成这些系数，要求得这些系数，我们就需要各种点代入，然后才能求出，所以其实训练参数跟求参数是个类似的过程。</p>
 <h4 id="4-7-预测"><a href="#4-7-预测" class="headerlink" title="4.7 预测"></a>4.7 预测</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;训练结束以后我们就可以用这个模型去预测新的图片了，就像我们已经求出来了方程，以后只要随意输入一个x，就能求出对应的y。</p>
 <h4 id="5-代码"><a href="#5-代码" class="headerlink" title="5 代码"></a>5 代码</h4><p><a href="https://github.com/wlmnzf/tensorflow-train/tree/master/mnist" target="_blank" rel="noopener">https://github.com/wlmnzf/tensorflow-train/tree/master/mnist</a></p>
 <h3 id="6-参考文章"><a href="#6-参考文章" class="headerlink" title="6 参考文章"></a>6 参考文章</h3><p><span style="font-family:Microsoft YaHei;font-size:18px;"><a href="http://blog.csdn.net/acdreamers/article/details/44663305" target="_blank" rel="noopener">http://blog.csdn.net/acdreamers/article/details/44663305</a>   softmax回归</span></p>
 <p><span style="font-family:Microsoft YaHei;font-size:18px;"><a href="http://wiki.jikexueyuan.com/project/tensorflow-zh/tutorials/mnist_beginners.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/tensorflow-zh/tutorials/mnist_beginners.html</a>    MNIST学习入门<br></span></p>
 <p><span style="font-family:Microsoft YaHei;font-size:18px;"><a href="http://blog.csdn.net/u012162613/article/details/44239919" target="_blank" rel="noopener">http://blog.csdn.net/u012162613/article/details/44239919</a>   交叉熵代价函数</span></p>
-<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
-
-
-
-
 
           
         
@@ -2208,10 +2199,10 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。</p>
 <h4 id="二、卷积神经网络讲解"><a href="#二、卷积神经网络讲解" class="headerlink" title="二、卷积神经网络讲解"></a>二、卷积神经网络讲解</h4><pre><code>##### 2.1卷积神经网络作用
 </code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp; 大家应该知道大名鼎鼎的傅里叶变换，即一个波形，可以有不同的正弦函数和余弦函数进行叠加完成，卷积神经网络也是一样，可以认为一张图片是由各种不同特征的图片叠加而成的，所以它的作用是用来提取特定的特征，举个例子，比如给定一张图片，然后我只想提取它的轮廓，于是就需要卷积神经网络。</p>
-<p><img src="http://img.blog.csdn.net/20160327230829224" alt=""></p>
-<h5 id="2-2卷积神经网络模型"><a href="#2-2卷积神经网络模型" class="headerlink" title="2.2卷积神经网络模型"></a>2.2卷积神经网络模型</h5><p><img src="http://img.blog.csdn.net/20160327231042772?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">          </p>
+<p><img src="/uploads/基于tensorflow的MNIST手写字识别一/1.png" alt=""></p>
+<h5 id="2-2卷积神经网络模型"><a href="#2-2卷积神经网络模型" class="headerlink" title="2.2卷积神经网络模型"></a>2.2卷积神经网络模型</h5><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/2.jpg" alt="">          </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;如图是大名鼎鼎的LeNet-5（识别数字的卷积网络），效果和论文在此，这里拿出来只是为了说明一下卷积神经网络的模型，就像图中那样，经过多次，卷积，池化（又叫子采样），然后全连接，就完工了。</p>
-<h4 id="2-3-卷积"><a href="#2-3-卷积" class="headerlink" title="2.3 卷积"></a>2.3 卷积</h4><p><img src="http://img.blog.csdn.net/20160327231646746?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h4 id="2-3-卷积"><a href="#2-3-卷积" class="headerlink" title="2.3 卷积"></a>2.3 卷积</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/3.gif" alt=""></p>
 <h5 id="2-3-1-卷积的原理"><a href="#2-3-1-卷积的原理" class="headerlink" title="2.3.1 卷积的原理"></a>2.3.1 卷积的原理</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;其实卷积很好理解，左侧绿色的部分的5<em>5矩阵其实一般就是我们输入的图片的灰度值（可以想象成一张5px</em>5px的黑白照片，然后把黑白照片上的每一个点转化成矩阵上的每一个元素），然后上面的黄色部分矩阵就是我们的过滤器，用来提取特征，（其实应该叫滤波器或者卷积核），让卷积核在输入矩阵上进行从左到右，从上到下滑动，然后每一次滑动，两个矩阵对应位置的元素相乘然后求和，就是右边那个矩阵的一个元素。</p>
 <h5 id="2-3-2-滑动的步长-stride"><a href="#2-3-2-滑动的步长-stride" class="headerlink" title="2.3.2 滑动的步长-stride"></a>2.3.2 滑动的步长-stride</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;上面那张图片从左到右，每次滑动的时候只移动一格，但是其实它一次滑动多格，这就是步长</p>
 <h5 id="2-3-3-卷积的边界处理-padding"><a href="#2-3-3-卷积的边界处理-padding" class="headerlink" title="2.3.3 卷积的边界处理-padding"></a>2.3.3 卷积的边界处理-padding</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;如上图所示，卷积后的矩阵只有3*3，比原来的图片要小了，因为边界没有了，所以要考虑这个边界的问题，网上说卷积的边界处理有两种方式：</p>
@@ -2233,13 +2224,13 @@
 <p>VALID:edge_row = edge_cols = 0;  </p>
 </blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;edge_row就是边的行数，kernel_row就是卷积核的行数，所以上面讲的其实就是VALID模式</p>
-<h5 id="2-3-4-卷积与神经网络"><a href="#2-3-4-卷积与神经网络" class="headerlink" title="2.3.4 卷积与神经网络"></a>2.3.4 卷积与神经网络</h5><p><img src="http://img.blog.csdn.net/20160327234801833?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h5 id="2-3-4-卷积与神经网络"><a href="#2-3-4-卷积与神经网络" class="headerlink" title="2.3.4 卷积与神经网络"></a>2.3.4 卷积与神经网络</h5><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/4.png" alt=""></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;右下角就是卷积的数学公式，矩阵的对应元素相乘求和，然后加上一个偏置值</p>
-<h4 id="2-4-池化"><a href="#2-4-池化" class="headerlink" title="2.4 池化"></a>2.4 池化</h4><p><img src="http://img.blog.csdn.net/20160327235051553?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h4 id="2-4-池化"><a href="#2-4-池化" class="headerlink" title="2.4 池化"></a>2.4 池化</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/5.gif" alt=""></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;池化分为两种，一种是最大池化，在选中区域中找最大的值作为抽样后的值，另一种是平均值池化，把选中的区域中的平均值作为抽样后的值，这样做的，原因是为了后面全连接的时候减少连接数</p>
-<h4 id="2-5-全连接"><a href="#2-5-全连接" class="headerlink" title="2.5 全连接"></a>2.5 全连接</h4><p><img src="http://img.blog.csdn.net/20160327235634759?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h4 id="2-5-全连接"><a href="#2-5-全连接" class="headerlink" title="2.5 全连接"></a>2.5 全连接</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/6.png" alt=""></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;左边的是没有没有进行卷积的全连接，假设图片是1000<em>1000的，然后用1M的神经元去感知，最后需要10^12个权值作为参数，右边是经过卷积过的，每个圆点是一个神经元，因此只是用一个卷积核的话，其实只要100</em>10^6，数量级就大大减少，而且因为提取的就是所需的特征，所以在加快训练速度的时候对结果并不会产生过大的影响，甚至更为精确。</p>
-<h4 id="2-6-梯度下降法"><a href="#2-6-梯度下降法" class="headerlink" title="2.6 梯度下降法"></a>2.6 梯度下降法</h4><p><img src="http://img.blog.csdn.net/20160328001221208?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>&nbsp;&nbsp;&nbsp;&nbsp;可能很多人会问，那个卷积核是怎么得出来的呢，其实它是被各种训练集训练出来的，利用梯度下降法使得我们的参数到达最优解。</p>
+<h4 id="2-6-梯度下降法"><a href="#2-6-梯度下降法" class="headerlink" title="2.6 梯度下降法"></a>2.6 梯度下降法</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/7.png" alt=""><br>&nbsp;&nbsp;&nbsp;&nbsp;可能很多人会问，那个卷积核是怎么得出来的呢，其实它是被各种训练集训练出来的，利用梯度下降法使得我们的参数到达最优解。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;梯度下降法可以这样子理解，假设我们正在下山，要使得下山的路径达到最短，于是我们每走一步之前就判断一下四面八方从哪个方向跨出这一步会最短，不过学过算法的人应该都知道，有个问题就是，我们当前走的这一步是当前位置最短的，但是真正从山上到山下最短路径可能并不路过这一步。也就是说这是个局部最优解，而不是全局最优解，我们得到的路径并不一定是最短的，但是也足够优秀，原因就是，得到最优解费时费力，性价比并不高。这一个知识点还是建议大家伙去看一下斯坦福Andrew Ng的《机器学习》，然后就能理解上面所说的权值参数要少的意义了。</p>
 <h4 id="2-7最后-softmax"><a href="#2-7最后-softmax" class="headerlink" title="2.7最后 softmax"></a>2.7最后 softmax</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;softmax是分类用的，说直白一点就是归一化，因为这个店最好跟例子结合起来，所以暂时不多说，感兴趣的可以去网上找，也可以关注后面的系列文章。</p>
 <h4 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;其实感觉讲的并不深入，因此还是希望各位能自己去仔细钻研一下，这里给各位一些基础吧，读起论文和数学公式来会更轻松一些。</p>

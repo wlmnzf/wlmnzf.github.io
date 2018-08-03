@@ -101,12 +101,12 @@
 <meta property="og:site_name" content="会打代码的扫地王大爷">
 <meta property="og:description" content="一、实现的功能   1、拖拽插入表单元素，从右边拖拽如左边的表单区   2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除   3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置 二、关键部分实现思路 2.1拖拽插入 1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/685455-4e08de27926deac9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-02-25T02:55:42.000Z">
+<meta property="og:image" content="http://csuncle.com/uploads/自定义表单完/2.png">
+<meta property="og:updated_time" content="2018-08-03T09:35:31.115Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义表单（完）">
 <meta name="twitter:description" content="一、实现的功能   1、拖拽插入表单元素，从右边拖拽如左边的表单区   2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除   3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置 二、关键部分实现思路 2.1拖拽插入 1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/685455-4e08de27926deac9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://csuncle.com/uploads/自定义表单完/2.png">
 
 
 
@@ -381,7 +381,7 @@
 <p>  2、拖拽删除表单元素，从左边的表单区拖到右边的区域就会删除</p>
 <p>  3、拖拽交换位置，左边的表单元素上下拖拽可以交换位置</p>
 <p>二、关键部分实现思路</p>
-<p>2.1拖拽插入<br><img src="http://upload-images.jianshu.io/upload_images/685455-4e08de27926deac9?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="请输入图片描述"></p>
+<p>2.1拖拽插入<br><img src="/uploads/自定义表单完/2.png" alt="请输入图片描述"></p>
 <p>1、在ondragstart的时候先区分是要拖拽请插入还是拖拽改变顺序（因为绑定的是同一个函数），插入记flag为1，改变顺序记flag为2，然后把正在拖拽的元素记录下来就算完成准备工作了</p>
 <p>2、在ondragover中，因为要显示一根线来提示用户这个正在拖拽的表单元素会被放在哪里，因此就需要计算</p>
 <p>   这个黑色的就是浏览器页面，白色的是表单元素调用getBoundingClientRect()获取的最小覆盖矩形区，他会返回一个对象，其中top表示白色部分的距离（上边界到浏览器顶部的距离），bottom表示黄色线 距离。我们可以获取鼠标在浏览器页面上的坐标，然后判断鼠标正在哪个表单元素里。然后再对这个元素对半分，在粉色上面部分，则对其上边界标记为蓝色，否则就是下部分标记为蓝色。</p>
@@ -392,7 +392,6 @@
 <blockquote>
 <p><a href="https://github.com/wlmnzf/javascript-train/tree/master/customForm" target="_blank" rel="noopener">https://github.com/wlmnzf/javascript-train/tree/master/customForm</a></p>
 </blockquote>
-  <div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
       
     </div>

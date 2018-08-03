@@ -101,18 +101,18 @@
 <meta property="og:site_name" content="会打代码的扫地王大爷">
 <meta property="og:description" content="一、卷积神经网络模型知识要点卷积卷积 卷积 池化 全连接 梯度下降法 softmax  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。 二、卷积神经网络讲解##### 2.1卷积神经网络作用 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大家应该">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://img.blog.csdn.net/20160327230829224">
-<meta property="og:image" content="http://img.blog.csdn.net/20160327231042772?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20160327231646746?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20160327234801833?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20160327235051553?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20160327235634759?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:image" content="http://img.blog.csdn.net/20160328001221208?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:updated_time" content="2018-02-25T02:54:25.044Z">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/1.png">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/2.jpg">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/3.gif">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/4.png">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/5.gif">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/6.png">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/7.png">
+<meta property="og:updated_time" content="2018-08-03T09:46:31.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于tensorflow的MNIST手写字识别（一）--白话卷积神经网络模型">
 <meta name="twitter:description" content="一、卷积神经网络模型知识要点卷积卷积 卷积 池化 全连接 梯度下降法 softmax  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。 二、卷积神经网络讲解##### 2.1卷积神经网络作用 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 大家应该">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160327230829224">
+<meta name="twitter:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写字识别一/1.png">
 
 
 
@@ -392,10 +392,10 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。</p>
 <h4 id="二、卷积神经网络讲解"><a href="#二、卷积神经网络讲解" class="headerlink" title="二、卷积神经网络讲解"></a>二、卷积神经网络讲解</h4><pre><code>##### 2.1卷积神经网络作用
 </code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp; 大家应该知道大名鼎鼎的傅里叶变换，即一个波形，可以有不同的正弦函数和余弦函数进行叠加完成，卷积神经网络也是一样，可以认为一张图片是由各种不同特征的图片叠加而成的，所以它的作用是用来提取特定的特征，举个例子，比如给定一张图片，然后我只想提取它的轮廓，于是就需要卷积神经网络。</p>
-<p><img src="http://img.blog.csdn.net/20160327230829224" alt=""></p>
-<h5 id="2-2卷积神经网络模型"><a href="#2-2卷积神经网络模型" class="headerlink" title="2.2卷积神经网络模型"></a>2.2卷积神经网络模型</h5><p><img src="http://img.blog.csdn.net/20160327231042772?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="">          </p>
+<p><img src="/uploads/基于tensorflow的MNIST手写字识别一/1.png" alt=""></p>
+<h5 id="2-2卷积神经网络模型"><a href="#2-2卷积神经网络模型" class="headerlink" title="2.2卷积神经网络模型"></a>2.2卷积神经网络模型</h5><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/2.jpg" alt="">          </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;如图是大名鼎鼎的LeNet-5（识别数字的卷积网络），效果和论文在此，这里拿出来只是为了说明一下卷积神经网络的模型，就像图中那样，经过多次，卷积，池化（又叫子采样），然后全连接，就完工了。</p>
-<h4 id="2-3-卷积"><a href="#2-3-卷积" class="headerlink" title="2.3 卷积"></a>2.3 卷积</h4><p><img src="http://img.blog.csdn.net/20160327231646746?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h4 id="2-3-卷积"><a href="#2-3-卷积" class="headerlink" title="2.3 卷积"></a>2.3 卷积</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/3.gif" alt=""></p>
 <h5 id="2-3-1-卷积的原理"><a href="#2-3-1-卷积的原理" class="headerlink" title="2.3.1 卷积的原理"></a>2.3.1 卷积的原理</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;其实卷积很好理解，左侧绿色的部分的5<em>5矩阵其实一般就是我们输入的图片的灰度值（可以想象成一张5px</em>5px的黑白照片，然后把黑白照片上的每一个点转化成矩阵上的每一个元素），然后上面的黄色部分矩阵就是我们的过滤器，用来提取特征，（其实应该叫滤波器或者卷积核），让卷积核在输入矩阵上进行从左到右，从上到下滑动，然后每一次滑动，两个矩阵对应位置的元素相乘然后求和，就是右边那个矩阵的一个元素。</p>
 <h5 id="2-3-2-滑动的步长-stride"><a href="#2-3-2-滑动的步长-stride" class="headerlink" title="2.3.2 滑动的步长-stride"></a>2.3.2 滑动的步长-stride</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;上面那张图片从左到右，每次滑动的时候只移动一格，但是其实它一次滑动多格，这就是步长</p>
 <h5 id="2-3-3-卷积的边界处理-padding"><a href="#2-3-3-卷积的边界处理-padding" class="headerlink" title="2.3.3 卷积的边界处理-padding"></a>2.3.3 卷积的边界处理-padding</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;如上图所示，卷积后的矩阵只有3*3，比原来的图片要小了，因为边界没有了，所以要考虑这个边界的问题，网上说卷积的边界处理有两种方式：</p>
@@ -417,13 +417,13 @@
 <p>VALID:edge_row = edge_cols = 0;  </p>
 </blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;edge_row就是边的行数，kernel_row就是卷积核的行数，所以上面讲的其实就是VALID模式</p>
-<h5 id="2-3-4-卷积与神经网络"><a href="#2-3-4-卷积与神经网络" class="headerlink" title="2.3.4 卷积与神经网络"></a>2.3.4 卷积与神经网络</h5><p><img src="http://img.blog.csdn.net/20160327234801833?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h5 id="2-3-4-卷积与神经网络"><a href="#2-3-4-卷积与神经网络" class="headerlink" title="2.3.4 卷积与神经网络"></a>2.3.4 卷积与神经网络</h5><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/4.png" alt=""></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;右下角就是卷积的数学公式，矩阵的对应元素相乘求和，然后加上一个偏置值</p>
-<h4 id="2-4-池化"><a href="#2-4-池化" class="headerlink" title="2.4 池化"></a>2.4 池化</h4><p><img src="http://img.blog.csdn.net/20160327235051553?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h4 id="2-4-池化"><a href="#2-4-池化" class="headerlink" title="2.4 池化"></a>2.4 池化</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/5.gif" alt=""></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;池化分为两种，一种是最大池化，在选中区域中找最大的值作为抽样后的值，另一种是平均值池化，把选中的区域中的平均值作为抽样后的值，这样做的，原因是为了后面全连接的时候减少连接数</p>
-<h4 id="2-5-全连接"><a href="#2-5-全连接" class="headerlink" title="2.5 全连接"></a>2.5 全连接</h4><p><img src="http://img.blog.csdn.net/20160327235634759?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h4 id="2-5-全连接"><a href="#2-5-全连接" class="headerlink" title="2.5 全连接"></a>2.5 全连接</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/6.png" alt=""></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;左边的是没有没有进行卷积的全连接，假设图片是1000<em>1000的，然后用1M的神经元去感知，最后需要10^12个权值作为参数，右边是经过卷积过的，每个圆点是一个神经元，因此只是用一个卷积核的话，其实只要100</em>10^6，数量级就大大减少，而且因为提取的就是所需的特征，所以在加快训练速度的时候对结果并不会产生过大的影响，甚至更为精确。</p>
-<h4 id="2-6-梯度下降法"><a href="#2-6-梯度下降法" class="headerlink" title="2.6 梯度下降法"></a>2.6 梯度下降法</h4><p><img src="http://img.blog.csdn.net/20160328001221208?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br>&nbsp;&nbsp;&nbsp;&nbsp;可能很多人会问，那个卷积核是怎么得出来的呢，其实它是被各种训练集训练出来的，利用梯度下降法使得我们的参数到达最优解。</p>
+<h4 id="2-6-梯度下降法"><a href="#2-6-梯度下降法" class="headerlink" title="2.6 梯度下降法"></a>2.6 梯度下降法</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/7.png" alt=""><br>&nbsp;&nbsp;&nbsp;&nbsp;可能很多人会问，那个卷积核是怎么得出来的呢，其实它是被各种训练集训练出来的，利用梯度下降法使得我们的参数到达最优解。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;梯度下降法可以这样子理解，假设我们正在下山，要使得下山的路径达到最短，于是我们每走一步之前就判断一下四面八方从哪个方向跨出这一步会最短，不过学过算法的人应该都知道，有个问题就是，我们当前走的这一步是当前位置最短的，但是真正从山上到山下最短路径可能并不路过这一步。也就是说这是个局部最优解，而不是全局最优解，我们得到的路径并不一定是最短的，但是也足够优秀，原因就是，得到最优解费时费力，性价比并不高。这一个知识点还是建议大家伙去看一下斯坦福Andrew Ng的《机器学习》，然后就能理解上面所说的权值参数要少的意义了。</p>
 <h4 id="2-7最后-softmax"><a href="#2-7最后-softmax" class="headerlink" title="2.7最后 softmax"></a>2.7最后 softmax</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;softmax是分类用的，说直白一点就是归一化，因为这个店最好跟例子结合起来，所以暂时不多说，感兴趣的可以去网上找，也可以关注后面的系列文章。</p>
 <h4 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;其实感觉讲的并不深入，因此还是希望各位能自己去仔细钻研一下，这里给各位一些基础吧，读起论文和数学公式来会更轻松一些。</p>

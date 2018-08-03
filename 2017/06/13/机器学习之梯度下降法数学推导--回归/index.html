@@ -101,14 +101,14 @@
 <meta property="og:site_name" content="会打代码的扫地王大爷">
 <meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。 有监督回归算法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://img.blog.csdn.net/20170701112345372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170701112520064?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:image" content="http://img.blog.csdn.net/20170701112938886?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-02-25T02:54:50.936Z">
+<meta property="og:image" content="http://csuncle.com/uploads/机器学习之梯度下降法数学推导--回归/1.png">
+<meta property="og:image" content="http://csuncle.com/uploads/机器学习之梯度下降法数学推导--回归/2.png">
+<meta property="og:image" content="http://csuncle.com/uploads/机器学习之梯度下降法数学推导--回归/3.png">
+<meta property="og:updated_time" content="2018-08-03T09:40:56.188Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之梯度下降法数学推导--回归">
 <meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。 有监督回归算法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20170701112345372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta name="twitter:image" content="http://csuncle.com/uploads/机器学习之梯度下降法数学推导--回归/1.png">
 
 
 
@@ -380,10 +380,10 @@
       
         <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。</p>
 <h4 id="有监督回归算法"><a href="#有监督回归算法" class="headerlink" title="有监督回归算法"></a>有监督回归算法</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴恩达《斯坦福机器学习》中的例子，我们需要根据已有的房价信息预测当前房子的房价，于是我们收集到一些房价数据。</p>
-<p><img src="http://img.blog.csdn.net/20170701112345372?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="房价信息"></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;再将它们画在二维坐标上，它们就以离散的点分布在平面上，如下所示<br><img src="http://img.blog.csdn.net/20170701112520064?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="房价分布情况"></p>
+<p><img src="/uploads/机器学习之梯度下降法数学推导--回归/1.png" alt="房价信息"></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;再将它们画在二维坐标上，它们就以离散的点分布在平面上，如下所示<br><img src="/uploads/机器学习之梯度下降法数学推导--回归/2.png" alt="房价分布情况"></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;我们希望能根据这些已知的点来预测我们想知道的房子的房价，因此我们需要找到一条规律，也就是一条大致经过这些点的线性模型，在数学上我们通常称之为拟合，而这个拟合的过程，我们称之为回归。</p>
-<p><img src="http://img.blog.csdn.net/20170701112938886?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2xtbnpm/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="拟合结果"></p>
+<p><img src="/uploads/机器学习之梯度下降法数学推导--回归/3.png" alt="拟合结果"></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;假设我们建立的模型是一元一次的，将得到这样的拟合结果，于是我们可以x轴上的房屋面积，找到对应的房屋价格。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;有监督的学习算法，可以理解成我们训练模型的时候每一个输入都是有标准答案的，我们通过预测值跟标准答案的比对，不断修改模型的参数才能最终实现较好地的拟合结果。</p>
 <h4 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;最小二乘法是我们经常使用的拟合算法，它通过最小化误差的平方和寻找数据的最佳函数匹配。</p>
@@ -416,7 +416,6 @@
 <h5 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h5><blockquote>
 <p><a href="http://csuncle.com/2017/06/13/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E3%80%8B-chapter5%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/">http://csuncle.com/2017/06/13/《机器学习实战》-chapter5梯度上升算法-数学推导/</a></p>
 </blockquote>
-<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
       
     </div>

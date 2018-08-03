@@ -101,16 +101,16 @@
 <meta property="og:site_name" content="会打代码的扫地王大爷">
 <meta property="og:description" content="想想还是要说点什么&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;抱歉啊，第三篇姗姗来迟，确实是因为我懒，而不是忙什么的，所以这次再加点料，以表示我的歉意。废话不多说，我就直接开始讲了。 加入神经网络的意义 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前面也讲到了，使用普通的训练方法，也可以进行识别，但是识别的精度不够高，因此我们需要对其进行提升，其实MNIST官方提供了很多的组合方法以及测试">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://img.blog.csdn.net/20160616235620006">
-<meta property="og:image" content="http://img.blog.csdn.net/20160616235541818">
-<meta property="og:image" content="http://img.blog.csdn.net/20160617000717124">
-<meta property="og:image" content="http://img.blog.csdn.net/20160617001125214">
-<meta property="og:image" content="http://img.blog.csdn.net/20160617001502250">
-<meta property="og:updated_time" content="2018-02-25T02:54:33.291Z">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写数字识别三/1.png">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写数字识别三/2.png">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写数字识别三/3.png">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写数字识别三/4.png">
+<meta property="og:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写数字识别三/5.png">
+<meta property="og:updated_time" content="2018-08-03T09:43:52.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于tensorflow的MNIST手写数字识别（三）--神经网络篇">
 <meta name="twitter:description" content="想想还是要说点什么&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;抱歉啊，第三篇姗姗来迟，确实是因为我懒，而不是忙什么的，所以这次再加点料，以表示我的歉意。废话不多说，我就直接开始讲了。 加入神经网络的意义 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前面也讲到了，使用普通的训练方法，也可以进行识别，但是识别的精度不够高，因此我们需要对其进行提升，其实MNIST官方提供了很多的组合方法以及测试">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160616235620006">
+<meta name="twitter:image" content="http://csuncle.com/uploads/基于tensorflow的MNIST手写数字识别三/1.png">
 
 
 
@@ -475,17 +475,17 @@
 <h3 id="RELU激活函数"><a href="#RELU激活函数" class="headerlink" title="RELU激活函数"></a>RELU激活函数</h3><p>激活函数有很多种，最常用的是以下三种</p>
 <h5 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h5><blockquote>
 <p>将数据映射到0-1范围内</p>
-<h4 id="公式如下"><a href="#公式如下" class="headerlink" title="公式如下"></a>公式如下</h4><p> <img src="http://img.blog.csdn.net/20160616235620006" alt="这里写图片描述"></p>
-<p> ####函数图像如下<br><img src="http://img.blog.csdn.net/20160616235541818" alt="函数图像"></p>
+<h4 id="公式如下"><a href="#公式如下" class="headerlink" title="公式如下"></a>公式如下</h4><p> <img src="/uploads/基于tensorflow的MNIST手写数字识别三/1.png" alt="这里写图片描述"></p>
+<p> ####函数图像如下<br><img src="/uploads/基于tensorflow的MNIST手写数字识别三/2.png" alt="函数图像"></p>
 </blockquote>
 <h4 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h4><blockquote>
 <p>将数据映射到-1-1的范围内</p>
-<h4 id="公式如下-1"><a href="#公式如下-1" class="headerlink" title="公式如下"></a>公式如下</h4><p><img src="http://img.blog.csdn.net/20160617000717124" alt="这里写图片描述"></p>
-<p>函数图像如下<br><img src="http://img.blog.csdn.net/20160617001125214" alt="这里写图片描述"></p>
+<h4 id="公式如下-1"><a href="#公式如下-1" class="headerlink" title="公式如下"></a>公式如下</h4><p><img src="/uploads/基于tensorflow的MNIST手写数字识别三/3.png" alt="这里写图片描述"></p>
+<p>函数图像如下<br><img src="/uploads/基于tensorflow的MNIST手写数字识别三/4.png" alt="这里写图片描述"></p>
 </blockquote>
 <h4 id="RELU"><a href="#RELU" class="headerlink" title="RELU"></a>RELU</h4><blockquote>
 <p>小于0的值就变成0，大于0的等于它本身</p>
-<h4 id="函数图像"><a href="#函数图像" class="headerlink" title="函数图像"></a>函数图像</h4><p><img src="http://img.blog.csdn.net/20160617001502250" alt="这里写图片描述"></p>
+<h4 id="函数图像"><a href="#函数图像" class="headerlink" title="函数图像"></a>函数图像</h4><p><img src="/uploads/基于tensorflow的MNIST手写数字识别三/5.png" alt="这里写图片描述"></p>
 </blockquote>
 <p>具体的参考这个<a href="http://blog.csdn.net/u012526120/article/details/49149317" target="_blank" rel="noopener">http://blog.csdn.net/u012526120/article/details/49149317</a></p>
 <p>###dropout的作用</p>
@@ -508,7 +508,6 @@
 <li><a href="https://github.com/wlmnzf/tensorflow-train/blob/master/mnist/cnn_mnist.py" target="_blank" rel="noopener">https://github.com/wlmnzf/tensorflow-train/blob/master/mnist/cnn_mnist.py</a></li>
 </ul>
 </blockquote>
-<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
 
       
     </div>
