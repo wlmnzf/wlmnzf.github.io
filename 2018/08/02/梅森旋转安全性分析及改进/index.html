@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="密码学,PRNG,伪随机数发生器,梅森旋转算法,MT19937," />
+  <meta name="keywords" content="PRNG,伪随机数发生器,梅森旋转算法,MT19937,密码学," />
 
 
 
@@ -94,7 +94,7 @@
 
 
 <meta name="description" content="梅森旋转算法安全性分析及改进======================  王立敏1,丁洁2   1中国科学院信息工程研究所 第五实验室 北京 中国100093  2中国科学院信息工程研究所 第五实验室 北京 中国100093  摘要梅森旋转算法是目前最流行的伪随机数发生器算法之一。梅森旋转算法存在许多缺点，例如当生成的伪随机数数量庞大时可预测以及无法通过部分统计测试。为了更好地深入了解和分析梅森">
-<meta name="keywords" content="密码学,PRNG,伪随机数发生器,梅森旋转算法,MT19937">
+<meta name="keywords" content="PRNG,伪随机数发生器,梅森旋转算法,MT19937,密码学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="梅森旋转算法安全性分析及改进">
 <meta property="og:url" content="http://csuncle.com/2018/08/02/梅森旋转安全性分析及改进/index.html">
@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://csuncle.com/uploads/梅森旋转安全性分析及改进/ca660b0cad783b2adf8904c1670f940d.png">
 <meta property="og:image" content="http://csuncle.com/uploads/梅森旋转安全性分析及改进/Hash.svg">
 <meta property="og:image" content="http://csuncle.com/uploads/梅森旋转安全性分析及改进/output.svg">
-<meta property="og:updated_time" content="2018-08-03T05:48:12.397Z">
+<meta property="og:updated_time" content="2018-08-03T06:12:19.966Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="梅森旋转算法安全性分析及改进">
 <meta name="twitter:description" content="梅森旋转算法安全性分析及改进======================  王立敏1,丁洁2   1中国科学院信息工程研究所 第五实验室 北京 中国100093  2中国科学院信息工程研究所 第五实验室 北京 中国100093  摘要梅森旋转算法是目前最流行的伪随机数发生器算法之一。梅森旋转算法存在许多缺点，例如当生成的伪随机数数量庞大时可预测以及无法通过部分统计测试。为了更好地深入了解和分析梅森">
@@ -483,10 +483,23 @@
 </thead>
 <tbody>
 <tr>
-<td>输出：梅森旋转的中间状态value 1.<em>value</em> = <em>y</em> 2.<em>value</em> = <em>value</em> XOR (<em>value</em>>>18); 3.<em>value = value</em> XOR (<em>value</em> \&lt;\&lt; 15) AND 0xefc60000 4.<em>value</em> = <em>value</em> 5. XOR ((<em>value</em> \&lt;\&lt; 7) &amp; 0x9d2c5680) 6. XOR ((<em>value</em> \&lt;\&lt; 14) &amp; 0x94284000) 7. XOR ((<em>value</em> \&lt;\&lt; 21) &amp; 0x14200000) 8. XOR ((<em>value</em> \&lt;\&lt; 28) &amp; 0x10000000) 9. <em>value</em> =<em>value</em> 10. XOR (<em>value</em> >> 11) 11. XOR (<em>value</em> >> 22);</td>
+<td>输出：梅森旋转的中间状态value </td>
 </tr>
 </tbody>
 </table>
+<ol>
+<li><em>value</em> = <em>y</em> </li>
+<li><em>value</em> = <em>value</em> XOR (<em>value</em>>>18); </li>
+<li><em>value = value</em> XOR (<em>value</em> \&lt;\&lt; 15) AND 0xefc60000</li>
+<li><em>value</em> = <em>value</em> </li>
+<li>XOR ((<em>value</em> \&lt;\&lt; 7) &amp; 0x9d2c5680) </li>
+<li>XOR ((<em>value</em> \&lt;\&lt; 14) &amp; 0x94284000) </li>
+<li>XOR ((<em>value</em> \&lt;\&lt; 21) &amp; 0x14200000) </li>
+<li>XOR ((<em>value</em> \&lt;\&lt; 28) &amp; 0x10000000) </li>
+<li><em>value</em> =<em>value</em> </li>
+<li>XOR (<em>value</em> >> 11) </li>
+<li>XOR (<em>value</em> >> 22); |</li>
+</ol>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;算法4描述了如何由伪随机数逆向恢复到梅森旋转算法的状态，因此若我们有624个梅森旋转算法生成的伪随机数，则我们可以由算法4恢复得到624个中间状态。再通过算法2和算法3即可得到接下来的伪随机数了。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是由算法2可知，在进行旋转的时候，需要用到第i个状态，第i+1个状态以及第i+397个状态。因此如果敌手所得到的伪随机数量或者状态不足，则不能恢复所有的624个状态，便也不能继续预测接下来的伪随机数。而且算法2中的旋转操作会直接覆盖之前的内部状态，而且算法中跟mask进行与操作以及右移操作使得它无法再逆向推导出之前的状态，因此所幸的是即使敌手获取到足够量的伪随机数，也无法推出之前的伪随机数。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;梅森旋转算法可以满足常见应用的随机数需求，但是对于加密过程中所需的伪随机数，还是需要使用密码学安全的伪随机数（Cryptographically<br>Secure Pseudo-Random Number<br>Generator，CSPRNG），例如改进版的梅森旋转算法CryptMT。</p>
@@ -502,6 +515,7 @@
 <h4 id="6-结论"><a href="#6-结论" class="headerlink" title="6 结论"></a><strong>6</strong> 结论</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据第3部分所描述的4个评估标准可知梅森旋转算法并不完美。它依然无法通过其中的小部分统计测试，例如当生成的伪随机数达到256G时，无法通过BRANK测试。当敌手可以获得超过624个伪随机数时，可以通过逆向推导出其内部状态来预测其接下来生成的伪随机数。不过所幸的是由于其更新内部状态时的操作不可逆，使得它无法推导出已经生成过的伪随机数。对于第四个评估标准，事实上包括梅森旋转在内的确定性的伪随机数发生器都无法满足，因为算法固定，因此只要获取到内部状态，就一定可以推算出之后的伪随机数。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;梅森旋转算法虽然存在许多的缺点，比如当获取到的伪随机数数量足够多时是可以预测的，并且无法通过一些静态统计测试。但是由于它的许多操作都是基于移位的，因此速度更快一些。并且近些年来，许多开发者和研究人员都为改进梅森旋转算法做出了许多努力，诞生了许多更优秀的基于梅森旋转算法的随机数生成器，例如CryptMT，MTGP。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此在通用的软件上使用改进版的梅森旋转算法，以及在加密时使用密码学安全的梅森旋转算法（CryptMT）是十分合理的。</p>
+<p><a href="https://github.com/wlmnzf/MT" target="_blank" rel="noopener">代码请看这里</a></p>
 <h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>[1] 徐恒. 确定性随机数产生器安全性分析及改进[D]. 上海交通大学, 2009.</p>
 <p>[2] MATSUMOTO M, KURITA Y. Twisted GFSR generators[J]. ACM Transactions on<br>Modeling and Computer Simulation, 1992, 2(3): 179–194.</p>
 <p>[3] MARSAGLIA G, OTHERS. Xorshift rngs[J]. Journal of Statistical Software,<br>2003, 8(14): 1–6.</p>
@@ -567,8 +581,6 @@
       
         <div class="post-tags">
           
-            <a href="/tags/密码学/" rel="tag"># 密码学</a>
-          
             <a href="/tags/PRNG/" rel="tag"># PRNG</a>
           
             <a href="/tags/伪随机数发生器/" rel="tag"># 伪随机数发生器</a>
@@ -576,6 +588,8 @@
             <a href="/tags/梅森旋转算法/" rel="tag"># 梅森旋转算法</a>
           
             <a href="/tags/MT19937/" rel="tag"># MT19937</a>
+          
+            <a href="/tags/密码学/" rel="tag"># 密码学</a>
           
         </div>
       
@@ -588,8 +602,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/02/基于无保护AES算法的CPA攻击/" rel="next" title="基于无保护AES芯片的 CPA攻击">
-                <i class="fa fa-chevron-left"></i> 基于无保护AES芯片的 CPA攻击
+              <a href="/2018/02/11/Meltdown &  Spectre原理简要梳理/" rel="next" title="Meltdown &  Spectre原理简要梳理">
+                <i class="fa fa-chevron-left"></i> Meltdown &  Spectre原理简要梳理
               </a>
             
           </div>
@@ -597,6 +611,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/02/基于无保护AES算法的CPA攻击/" rel="prev" title="基于无保护AES芯片的 CPA攻击">
+                基于无保护AES芯片的 CPA攻击 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
