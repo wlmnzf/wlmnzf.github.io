@@ -537,8 +537,8 @@
 <p>T：迁移（Transition）的有限集</p>
 <p>F：F ⊆ (P x T) ∪ (T x P)，表示边的集合。∪前后分别表示输入函数集以及输出函数集。</p>
 <p>M0：P->N，表示初始状态集</p>
-<p>库所（Place）表示系统的状态。一般用 表示。</p>
-<p>迁移（Transition）则表示资源的消耗使用，一般用 表示。</p>
+<p>库所（Place）表示系统的状态。一般用 <div style="width: 20px;height: 20px;border: 2px solid black;border-radius: 50%;position: relative;"><div style="width: 15px;height: 15px;border: 1px solid #black;border-radius: 50%;position: absolute;margin: auto;left: 0;right: 0;top: 0;bottom: 0; black;"></div></div>表示。</p>
+<p>迁移（Transition）则表示资源的消耗使用，一般用 <span style="display:block;width:50px;height:25px;background-color:black"></span>表示。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;连接库所与变迁的有向弧表示输入输出函数。用令牌Token表示库所中的资源数量，一般用●表示。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资源会沿着有向弧流动，当资源足够时，便会触发某些操作的执行来使用和消耗资源。即令牌会不断沿着迁移流动，令牌在迁移之前积聚叫做迁移的使能（enabled），令牌积累到足够数量之后便能通过迁移，这一过程也叫迁移的激发(fire)。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图4表示一个互斥系统的Petri网，双方发出进入临界区的请求，当其中一方进入临界区时，另一方只能等待。图中的小黑点表示Token，最中间的库所t表示哪一方可优先访问临界区，当Idle中的Token传递到Wait时，t中个Token也会流到可优先进入临界区的那一方，于是便可以激发迁移Access，当经过Free之后，Token又将回到Idle和t中。</p>
