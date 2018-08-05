@@ -101,15 +101,15 @@
 <meta property="og:site_name" content="会打代码的扫地王大爷">
 <meta property="og:description" content="形式化验证调研报告==================  王立敏   中国科学院信息工程研究所 第五实验室 北京 中国100093  摘要2018年初，Spectre和Meltdown漏洞的发现，使得芯片安全备受重视。然而传统的基于仿真的芯片验证方法由于测试样例覆盖不完全，验证过程耗时巨大，逐渐适应不了日益复杂的芯片了。形式化方法作为一种静态验证方法，正好可以解决这些问题。本文主要梳理了当前形式化">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://csuncle.com/uploads/形式化方法调研报告/Formal_Methods-types_ch.svg">
-<meta property="og:image" content="http://csuncle.com/uploads/形式化方法调研报告/BDD.svg">
-<meta property="og:image" content="http://csuncle.com/uploads/形式化方法调研报告/BDD-simply.svg">
-<meta property="og:image" content="http://csuncle.com/uploads/形式化方法调研报告/Petri网.svg">
-<meta property="og:updated_time" content="2018-08-05T02:30:38.573Z">
+<meta property="og:image" content="http://csuncle.com/uploads/形式化验证调研报告/Formal_Methods-types_ch.svg">
+<meta property="og:image" content="http://csuncle.com/uploads/形式化验证调研报告/BDD.svg">
+<meta property="og:image" content="http://csuncle.com/uploads/形式化验证调研报告/BDD-simply.svg">
+<meta property="og:image" content="http://csuncle.com/uploads/形式化验证调研报告/Petri网.svg">
+<meta property="og:updated_time" content="2018-08-05T03:40:00.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="形式化验证调研报告">
 <meta name="twitter:description" content="形式化验证调研报告==================  王立敏   中国科学院信息工程研究所 第五实验室 北京 中国100093  摘要2018年初，Spectre和Meltdown漏洞的发现，使得芯片安全备受重视。然而传统的基于仿真的芯片验证方法由于测试样例覆盖不完全，验证过程耗时巨大，逐渐适应不了日益复杂的芯片了。形式化方法作为一种静态验证方法，正好可以解决这些问题。本文主要梳理了当前形式化">
-<meta name="twitter:image" content="http://csuncle.com/uploads/形式化方法调研报告/Formal_Methods-types_ch.svg">
+<meta name="twitter:image" content="http://csuncle.com/uploads/形式化验证调研报告/Formal_Methods-types_ch.svg">
 
 
 
@@ -386,19 +386,19 @@
 
 <p style="text-align: center;">中国科学院信息工程研究所 第五实验室 北京 中国100093</p>
 
-<p><strong>摘要</strong><br>2018年初，Spectre和Meltdown漏洞的发现，使得芯片安全备受重视。然而传统的基于仿真的芯片验证方法由于测试样例覆盖不完全，验证过程耗时巨大，逐渐适应不了日益复杂的芯片了。形式化方法作为一种静态验证方法，正好可以解决这些问题。本文主要梳理了当前形式化方法检测的常见方法，并且列出他们的优缺点，以及前人对这些缺点的改良方法。</p>
+<p><strong>摘要</strong>2018年初，Spectre和Meltdown漏洞的发现，使得芯片安全备受重视。然而传统的基于仿真的芯片验证方法由于测试样例覆盖不完全，验证过程耗时巨大，逐渐适应不了日益复杂的芯片了。形式化方法作为一种静态验证方法，正好可以解决这些问题。本文主要梳理了当前形式化方法检测的常见方法，并且列出他们的优缺点，以及前人对这些缺点的改良方法。</p>
 <p>关键词<br><strong>芯片安全，形式化验证，二元决策图，时序逻辑，Petri网，定理证明，等效性检验，模型检验</strong></p>
 <p style="text-align: center;">Formal Verification Investigation Report</p>
 
 <p style="text-align: center;">Wang Liming<sup>1</sup></p><br><p style="text-align: center;">Institute of Information Engineering, Chinese Academy of Sciences, Beijing 100093, China</p>
 
 <p><strong>Abstract</strong> At the beginning of 2018, the discovery of Spectre and Meltdown attacks made chip security receive much more concerns. However, due to the serious drawbacks in the simulation-based methods in tradition such as the test cases did not cover all of the inputs and the time consuming of the simulation, this method became inappropriate to validate the chips that became more and more complicated. Formal Methods is a static verification method, which would solve these problems that the simulation-based methods bright. This report would list their advantages and disadvantages, as well as the previous methods that attempt to solve these problems.</p>
-<p><strong>Key words</strong> Chip security, Formal verification, Binary Decision Diagrams,<br>Temporal logic, Petri net, Theorem Proving, Equivalence Checking, Model checking</p>
+<p><strong>Key words</strong> Chip security, Formal verification, Binary Decision Diagrams,Temporal logic, Petri net, Theorem Proving, Equivalence Checking, Model checking</p>
 <h4 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a><strong>1</strong> 引言</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;近些年来，芯片的性能和规模不断提升，集成电路的设计也越来越复杂，使得引入错误和问题的可能性日益增加。但是传统的基于仿真的集成电路验证方法的覆盖率难以达到100%。而形式化方法作为一种静态测试的方法，通过数学的推理证明，理论上可以实现绝对安全，找出难以发现的错误，因此广受研究人员的关注。</p>
 <h6 id="基于仿真的集成电路验证"><a href="#基于仿真的集成电路验证" class="headerlink" title="基于仿真的集成电路验证"></a>基于仿真的集成电路验证</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前应用最广泛的依然是基于仿真的验证方法。这种验证方法通常需要一个测试基准，通常同时对待验证的电路和测试基准施加相同的激励，然后通过对比他们的输出来判断电路是否正确。这些输入向量可以事先生成，然后在测试期间从数据库读入，也可以边测试边生成。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于仿真的验证只能证明电路在指定的输入向量下输出正确，若要证明电路的正确性，输入向量必须覆盖电路的所有输入组合。但是现在集成电路十分复杂，要实现这一点是十分困难的。令人遗憾的是，许多不安全的因素或者错误都是出现在测试向量难以覆盖的地方[1]。而且这种验证方式主要用于发现逻辑漏洞，而并不能检查出芯片中的安全漏洞。</p>
 <h6 id="基于形式化方法的验证"><a href="#基于形式化方法的验证" class="headerlink" title="基于形式化方法的验证"></a>基于形式化方法的验证</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于形式化方法的验证是通过数理逻辑推理的一种方法。一般分为形式等效性检验（Equivalence<br>Checking），定理证明（Theorem Proving）以及模型检查（Model<br>Checking），如图1所示。</p>
-<p><img src="/uploads/形式化方法调研报告/Formal_Methods-types_ch.svg" alt="图1 形式化方法的分类"></p>
+<p><img src="/uploads/形式化验证调研报告/Formal_Methods-types_ch.svg" alt="图1 形式化方法的分类"></p>
 <p style="text-align: center;">图1 形式化方法的分类</p>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;形式等效性检验一般用于检测两个电路设计逻辑相等，电路设计一般使用硬件描述语言（Verilog或者VHDL）进行描述，然后综合成门级电路，接着再进行一系列的优化。这里的每一个步骤都会导致电路设计的改变，因此检查每一步操作前后的电路设计是否逻辑等效是有必要的。有些时候优化操作需要人为干预，因此也需要使用等效性检验来确保这些操作没有引入错误。除此之外，设计完成的芯片也需要与对应的黄金模型进行对比，以确保集成电路设计的正确性。</p>
@@ -469,16 +469,14 @@
 </tr>
 </tbody>
 </table>
-<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设有一个电路，电路的功能如公式(1)所示。<br>$$<br>\begin{equation}</p>
-<p>f(x1,x2,x3)=x1x2+x1\overline{x2}\overline{x3}  \tag{1}</p>
-<p>\end{equation}<br>$$</p>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设有一个电路，电路的功能如公式(1)所示。<br>$$<br>\begin{equation}<br>f(x1,x2,x3)=x1x2+x1\overline{x2}\overline{x3}   \tag{1}<br>\end{equation}<br>$$</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其真值表如表1所示。于是可得出该电路的BDD图，如图2，x1,x2,x3为变量，实线表示变量赋值为1，虚线表示变量赋值为0。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由表1真值表可得，当x1,x2,x3分别赋值为0时，f(x1,x2,x3)的值也为0。则如图2在BDD图中沿着x1,x2,x3,0之间的虚线最终也会到达0的地方。如图中所示这样变量有序的BDD图也可以称作有序二元决策图（Ordered Binary Decision Diagrams ，OBDD）图。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以发现，当x1赋值为0,x2也赋值为0时，无论x3赋何值，最终结果也是0，因此可以将BDD再做精简。如图3中简化后的BDD所示，可以将这条路径中的x3节点删除，直接将x2用虚线连接至0处，这个过程可称为BDD的简化，而最终的简化结果则称为简化的有序二元决策图（Reduced<br>Ordered Binary Decision Diagrams，ROBDD）。</p>
-<p><img src="/uploads/形式化方法调研报告/BDD.svg" alt="图2 f(x1,x2,x3)的BDD图"></p>
+<p><img src="/uploads/形式化验证调研报告/BDD.svg" alt="图2 f(x1,x2,x3)的BDD图"></p>
 <p style="text-align: center;">图2 f(x1,x2,x3)的BDD图</p>
 
-<p><img src="/uploads/形式化方法调研报告/BDD-simply.svg" alt="图3 f(x1,x2,x3)的简化BDD图"></p>
+<p><img src="/uploads/形式化验证调研报告/BDD-simply.svg" alt="图3 f(x1,x2,x3)的简化BDD图"></p>
 <p style="text-align: center;">图3 f(x1,x2,x3)的简化BDD图</p>
 
 <h6 id="2-1-3基于二元决策图的电路表示"><a href="#2-1-3基于二元决策图的电路表示" class="headerlink" title="2.1.3基于二元决策图的电路表示"></a>2.1.3基于二元决策图的电路表示</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于组合逻辑电路而言，可以直接使用上述方法生成BDD结构。但是对于时序逻辑电路而言，则需要根据其特点生成有限自动机（Finite State Machine，FSM），再使用BDD来表示FSM的状态变迁过程，在形式等效验证和符号模型检验中常采用这一方法来表示电路。</p>
@@ -545,7 +543,7 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;连接库所与变迁的有向弧表示输入输出函数。用令牌Token表示库所中的资源数量，一般用●表示。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资源会沿着有向弧流动，当资源足够时，便会触发某些操作的执行来使用和消耗资源。即令牌会不断沿着迁移流动，令牌在迁移之前积聚叫做迁移的使能（enabled），令牌积累到足够数量之后便能通过迁移，这一过程也叫迁移的激发(fire)。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图4表示一个互斥系统的Petri网，双方发出进入临界区的请求，当其中一方进入临界区时，另一方只能等待。图中的小黑点表示Token，最中间的库所t表示哪一方可优先访问临界区，当Idle中的Token传递到Wait时，t中个Token也会流到可优先进入临界区的那一方，于是便可以激发迁移Access，当经过Free之后，Token又将回到Idle和t中。</p>
-<p><img src="/uploads/形式化方法调研报告/Petri网.svg" alt="图4 互斥模型的Petri网"></p>
+<p><img src="/uploads/形式化验证调研报告/Petri网.svg" alt="图4 互斥模型的Petri网"></p>
 <p style="text-align: center;">图4 互斥模型的Petri网</p>
 
 <ol>
