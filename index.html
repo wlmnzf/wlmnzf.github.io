@@ -545,9 +545,7 @@
 <p><img src="/uploads/形式化验证调研报告/Petri网.svg" alt="图4 互斥模型的Petri网"></p>
 <p style="text-align: center;">图4 互斥模型的Petri网</p>
 
-<ol>
-<li><strong>形式化方法</strong></li>
-</ol>
+<p>1.<strong>形式化方法</strong></p>
 <h6 id="形式等效验证（Equivalence-Checking）"><a href="#形式等效验证（Equivalence-Checking）" class="headerlink" title="形式等效验证（Equivalence Checking）"></a>形式等效验证（Equivalence Checking）</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设我们有Spec1和Spec2两个模型。若需要验证综合优化前后两个模型是否逻辑相等，则Spec1和Spec2可分别表示综合优化前后的设计。若需要验证设计的正确性，Spec1通常为黄金模型，Spec2则为我们的设计。Spec1和Spec2通常使用相同的数据结构，例如BDD，再根据具体的需求使用诸如布尔SAT求解程序（求解可满足性问题）之类的算法来进行等效性检验。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然等效检验的检测效果不错，在工业上也得到了应用，但是在使用过程中依然需要高层次的专业人员去制定等效检验框架[5]。而且在复杂的电路中，等效性检验也存在状态空间数呈指数级增长的问题。虽然学术界提出了各种优化的方法，比如将复杂的等效检验切割成小的可比较集合进行处理[6]，或者利用算法优化减少空间消耗[7]，但是状态空间爆炸问题依然没有很好地解决。</p>
 <h6 id="定理证明-Theorem-Proving"><a href="#定理证明-Theorem-Proving" class="headerlink" title="定理证明(Theorem Proving)"></a>定理证明(Theorem Proving)</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定理证明方法十分严格，跟数理逻辑结合十分紧密。一般使用高阶逻辑（Higher-Order<br>Logic，HOL） 系统来进行证明。</p>

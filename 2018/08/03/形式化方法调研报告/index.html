@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://csuncle.com/uploads/形式化验证调研报告/BDD.svg">
 <meta property="og:image" content="http://csuncle.com/uploads/形式化验证调研报告/BDD-simply.svg">
 <meta property="og:image" content="http://csuncle.com/uploads/形式化验证调研报告/Petri网.svg">
-<meta property="og:updated_time" content="2018-08-05T03:40:00.596Z">
+<meta property="og:updated_time" content="2018-08-05T03:55:58.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="形式化验证调研报告">
 <meta name="twitter:description" content="形式化验证调研报告==================  王立敏   中国科学院信息工程研究所 第五实验室 北京 中国100093  摘要2018年初，Spectre和Meltdown漏洞的发现，使得芯片安全备受重视。然而传统的基于仿真的芯片验证方法由于测试样例覆盖不完全，验证过程耗时巨大，逐渐适应不了日益复杂的芯片了。形式化方法作为一种静态验证方法，正好可以解决这些问题。本文主要梳理了当前形式化">
@@ -546,9 +546,7 @@
 <p><img src="/uploads/形式化验证调研报告/Petri网.svg" alt="图4 互斥模型的Petri网"></p>
 <p style="text-align: center;">图4 互斥模型的Petri网</p>
 
-<ol>
-<li><strong>形式化方法</strong></li>
-</ol>
+<p>1.<strong>形式化方法</strong></p>
 <h6 id="形式等效验证（Equivalence-Checking）"><a href="#形式等效验证（Equivalence-Checking）" class="headerlink" title="形式等效验证（Equivalence Checking）"></a>形式等效验证（Equivalence Checking）</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设我们有Spec1和Spec2两个模型。若需要验证综合优化前后两个模型是否逻辑相等，则Spec1和Spec2可分别表示综合优化前后的设计。若需要验证设计的正确性，Spec1通常为黄金模型，Spec2则为我们的设计。Spec1和Spec2通常使用相同的数据结构，例如BDD，再根据具体的需求使用诸如布尔SAT求解程序（求解可满足性问题）之类的算法来进行等效性检验。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然等效检验的检测效果不错，在工业上也得到了应用，但是在使用过程中依然需要高层次的专业人员去制定等效检验框架[5]。而且在复杂的电路中，等效性检验也存在状态空间数呈指数级增长的问题。虽然学术界提出了各种优化的方法，比如将复杂的等效检验切割成小的可比较集合进行处理[6]，或者利用算法优化减少空间消耗[7]，但是状态空间爆炸问题依然没有很好地解决。</p>
 <h6 id="定理证明-Theorem-Proving"><a href="#定理证明-Theorem-Proving" class="headerlink" title="定理证明(Theorem Proving)"></a>定理证明(Theorem Proving)</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定理证明方法十分严格，跟数理逻辑结合十分紧密。一般使用高阶逻辑（Higher-Order<br>Logic，HOL） 系统来进行证明。</p>
@@ -695,27 +693,42 @@
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-  <a class="jiathis_button_tsina"></a>
-  <a class="jiathis_button_tqq"></a>
-  <a class="jiathis_button_weixin"></a>
-  <a class="jiathis_button_cqq"></a>
-  <a class="jiathis_button_douban"></a>
-  <a class="jiathis_button_renren"></a>
-  <a class="jiathis_button_qzone"></a>
-  <a class="jiathis_button_kaixin001"></a>
-  <a class="jiathis_button_copy"></a>
-  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-  <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-  var jiathis_config={
-    hideMore:false
-  }
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
 </script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-<!-- JiaThis Button END -->
 
       
     </div>
