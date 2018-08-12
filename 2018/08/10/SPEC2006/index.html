@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,机器学习实战," />
+  <meta name="keywords" content="SPEC2006," />
 
 
 
@@ -93,22 +93,18 @@
 
 
 
-<meta name="description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。 有监督回归算法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴">
-<meta name="keywords" content="机器学习,机器学习实战">
+<meta name="description" content="SPEC2006常见用法和问题==================  安装步骤1234# Ubuntu16.04# 注意安装gFortran. ./install.sh. ./shrc &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一般情况下经过以上步骤即可安装完毕，进行使用,注意需要执行shrc设置完环境变量以后才可正常执行后续的各种操作。 &amp;n">
+<meta name="keywords" content="SPEC2006">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习之梯度下降法数学推导--回归">
-<meta property="og:url" content="http://csuncle.com/2017/06/13/机器学习之梯度下降法数学推导--回归/index.html">
+<meta property="og:title" content="SPEC2006">
+<meta property="og:url" content="http://csuncle.com/2018/08/10/SPEC2006/index.html">
 <meta property="og:site_name" content="会打代码的扫地王大爷">
-<meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。 有监督回归算法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴">
+<meta property="og:description" content="SPEC2006常见用法和问题==================  安装步骤1234# Ubuntu16.04# 注意安装gFortran. ./install.sh. ./shrc &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一般情况下经过以上步骤即可安装完毕，进行使用,注意需要执行shrc设置完环境变量以后才可正常执行后续的各种操作。 &amp;n">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://csuncle.com/uploads/机器学习之梯度下降法数学推导--回归/1.png">
-<meta property="og:image" content="http://csuncle.com/uploads/机器学习之梯度下降法数学推导--回归/2.png">
-<meta property="og:image" content="http://csuncle.com/uploads/机器学习之梯度下降法数学推导--回归/3.png">
-<meta property="og:updated_time" content="2018-08-03T09:40:56.188Z">
+<meta property="og:updated_time" content="2018-08-12T03:42:25.745Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习之梯度下降法数学推导--回归">
-<meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。 有监督回归算法&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴">
-<meta name="twitter:image" content="http://csuncle.com/uploads/机器学习之梯度下降法数学推导--回归/1.png">
+<meta name="twitter:title" content="SPEC2006">
+<meta name="twitter:description" content="SPEC2006常见用法和问题==================  安装步骤1234# Ubuntu16.04# 注意安装gFortran. ./install.sh. ./shrc &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一般情况下经过以上步骤即可安装完毕，进行使用,注意需要执行shrc设置完环境变量以后才可正常执行后续的各种操作。 &amp;n">
 
 
 
@@ -136,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://csuncle.com/2017/06/13/机器学习之梯度下降法数学推导--回归/"/>
+  <link rel="canonical" href="http://csuncle.com/2018/08/10/SPEC2006/"/>
 
 
 
 
 
-  <title>机器学习之梯度下降法数学推导--回归 | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>SPEC2006 | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -292,7 +288,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/13/机器学习之梯度下降法数学推导--回归/">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/10/SPEC2006/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
@@ -309,7 +305,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">机器学习之梯度下降法数学推导--回归</h2>
+          <h2 class="post-title" itemprop="name headline">SPEC2006</h2>
         
 
         <div class="post-meta">
@@ -321,8 +317,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T16:00:43+08:00">
-                2017-06-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T11:09:01+08:00">
+                2018-08-10
               </time>
             
 
@@ -344,8 +340,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MachineLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">MachineLearning</span>
+                  <a href="/categories/Benchmarks/" itemprop="url" rel="index">
+                    <span itemprop="name">Benchmarks</span>
                   </a>
                 </span>
 
@@ -378,44 +374,96 @@
       
 
       
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;本来对数学没什么感觉的，但是停摆了一年复习考研，于是开始对数学有些感觉了，之前看到《机器学习实战》中第五章中梯度上升法，使用了一个它所谓的十分简单的推导，一直好奇怎么个简单法，于是重新学习机器学习的相关算法，这次将主推数学推导。</p>
-<h4 id="有监督回归算法"><a href="#有监督回归算法" class="headerlink" title="有监督回归算法"></a>有监督回归算法</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;在机器学习中，多元线性回归模型是经常使用的模型，比如在吴恩达《斯坦福机器学习》中的例子，我们需要根据已有的房价信息预测当前房子的房价，于是我们收集到一些房价数据。</p>
-<p><img src="/uploads/机器学习之梯度下降法数学推导--回归/1.png" alt="房价信息"></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;再将它们画在二维坐标上，它们就以离散的点分布在平面上，如下所示<br><img src="/uploads/机器学习之梯度下降法数学推导--回归/2.png" alt="房价分布情况"></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;我们希望能根据这些已知的点来预测我们想知道的房子的房价，因此我们需要找到一条规律，也就是一条大致经过这些点的线性模型，在数学上我们通常称之为拟合，而这个拟合的过程，我们称之为回归。</p>
-<p><img src="/uploads/机器学习之梯度下降法数学推导--回归/3.png" alt="拟合结果"></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;假设我们建立的模型是一元一次的，将得到这样的拟合结果，于是我们可以x轴上的房屋面积，找到对应的房屋价格。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;有监督的学习算法，可以理解成我们训练模型的时候每一个输入都是有标准答案的，我们通过预测值跟标准答案的比对，不断修改模型的参数才能最终实现较好地的拟合结果。</p>
-<h4 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;最小二乘法是我们经常使用的拟合算法，它通过最小化误差的平方和寻找数据的最佳函数匹配。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;以我们《机器学习实战》第五章作例子，我们假设的模型为z，于是函数即可设为</p>
-<p>$$<br>\begin{equation}<br>z=w0+w_1x_1+w2x2+w3x3+….+w_nx_n\\=w_0x_0+w_1x_1+w2x2+w3x3+….+w_nx_n (x0=1)  \tag{1}<br>\end{equation}<br>$$</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;这种写法也可以表示为向量的写法:</p>
-<p>$$<br>z=w^Tx=<br>\begin{bmatrix}<br>w_0&amp;w_1&amp;…&amp;w_n<br>\end{bmatrix}<br>\begin{bmatrix}<br>x_0\\<br>x_1\\<br>…\\<br>x_n\\<br>\end{bmatrix} \tag{2}<br>$$</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;同样的道理，我们也可以这样子表示</p>
-<p>$$<br>z=x^Tw=<br>\begin{bmatrix}<br>x_0&amp;x_1&amp;…&amp;x_n<br>\end{bmatrix}<br>\begin{bmatrix}<br>w_0\\<br>w_1\\<br>…\\<br>w_n\\<br>\end{bmatrix} \tag{3}<br>$$</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;刚才我们也提到了，最小二乘法拟合的原理是最小化误差的平方和，我们将这个平方和称为损失函数，跟我们平时常用的方差类似，当这个损失函数越小，我们的模型就越能跟离散的点匹配起来:</p>
-<p>$$<br>f(w)=\frac{1}{2} \sum_{i=1}^m(z_w( x_i) -y_j   )^2    \tag{4}<br>$$</p>
-<p>其中的y表示我们给出的标准的特征 $<br>\begin{bmatrix}<br>y_0\\<br>y_1\\<br>…\\<br>y_m\\<br>\end{bmatrix}<br>$</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;因为梯度上升算法是用来计算函数的最大值的，而梯度下降算法则是计算函数最小值的。而我们的损失函数自然是越小越好，我们需要求得一个系数来使得f(w)最小，可是使用梯度上升法是用于求最大值的，因此为了用上梯度上升算法，我们最终应该在f(w)前加上负号。假设:</p>
-<p>$$<br>J(w)=-f(w) \tag{5}<br>$$</p>
-<p>接下来我们开始利用矩阵来推算我们的数学公式，因为原始的公式用来做迭代计算会很不方便，因此我们需要一个等价的公式来让我们的算法更加高效，就例如《机器学习实战》chapter5中的那样。假设我们的输入为X,我们有m组训练数据，每个数据有n个特征。则:</p>
-<p>$$<br>\begin{equation}<br>X=<br>        \begin{bmatrix}<br>        x_{11}&amp;x_{12}&amp;…&amp;x_{1n}\\<br>        x_{21}&amp;x_{22}&amp;…&amp;x_{2n}\\<br>        …&amp;…&amp;…&amp;…\\<br>        x_{m1}&amp;x_{m2}&amp;…&amp;x_{mn}\<br>        \end{bmatrix}<br>        =<br>        \begin{bmatrix}<br>        x_1^{T}\\<br>        x_2 ^{T}\\<br>        …\\<br>        x_m\\<br>        \end{bmatrix}   \tag{6}<br>     \end{equation}<br>$$</p>
-<p>于是通过（3）可以推出</p>
-<p>$$<br>Xw=<br>\begin{bmatrix}<br>x_1^T\\<br>x_2^T\\<br>…\\<br>x_m^T\\<br>\end{bmatrix}<br>w=<br>\begin{bmatrix}<br>x_1^Tw\\<br>x_2^Tw\\<br>…\\<br>x_m^Tw\\<br>\end{bmatrix}=<br>\begin{bmatrix}<br>z_w(x_1)\\<br>z_w(x_2)\\<br>…\\<br>z_w(x_m)\\<br>\end{bmatrix} \tag{7}<br>$$</p>
-<p>$$<br>Xw-\overrightarrow{y}=<br>\begin{bmatrix}<br>x_1^Tw\\<br>x_2^Tw\\<br>…\\<br>x_m^Tw\\<br>\end{bmatrix}-<br>\begin{bmatrix}<br>y_1\\<br>y_2\\<br>…\\<br>y_m\\<br>\end{bmatrix}=<br>\begin{bmatrix}<br>z_w(x_1)-y_1\\<br>z_w(x_2)-y_2\\<br>…\\<br>z_w(x_m)-y_m<br>\end{bmatrix} \tag{8}<br>$$</p>
-<p>由矩阵内积可得</p>
-<p>$$<br>\because z^Tz=\sum_i^nz_i^2  \tag{9}<br>$$</p>
-<p>$$<br>\therefore \frac{1}{2}(Xw-\overrightarrow{y})^T(Xw-\overrightarrow{y})= \frac{1}{2}\sum_{i=1}^n(z_w(x_i)-y_i)^2=f(w)   \tag{10}<br>$$</p>
-<p>则梯度为</p>
-<p>$$<br>\begin{equation}<br>\begin{split}<br>&amp;\nabla_wf(w)=\nabla_w\frac{1}{2}(Xw-\overrightarrow{y})^T(Xw-\overrightarrow{y})\\<br>&amp;=\frac{1}{2}\nabla_w(w^TX^TXw-w^TX^T\overrightarrow{y}-\overrightarrow{y}^TXw+\overrightarrow{y}^T\overrightarrow{y})\\<br>&amp;=\frac{1}{2}\nabla_wtr(w^TX^TXw-w^TX^T\overrightarrow{y}-\overrightarrow{y}^TXw+\overrightarrow{y}^T\overrightarrow{y}) \\<br>&amp;=\frac{1}{2}\nabla_w(trw^TX^TXw-2tr\overrightarrow{y}^TXw) \\<br>&amp;=\frac{1}{2}(X^TXw+X^TXw-2X^T\overrightarrow{y})\\<br>&amp;=X^TXw-X^T\overrightarrow{y}=X^T(Xw-\overrightarrow{y})\\\\<br>&amp;=&gt;J(w)=-f(w)=X^T(\overrightarrow{y}-Xw)<br>\end{split}<br>\end{equation}    \tag{11}<br>$$</p>
-<p>说明：<br>第二步：类似于括号展开<br>第三步:实数的迹等于它本身<br>第四步:因为 $\overrightarrow{y}^T\overrightarrow{y}$ 不含w，因此它对w求导为0.并且利用了公式  $trA=trA^T$ 进行简化。<br>第五步:利用公式 $\nabla_{A^T}trABA^TC=B^TA^TC^T+BA^TC$ ,令 $A^T=w,B=B^T=X^TX,C=I$ ,利用公式转化即可得到。</p>
-<p>最后再回到《机器学习实战》中，P78,代码清单5-1②的部分。<br>dataMatrix=X;<br>weights=w;<br>labelMat=y;<br>把等号右边的用左边的变量代入，不过很遗憾，还是有些区别的，在《机器学习实战》一书中，还有sigmoid这一函数，查阅了一些资料，发现其实还是有些区别的，将于下一篇博文中阐明。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><blockquote>
-<p>吴恩达《机器学习》notes1<br>周志华《机器学习》chapter3 线性模型</p>
+        <p style="text-align: center;"><br>SPEC2006常见用法和问题<br>==================<br></p>
+
+<h4 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Ubuntu16.04</span><br><span class="line"># 注意安装gFortran</span><br><span class="line">. ./install.sh</span><br><span class="line">. ./shrc</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一般情况下经过以上步骤即可安装完毕，进行使用,注意需要执行shrc设置完环境变量以后才可正常执行后续的各种操作。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此外SPEC官方并不建议使用root权限，因为所有的测试集并不需要修改系统文件。</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><blockquote>
+<p>runspec int –noreportable –n=1 –size=test</p>
 </blockquote>
-<h5 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h5><blockquote>
-<p><a href="http://csuncle.com/2017/06/13/%E3%80%8A%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98%E3%80%8B-chapter5%E6%A2%AF%E5%BA%A6%E4%B8%8A%E5%8D%87%E7%AE%97%E6%B3%95-%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC/">http://csuncle.com/2017/06/13/《机器学习实战》-chapter5梯度上升算法-数学推导/</a></p>
+<ul>
+<li>正式运行SPEC2006之前需要跑一下test尺寸，test尺寸比较小，因此跑起来耗时教短，可用于确保所有测试集都可正常编译运行。</li>
+<li>int：表明这是整数测试集，这个参数也可用fp，all代替，分表表示只使用浮点测试集和所有测试集。</li>
+<li>–noreportable 不生成报告 –reportable生成报告，若开启将会生成诸如html，pdf等格式的报告。</li>
+<li>–n=1:表示只跑一轮，每个测试集只会跑一遍。若要生成报告，则至少跑3轮</li>
+<li>–size=test：表示这次只跑少量集合，用于测试所有集合是否都已经编译执行正确</li>
+</ul>
+<blockquote>
+<p>runspec int –reportable  –size=ref -I</p>
 </blockquote>
+<ul>
+<li>-I 表示跑benchmark的适合忽略错误，如果中途出错也不会停下来。</li>
+<li>如果没有指定rate和copies则为测试speed，speed只能测试单核性能。</li>
+<li>若想测试多核性能，则可通过 –rate=128进行指定，这里讲使用128个线程。</li>
+<li>rate和speed指标的区别请看<br><a href="https://www.spec.org/cpu2006/Docs/readme1st.html#Q15" target="_blank" rel="noopener">Q15. What is the difference between a “rate” and a “speed” metric?</a></li>
+</ul>
+<blockquote>
+<p>如何检测自己的电脑是多少核心的呢？</p>
+<ul>
+<li>逻辑CPU核心数(包括超线程技术): <figure class="highlight plain"><figcaption><span>/proc/cpuinfo |grep "processor"|sort -u|wc -l```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 物理CPU个数:```grep &quot;physical id&quot; /proc/cpuinfo|sort -u|wc -l ```或者```grep &quot;physical id&quot; /proc/cpuinfo|sort -u</span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<ul>
+<li><p>每个物理CPU上的真实内核个数：<figure class="highlight plain"><figcaption><span>"cpu cores"</span><a href="/proc/cpuinfo|uniq```">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 每个物理CPU上逻辑内核个数：```grep &quot;siblings&quot; /proc/cpuinfo|uniq</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>若每个核心上的逻辑内核比真实内核多，则说明开启了超线程技术</p>
+</li>
+<li>来源<a href="https://zhidao.baidu.com/question/1367310944286874379.html?word=linux%E6%80%8E%E4%B9%88%E7%9C%8Bcpu%E6%A0%B8%E6%95%B0&amp;ms=1&amp;rid=7428484352289693960" target="_blank" rel="noopener">Linux读取CPU信息</a></li>
+</ul>
+<blockquote>
+<p>runspec 481  –noreportable –n=1 </p>
+<ul>
+<li>有时候为了修复编译错误，可以让他单独跑481这一项</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>runspec -c xxx.cfg</p>
+<ul>
+<li>-c用于指定配置文件，如果没有指定，则默认使用根目录的config文件夹下的default.cfg作为配置文件</li>
+</ul>
+</blockquote>
+<h4 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h4><blockquote>
+<p>gcc5.x如何跑SPEC2006</p>
+<ul>
+<li>在无法通过的测试集的gcc编译选项上加 –std=gnu89</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>缺少库文件</p>
+<ul>
+<li>在gcc的编译选项上加 -include /usr/include/memory.h   include 后面的路径需要换成自己的，这里只是举个例子</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>447.dealII 遇到 error: ‘ptrdiff_t’ does not name a type</p>
+</blockquote>
+<ul>
+<li>linux下需要引入 <cstddef>头文件，使用上述方法在config文件中找到447.dealII的配置在CXXPORTABILITY后面加上 -include cstddef  -include cstdlib -include cstring</cstddef></li>
+<li>进入的头文件若是系统库，则不需要具体路径</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/GoogleCloudPlatform/PerfKitBenchmarker/issues/1120" target="_blank" rel="noopener">spec2006 fp test failed with 416.gamess and 481.wrf</a></p>
+<ul>
+<li>416 miscompare 问题是gcc旧版本的bug，当开启O2优化的适合会出错</li>
+<li>升级新版本gcc或者用-O0进行编译或者换一个编译器</li>
+<li>483 end of file 问题，我是通过把配置文件中的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 如果不幸需要自己编译工具链，可能会遇到更多奇怪的问题</span><br><span class="line"></span><br><span class="line">&gt; Specmd5sum multiple definition of `getline&apos;</span><br><span class="line">- Specmd5sum文件夹中的库文件跟系统库文件的函数冲突了，打开md5sum.c，注释掉```#include &quot;getline.h&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>在perl中make时遇到 MAKE: *** NO RULE TO MAKE TARGET \’\&lt;COMMAND-LINE>\’</p>
+<ul>
+<li>这是因为gcc在高版本中改变了输出，以至于这里没有及时过滤掉，其实只要将makefile（注意不是Makefile）中\&lt;command-line><br>的那一行全删掉即可。</li>
+<li>这里有个问题是，buildtools每次编译都会将之前生成的东西清空，然后重新生成makefile文件，因此手工删除makefile中的<command-line>会失败。</command-line></li>
+<li>于是自己随便在网上找了一段代码用于删除makefile文件中的’\&lt;command-line>‘<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"> </span><br><span class="line">void Delete(char* filepath, char str[])</span><br><span class="line">&#123;</span><br><span class="line">	char buf[4096];    //每读取一行，都将内容放到该数组中</span><br><span class="line">	FILE* fp = fopen(filepath, &quot;r&quot;);     //filepath里是原内容 </span><br><span class="line"> </span><br><span class="line">	FILE* fpt = fopen(&quot;temp&quot;, &quot;w&quot;);    //将filepath文件第n行内容删除后存入temp.txt中 </span><br><span class="line">	</span><br><span class="line">	while(!feof(fp)) </span><br><span class="line">	&#123;  </span><br><span class="line">	   fgets(buf,sizeof(buf), fp);  </span><br><span class="line">		if (!strstr(buf,str)) </span><br><span class="line">		&#123;      </span><br><span class="line">		  fprintf(fpt, &quot;%s&quot;, buf); </span><br><span class="line">                  printf(&quot;%s\n&quot;,buf);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(fpt);</span><br><span class="line"> </span><br><span class="line">	fpt = fopen(&quot;temp&quot;, &quot;r&quot;);</span><br><span class="line">    fp = fopen(filepath, &quot;w&quot;);</span><br><span class="line">    fgets(buf, sizeof(buf), fpt);	</span><br><span class="line">    while(!feof(fpt))</span><br><span class="line">	&#123;</span><br><span class="line">	   fprintf(fp, &quot;%s&quot;, buf);</span><br><span class="line">       fgets(buf, sizeof(buf), fpt);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(fpt);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">void main()</span><br><span class="line">&#123; </span><br><span class="line">	Delete(&quot;x2p/makefile&quot;, &quot;command&quot;);  </span><br><span class="line">    Delete(&quot;makefile&quot;, &quot;command&quot;); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>将上述代码另存为delete.c,置于工具链中的perl-5.8.7根目录下</li>
+<li>并修改buildtools中的shell脚本,如下打加号的部分<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  DYLD_LIBRARY_PATH=`pwd`</span><br><span class="line">  export LD_LIBRARY_PATH DYLD_LIBRARY_PATH</span><br><span class="line">  ./Configure   -dOes -Ud_flock $PERLFLAGS -Ddosuid=undef -Dprefix=$INSTALLDIR -Dd_bincompat3=undef -A ldflags=-L$&#123;INSTALLDIR&#125;/lib -A ccflags=-I$&#123;INSTALLDIR&#125;/include -Ui_db -Ui_gdbm -Ui_ndbm -Ui_dbm -Uuse5005threads ; testordie &quot;error configuring perl&quot;</span><br><span class="line"></span><br><span class="line">+  gcc -o del delete.c</span><br><span class="line">+  ./del</span><br><span class="line">+  cd x2p</span><br><span class="line">+    $MYMAKE</span><br><span class="line">+  cd ../</span><br><span class="line">+  ./del</span><br><span class="line"></span><br><span class="line">  $MYMAKE; testordie &quot;error building perl&quot;</span><br><span class="line">  ./perl installperl; testordie &quot;error installing perl&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -471,9 +519,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
-          
-            <a href="/tags/机器学习实战/" rel="tag"># 机器学习实战</a>
+            <a href="/tags/SPEC2006/" rel="tag"># SPEC2006</a>
           
         </div>
       
@@ -486,8 +532,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/13/基于tensorflow的MNIST手写数字识别（三）-神经网络篇/" rel="next" title="基于tensorflow的MNIST手写数字识别（三）--神经网络篇">
-                <i class="fa fa-chevron-left"></i> 基于tensorflow的MNIST手写数字识别（三）--神经网络篇
+              <a href="/2018/08/03/形式化方法调研报告/" rel="next" title="形式化验证调研报告">
+                <i class="fa fa-chevron-left"></i> 形式化验证调研报告
               </a>
             
           </div>
@@ -495,10 +541,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/03/机器学习之梯度下降法数学推导-分类/" rel="prev" title="机器学习之梯度下降法数学推导--分类">
-                机器学习之梯度下降法数学推导--分类 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -722,7 +764,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有监督回归算法"><span class="nav-number">2.</span> <span class="nav-text">有监督回归算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最小二乘法"><span class="nav-number">3.</span> <span class="nav-text">最小二乘法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#来源"><span class="nav-number">4.1.</span> <span class="nav-text">来源</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装步骤"><span class="nav-number">1.</span> <span class="nav-text">安装步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用命令"><span class="nav-number">2.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见错误"><span class="nav-number">3.</span> <span class="nav-text">常见错误</span></a></li></ol></div>
             
 
           </div>
@@ -907,7 +949,7 @@
                document.getElementById("gitment-display-button").style.display = "none";
                document.getElementById("gitment-container").style.display = "block";
                var gitment = new Gitment({
-                   id: '1497340843000', 
+                   id: '1533870541000', 
                    owner: 'wlmnzf',
                    repo: 'wlmnzf.github.io',
                    oauth: {
