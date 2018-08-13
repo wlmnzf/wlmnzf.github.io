@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="会打代码的扫地王大爷">
 <meta property="og:description" content="SPEC2006常见用法和问题==================  安装步骤1234# Ubuntu16.04# 注意安装gFortran. ./install.sh. ./shrc &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一般情况下经过以上步骤即可安装完毕，进行使用,注意需要执行shrc设置完环境变量以后才可正常执行后续的各种操作。 &amp;n">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-08-12T03:42:25.745Z">
+<meta property="og:updated_time" content="2018-08-13T02:50:19.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SPEC2006">
 <meta name="twitter:description" content="SPEC2006常见用法和问题==================  安装步骤1234# Ubuntu16.04# 注意安装gFortran. ./install.sh. ./shrc &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;一般情况下经过以上步骤即可安装完毕，进行使用,注意需要执行shrc设置完环境变量以后才可正常执行后续的各种操作。 &amp;n">
@@ -401,11 +401,21 @@
 <blockquote>
 <p>如何检测自己的电脑是多少核心的呢？</p>
 <ul>
-<li>逻辑CPU核心数(包括超线程技术): <figure class="highlight plain"><figcaption><span>/proc/cpuinfo |grep "processor"|sort -u|wc -l```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 物理CPU个数:```grep &quot;physical id&quot; /proc/cpuinfo|sort -u|wc -l ```或者```grep &quot;physical id&quot; /proc/cpuinfo|sort -u</span><br></pre></td></tr></table></figure></li>
+<li>逻辑CPU核心数(包括超线程技术): <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo |grep &quot;processor&quot;|sort -u|wc -l</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </blockquote>
 <ul>
-<li><p>每个物理CPU上的真实内核个数：<figure class="highlight plain"><figcaption><span>"cpu cores"</span><a href="/proc/cpuinfo|uniq```">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 每个物理CPU上逻辑内核个数：```grep &quot;siblings&quot; /proc/cpuinfo|uniq</span><br></pre></td></tr></table></figure></p>
+<li>物理CPU个数:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;physical id&quot; /proc/cpuinfo|sort -u|wc -l</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;physical id&quot; /proc/cpuinfo|sort -u</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>每个物理CPU上的真实内核个数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;cpu cores&quot; /proc/cpuinfo|uniq</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每个物理CPU上逻辑内核个数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;siblings&quot; /proc/cpuinfo|uniq</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>若每个核心上的逻辑内核比真实内核多，则说明开启了超线程技术</p>
 </li>
