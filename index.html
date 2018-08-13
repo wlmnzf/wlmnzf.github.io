@@ -404,16 +404,16 @@
 </ul>
 <blockquote>
 <p>如何检测自己的电脑是多少核心的呢？</p>
-<ul>
-<li>逻辑CPU核心数(包括超线程技术): <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo |grep &quot;processor&quot;|sort -u|wc -l</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
 </blockquote>
 <ul>
-<li>物理CPU个数:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;physical id&quot; /proc/cpuinfo|sort -u|wc -l</span><br></pre></td></tr></table></figure>
+<li><p>逻辑CPU核心数(包括超线程技术): </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo |grep &quot;processor&quot;|sort -u|wc -l</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>物理CPU个数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;physical id&quot; /proc/cpuinfo|sort -u|wc -l</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;physical id&quot; /proc/cpuinfo|sort -u</span><br></pre></td></tr></table></figure></p>
+<h6 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;physical id&quot; /proc/cpuinfo|sort -u</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>每个物理CPU上的真实内核个数：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;cpu cores&quot; /proc/cpuinfo|uniq</span><br></pre></td></tr></table></figure>
@@ -427,28 +427,28 @@
 </ul>
 <blockquote>
 <p>runspec 481  –noreportable –n=1 </p>
+</blockquote>
 <ul>
 <li>有时候为了修复编译错误，可以让他单独跑481这一项</li>
 </ul>
-</blockquote>
 <blockquote>
 <p>runspec -c xxx.cfg</p>
+</blockquote>
 <ul>
 <li>-c用于指定配置文件，如果没有指定，则默认使用根目录的config文件夹下的default.cfg作为配置文件</li>
 </ul>
-</blockquote>
 <h4 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h4><blockquote>
 <p>gcc5.x如何跑SPEC2006</p>
+</blockquote>
 <ul>
 <li>在无法通过的测试集的gcc编译选项上加 –std=gnu89</li>
 </ul>
-</blockquote>
 <blockquote>
 <p>缺少库文件</p>
+</blockquote>
 <ul>
 <li>在gcc的编译选项上加 -include /usr/include/memory.h   include 后面的路径需要换成自己的，这里只是举个例子</li>
 </ul>
-</blockquote>
 <blockquote>
 <p>447.dealII 遇到 error: ‘ptrdiff_t’ does not name a type</p>
 </blockquote>
@@ -458,23 +458,23 @@
 </ul>
 <blockquote>
 <p><a href="https://github.com/GoogleCloudPlatform/PerfKitBenchmarker/issues/1120" target="_blank" rel="noopener">spec2006 fp test failed with 416.gamess and 481.wrf</a></p>
+</blockquote>
 <ul>
 <li>416 miscompare 问题是gcc旧版本的bug，当开启O2优化的适合会出错</li>
 <li>升级新版本gcc或者用-O0进行编译或者换一个编译器</li>
-<li>483 end of file 问题，我是通过把配置文件中的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 如果不幸需要自己编译工具链，可能会遇到更多奇怪的问题</span><br><span class="line"></span><br><span class="line">&gt; Specmd5sum multiple definition of `getline&apos;</span><br><span class="line">- Specmd5sum文件夹中的库文件跟系统库文件的函数冲突了，打开md5sum.c，注释掉```#include &quot;getline.h&quot;</span><br></pre></td></tr></table></figure></li>
+<li>483 end of file 问题，我是通过把配置文件中的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 如果不幸需要自己编译工具链，可能会遇到更多奇怪的问题</span><br><span class="line"></span><br><span class="line">&gt; Specmd5sum multiple definition of `getline&apos;</span><br><span class="line"></span><br><span class="line">- Specmd5sum文件夹中的库文件跟系统库文件的函数冲突了，打开md5sum.c，注释掉```#include &quot;getline.h&quot;</span><br></pre></td></tr></table></figure></li>
 </ul>
-</blockquote>
 <blockquote>
 <p>在perl中make时遇到 MAKE: *** NO RULE TO MAKE TARGET \’\&lt;COMMAND-LINE>\’</p>
+</blockquote>
 <ul>
 <li>这是因为gcc在高版本中改变了输出，以至于这里没有及时过滤掉，其实只要将makefile（注意不是Makefile）中\&lt;command-line><br>的那一行全删掉即可。</li>
 <li>这里有个问题是，buildtools每次编译都会将之前生成的东西清空，然后重新生成makefile文件，因此手工删除makefile中的<command-line>会失败。</command-line></li>
-<li>于是自己随便在网上找了一段代码用于删除makefile文件中的’\&lt;command-line>‘<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"> </span><br><span class="line">void Delete(char* filepath, char str[])</span><br><span class="line">&#123;</span><br><span class="line">	char buf[4096];    //每读取一行，都将内容放到该数组中</span><br><span class="line">	FILE* fp = fopen(filepath, &quot;r&quot;);     //filepath里是原内容 </span><br><span class="line"> </span><br><span class="line">	FILE* fpt = fopen(&quot;temp&quot;, &quot;w&quot;);    //将filepath文件第n行内容删除后存入temp.txt中 </span><br><span class="line">	</span><br><span class="line">	while(!feof(fp)) </span><br><span class="line">	&#123;  </span><br><span class="line">	   fgets(buf,sizeof(buf), fp);  </span><br><span class="line">		if (!strstr(buf,str)) </span><br><span class="line">		&#123;      </span><br><span class="line">		  fprintf(fpt, &quot;%s&quot;, buf); </span><br><span class="line">                  printf(&quot;%s\n&quot;,buf);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(fpt);</span><br><span class="line"> </span><br><span class="line">	fpt = fopen(&quot;temp&quot;, &quot;r&quot;);</span><br><span class="line">    fp = fopen(filepath, &quot;w&quot;);</span><br><span class="line">    fgets(buf, sizeof(buf), fpt);	</span><br><span class="line">    while(!feof(fpt))</span><br><span class="line">	&#123;</span><br><span class="line">	   fprintf(fp, &quot;%s&quot;, buf);</span><br><span class="line">       fgets(buf, sizeof(buf), fpt);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(fpt);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">void main()</span><br><span class="line">&#123; </span><br><span class="line">	Delete(&quot;x2p/makefile&quot;, &quot;command&quot;);  </span><br><span class="line">    Delete(&quot;makefile&quot;, &quot;command&quot;); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>于是自己随便在网上找了一段代码用于删除makefile文件中的’\&lt;command-line>‘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"> </span><br><span class="line">void Delete(char* filepath, char str[])</span><br><span class="line">&#123;</span><br><span class="line">	char buf[4096];    //每读取一行，都将内容放到该数组中</span><br><span class="line">	FILE* fp = fopen(filepath, &quot;r&quot;);     //filepath里是原内容 </span><br><span class="line"> </span><br><span class="line">	FILE* fpt = fopen(&quot;temp&quot;, &quot;w&quot;);    //将filepath文件第n行内容删除后存入temp.txt中 </span><br><span class="line">	</span><br><span class="line">	while(!feof(fp)) </span><br><span class="line">	&#123;  </span><br><span class="line">	   fgets(buf,sizeof(buf), fp);  </span><br><span class="line">		if (!strstr(buf,str)) </span><br><span class="line">		&#123;      </span><br><span class="line">		  fprintf(fpt, &quot;%s&quot;, buf); </span><br><span class="line">                  printf(&quot;%s\n&quot;,buf);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(fpt);</span><br><span class="line"> </span><br><span class="line">	fpt = fopen(&quot;temp&quot;, &quot;r&quot;);</span><br><span class="line">    fp = fopen(filepath, &quot;w&quot;);</span><br><span class="line">    fgets(buf, sizeof(buf), fpt);	</span><br><span class="line">    while(!feof(fpt))</span><br><span class="line">	&#123;</span><br><span class="line">	   fprintf(fp, &quot;%s&quot;, buf);</span><br><span class="line">       fgets(buf, sizeof(buf), fpt);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(fpt);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">void main()</span><br><span class="line">&#123; </span><br><span class="line">	Delete(&quot;x2p/makefile&quot;, &quot;command&quot;);  </span><br><span class="line">    Delete(&quot;makefile&quot;, &quot;command&quot;); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-</blockquote>
-<ul>
-<li>将上述代码另存为delete.c,置于工具链中的perl-5.8.7根目录下</li>
+<li><p>将上述代码另存为delete.c,置于工具链中的perl-5.8.7根目录下</p>
+</li>
 <li>并修改buildtools中的shell脚本,如下打加号的部分<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  DYLD_LIBRARY_PATH=`pwd`</span><br><span class="line">  export LD_LIBRARY_PATH DYLD_LIBRARY_PATH</span><br><span class="line">  ./Configure   -dOes -Ud_flock $PERLFLAGS -Ddosuid=undef -Dprefix=$INSTALLDIR -Dd_bincompat3=undef -A ldflags=-L$&#123;INSTALLDIR&#125;/lib -A ccflags=-I$&#123;INSTALLDIR&#125;/include -Ui_db -Ui_gdbm -Ui_ndbm -Ui_dbm -Uuse5005threads ; testordie &quot;error configuring perl&quot;</span><br><span class="line"></span><br><span class="line">+  gcc -o del delete.c</span><br><span class="line">+  ./del</span><br><span class="line">+  cd x2p</span><br><span class="line">+    $MYMAKE</span><br><span class="line">+  cd ../</span><br><span class="line">+  ./del</span><br><span class="line"></span><br><span class="line">  $MYMAKE; testordie &quot;error building perl&quot;</span><br><span class="line">  ./perl installperl; testordie &quot;error installing perl&quot;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
