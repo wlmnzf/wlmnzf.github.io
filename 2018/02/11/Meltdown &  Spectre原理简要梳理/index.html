@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://csuncle.com/uploads/Meltdown_Spectre原理简要梳理/6.png">
 <meta property="og:image" content="http://csuncle.com/uploads/Meltdown_Spectre原理简要梳理/7.png">
 <meta property="og:image" content="http://csuncle.com/uploads/Meltdown_Spectre原理简要梳理/8.png">
-<meta property="og:updated_time" content="2018-08-03T09:54:23.450Z">
+<meta property="og:updated_time" content="2018-08-22T01:18:37.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Meltdown &amp;  Spectre原理简要梳理">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Spectre以及meltdown漏洞是前段时间，十分热门的两个漏洞，它们之所以广受重视，是因为它们根据的是体系结构的设计漏洞，而非针对某个系统或者某个软件，因此它几乎可以遍及大多数近代的CPU。 这里主要有三个漏洞:  Variant 1: bounds check bypass (CVE-2017-">
@@ -410,9 +410,9 @@
 </ol>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程序的乱序执行并不意味着在所有步骤中，指令的顺序都是混乱的，事实上，指令在发射时和提交时依然是顺序的，只是在执行的过程中会打乱顺序。</p>
 <p>为了支持乱序执行<br><img src="/uploads/Meltdown_Spectre原理简要梳理/5.png" alt="带有ROB的Tomasulo算法"></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们在Tomasulo  算法中加入了ROB来使得提交结果的时候能够按照顺序提交，执行的结暂时存放于ROB而不直接写入寄存器堆，然后再按顺序提交数据。从而可以不出问题。</p>
-<p>本次的漏洞就是利用了这一特性来实现的</p>
-<h4 id="四、分支预测"><a href="#四、分支预测" class="headerlink" title="四、分支预测"></a>四、分支预测</h4><p>由于在指令中存在许多跳转和分支，为了提前访问分支中的代码以解决时间，我们加入了分支预测功能</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们在Tomasulo  算法中加入了ROB来使得提交结果的时候能够按照顺序提交，执行的结果暂时存放于ROB而不直接写入寄存器堆，然后再按顺序提交数据。从而可以不出问题。</p>
+<p>本次的漏洞就是利用了乱序执行这一特性来实现的</p>
+<h4 id="四、分支预测"><a href="#四、分支预测" class="headerlink" title="四、分支预测"></a>四、分支预测</h4><p>由于在指令中存在许多跳转和分支，为了提前访问分支中的代码以节约时间，我们加入了分支预测功能</p>
 <h6 id="静态分支"><a href="#静态分支" class="headerlink" title="静态分支"></a>静态分支</h6><p>对于所有的跳转指令，我们都预测执行跳转或者执行不跳转，则称其为静态跳转</p>
 <h6 id="动态分支"><a href="#动态分支" class="headerlink" title="动态分支"></a>动态分支</h6><p>动态分支将会通过历史跳转信息来预测下一次分支应该选择跳转还是选择不跳转。在intel设计中有一个称为BTB(Branch Target Buffer)的部件，当我们执行分支指令时，会将执行结果和分支指令地址记录在其中，当下次取址时，查询其中的记录，若存在，则根据历史执行记录进行预测是否跳转。</p>
 <p>若不存在此记录，我们将会使用静态分支预测器，我们一般将向上跳转的分支指令看作循环，对于循环我们倾向于接受跳转，而对于向下跳转，我们倾向于不跳转。</p>
@@ -626,7 +626,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -637,7 +637,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -648,7 +648,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

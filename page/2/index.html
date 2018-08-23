@@ -288,6 +288,267 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/13/基于tensorflow的MNIST手写数字识别（三）-神经网络篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="William Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/13/基于tensorflow的MNIST手写数字识别（三）-神经网络篇/" itemprop="url">基于tensorflow的MNIST手写数字识别（三）--神经网络篇</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T15:08:13+08:00">
+                2017-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MachineLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">MachineLearning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="想想还是要说点什么"><a href="#想想还是要说点什么" class="headerlink" title="想想还是要说点什么"></a>想想还是要说点什么</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;抱歉啊，第三篇姗姗来迟，确实是因为我懒，而不是忙什么的，所以这次再加点料，以表示我的歉意。废话不多说，我就直接开始讲了。</p>
+<h3 id="加入神经网络的意义"><a href="#加入神经网络的意义" class="headerlink" title="加入神经网络的意义"></a>加入神经网络的意义</h3><ul>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;前面也讲到了，使用普通的训练方法，也可以进行识别，但是识别的精度不够高，因此我们需要对其进行提升，其实MNIST官方提供了很多的组合方法以及测试精度，并做成了表格供我们选用，谷歌官方为了保证教学的简单性，所以用了最简单的卷积神经网络来提升这个的识别精度，原理是通过强化它的特征（比如轮廓等），其实我也刚学，所以能看懂就说明它确实比较简单。<ul>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;我的代码都是在0.7版本的tensorflow上实现的，建议看一下前两篇文章先。</li>
+</ul>
+</li>
+</ul>
+<h3 id="流程和步骤"><a href="#流程和步骤" class="headerlink" title="流程和步骤"></a>流程和步骤</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;其实流程跟前面的差不多,只是在softmax前进行了卷积神经网络的操作，所也就不仔细提出了，这里只说卷积神经网络的部分。<br>        如第一篇文章所说，我们的卷积神经网络的，过程是卷积-&gt;池化-&gt;全连接.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 卷积函数</span><br><span class="line"># convolution</span><br><span class="line">def conv2d(x, W):</span><br><span class="line">    return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding=&apos;SAME&apos;)</span><br><span class="line">#这里tensorflow自己带了conv2d函数做卷积，然而我们自定义了个函数，用于指定步长为1，边缘处理为直接复制过来</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"># pooling</span><br><span class="line">def max_pool_2x2(x):</span><br><span class="line">    return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding=&apos;SAME&apos;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None, name=None)</p>
+</blockquote>
+<blockquote>
+<p>Computes a 2-D convolution given 4-D input and filter tensors.</p>
+</blockquote>
+<blockquote>
+<p>Given an input tensor of shape [batch, in_height, in_width, in_channels] and a filter / kernel tensor of shape [filter_height, filter_width, in_channels, out_channels], this op performs the following:</p>
+</blockquote>
+<blockquote>
+<p>Flattens the filter to a 2-D matrix with shape [filter_height <em> filter_width </em> in_channels, output_channels].</p>
+</blockquote>
+<p>Extracts image patches from the the input tensor to form a virtual tensor of shape [batch, out_height, out_width, filter_height <em> filter_width </em> in_channels].</p>
+<blockquote>
+</blockquote>
+<p>For each patch, right-multiplies the filter matrix and the image patch vector.<br>In detail,</p>
+<blockquote>
+<p>output[b, i, j, k] =<br>    sum_{di, dj, q} input[b, strides[1] <em> i + di, strides[2] </em> j + dj, q] *<br>                    filter[di, dj, q, k]</p>
+</blockquote>
+<p>Must have strides[0] = strides[3] = 1. For the most common case of the same horizontal and vertices strides, strides = [1, stride, stride, 1].</p>
+<blockquote>
+<p>Args:</p>
+</blockquote>
+<blockquote>
+<p>input: A Tensor. Must be one of the following types: float32, float64.</p>
+</blockquote>
+<blockquote>
+<p>filter: A Tensor. Must have the same type as input.</p>
+</blockquote>
+<blockquote>
+<p>strides: A list of ints. 1-D of length 4. The stride of the sliding window for each dimension of input.</p>
+</blockquote>
+<blockquote>
+<p>padding: A string from: “SAME”, “VALID”. The type of padding algorithm to use.</p>
+</blockquote>
+<blockquote>
+<p>use_cudnn_on_gpu: An optional bool. Defaults to True.</p>
+</blockquote>
+<blockquote>
+<p>name: A name for the operation (optional).</p>
+</blockquote>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<blockquote>
+<p>A Tensor. Has the same type as input.</p>
+</blockquote>
+<p>#### </p>
+<blockquote>
+<p>tf.nn.max_pool(value, ksize, strides, padding, name=None)</p>
+</blockquote>
+<blockquote>
+<p>Performs the max pooling on the input.</p>
+</blockquote>
+<blockquote>
+<p>Args:</p>
+</blockquote>
+<blockquote>
+<p>value: A 4-D Tensor with shape [batch, height, width, channels] and type float32, float64, qint8, quint8, qint32.</p>
+</blockquote>
+<blockquote>
+<p>ksize: A list of ints that has length &gt;= 4. The size of the window for each dimension of the input tensor.</p>
+</blockquote>
+<blockquote>
+<p>strides: A list of ints that has length &gt;= 4. The stride of the sliding window for each dimension of the input tensor.</p>
+</blockquote>
+<blockquote>
+<p>padding: A string, either ‘VALID’ or ‘SAME’. The padding algorithm.</p>
+</blockquote>
+<blockquote>
+<p>name: Optional name for the operation.</p>
+</blockquote>
+<blockquote>
+<p>Returns:</p>
+</blockquote>
+<blockquote>
+<p>A Tensor with the same type as value. The max pooled output tensor.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">初始化权重和偏置值矩阵，值是空的，需要后期训练。</span><br><span class="line"></span><br><span class="line">def weight_variable(shape):</span><br><span class="line">    initial = tf.truncated_normal(shape, stddev=0.1)</span><br><span class="line">    return tf.Variable(initial)</span><br><span class="line"></span><br><span class="line">def bias_variable(shape):</span><br><span class="line">    initial = tf.constant(0.1, shape = shape)</span><br><span class="line">    # print(tf.Variable(initial).eval())</span><br><span class="line">    return tf.Variable(initial)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#这是做了两次卷积和池化</span><br><span class="line">h_conv1 = tf.nn.relu(conv2d(x_image, w_conv1) + b_conv1)</span><br><span class="line">h_pool1 = max_pool_2x2(h_conv1)</span><br><span class="line"></span><br><span class="line">h_conv2 = tf.nn.relu(conv2d(h_pool1, w_conv2) + b_conv2)</span><br><span class="line">h_pool2 = max_pool_2x2(h_conv2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里是做了全连接，还用了relu激活函数（RELU在下面会提到）</span><br><span class="line">h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])</span><br><span class="line">h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, w_fc1) + b_fc1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#为了防止过拟合化，这里用dropout来关闭一些连接（DROP下面会提到）</span><br><span class="line">h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)</span><br></pre></td></tr></table></figure>
+<p>然后得到的结果再跟之前的一样，使用softmax等方法训练即可得到参数。</p>
+<h3 id="RELU激活函数"><a href="#RELU激活函数" class="headerlink" title="RELU激活函数"></a>RELU激活函数</h3><p>激活函数有很多种，最常用的是以下三种</p>
+<h5 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h5><blockquote>
+<p>将数据映射到0-1范围内</p>
+<h4 id="公式如下"><a href="#公式如下" class="headerlink" title="公式如下"></a>公式如下</h4><p> <img src="/uploads/基于tensorflow的MNIST手写数字识别三/1.jpg" alt="这里写图片描述"></p>
+<p> ####函数图像如下<br><img src="/uploads/基于tensorflow的MNIST手写数字识别三/2.jpg" alt="函数图像"></p>
+</blockquote>
+<h4 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h4><blockquote>
+<p>将数据映射到-1-1的范围内</p>
+<h4 id="公式如下-1"><a href="#公式如下-1" class="headerlink" title="公式如下"></a>公式如下</h4><p><img src="/uploads/基于tensorflow的MNIST手写数字识别三/3.jpg" alt="这里写图片描述"></p>
+<p>函数图像如下<br><img src="/uploads/基于tensorflow的MNIST手写数字识别三/4.jpg" alt="这里写图片描述"></p>
+</blockquote>
+<h4 id="RELU"><a href="#RELU" class="headerlink" title="RELU"></a>RELU</h4><blockquote>
+<p>小于0的值就变成0，大于0的等于它本身</p>
+<h4 id="函数图像"><a href="#函数图像" class="headerlink" title="函数图像"></a>函数图像</h4><p><img src="/uploads/基于tensorflow的MNIST手写数字识别三/5.jpg" alt="这里写图片描述"></p>
+</blockquote>
+<p>具体的参考这个<a href="http://blog.csdn.net/u012526120/article/details/49149317" target="_blank" rel="noopener">http://blog.csdn.net/u012526120/article/details/49149317</a></p>
+<p>###dropout的作用</p>
+<blockquote>
+<ul>
+<li><p>以前学习数学我们常用到一种方法，叫做待定系数法，就是给定2次函数上的几个点，然后求得2次函数的参数。</p>
+</li>
+<li><p>一样的道理，我们这里用格式训练集训练，最后训练得到参数，其实就是在求得一个模型（函数），使得它能跟原始数据的曲线进行拟合（说白了，就是假装原始数据都在我们计算出来的函数上）</p>
+</li>
+<li><p>但是这样不行啊，因为我们还需要对未知数据进行预测啊，如果原始的数据点都在（或者大多数都在）函数上了（这就是过拟合），那会被很多训练数据误导的，所以其实只要一个大致的趋势函数就可以了</p>
+</li>
+<li><p>所以Dropout函数就是用来，减少某些点的全连接（可以理解为把一些点去掉了），来防止过拟合</p>
+</li>
+</ul>
+</blockquote>
+<p>具体的看这个<a href="http://www.cnblogs.com/tornadomeet/p/3258122.html" target="_blank" rel="noopener">http://www.cnblogs.com/tornadomeet/p/3258122.html</a></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><blockquote>
+<ul>
+<li>水完了，看代码吧，注释上有写一些变量的维度，大家可以一步步地看过去，计算过去</li>
+<li><a href="https://github.com/wlmnzf/tensorflow-train/blob/master/mnist/cnn_mnist.py" target="_blank" rel="noopener">https://github.com/wlmnzf/tensorflow-train/blob/master/mnist/cnn_mnist.py</a></li>
+</ul>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/13/基于tensorflow的MNIST手写数字识别（二）-入门篇/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1387,7 +1648,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1398,7 +1659,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1409,7 +1670,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
