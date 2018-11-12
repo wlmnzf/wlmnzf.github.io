@@ -533,7 +533,7 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以使用如表2所示的符号来描述硬件系统的行为，例如我们要表示“信号A一直不变，直到上升沿才翻转”这一操作，则我们令p为“信号A不变”，q为“时钟到达上升沿”，则该操作可表示为当满足pUq使信号A翻转。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比较常用的时序逻辑是线性时序逻辑（Linear temporal logic，LTL）以及计算树逻辑（Computation tree logic，CTL）。线性时序逻辑是个线性结构，每一个时刻都只对应一个后继，计算树逻辑则是一个树状的分支结构。LTL可用于重点对象的分析，并且它可以使用公平的概念，但是对于一些可返回到初始状态的复杂系统，LTL则无法表示。CTL则相反，它无法使用公平的概念，但是却可以表达一些较为复杂的系统[3]。LTL和CTL各有自己的优势，E. A. Emerson 和 Joseph Y. Halpern 在 1986年提出了CTL*，统一了LTL和CTL。在传统的模型检验中，通常采用时序逻辑来描述电路。</p>
 <h6 id="Petri网"><a href="#Petri网" class="headerlink" title="Petri网"></a>Petri网</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Petri网是一种重要的数学工具，Petri网对系统的并发性，异步性和不确定性具有很强的描述能力，一般主要是使用Petri网的可达图[4]。</p>
-<p>Petri网通常为四元组N= \&lt;P,T,F,M0></p>
+<p>Petri网通常为四元组N= \<p,t,f,m0\></p,t,f,m0\></p>
 <p>P：库所（Place）的有限集</p>
 <p>T：迁移（Transition）的有限集</p>
 <p>F：F ⊆ (P x T) ∪ (T x P)，表示边的集合。∪前后分别表示输入函数集以及输出函数集。</p>
