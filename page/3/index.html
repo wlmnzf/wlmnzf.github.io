@@ -139,7 +139,7 @@
   <title>会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 
@@ -177,7 +177,7 @@
  ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -287,16 +287,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（完）/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -341,7 +341,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/WebDesign/" itemprop="url" rel="index">
                     <span itemprop="name">WebDesign</span>
                   </a>
@@ -436,16 +436,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（二）/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -490,7 +490,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/WebDesign/" itemprop="url" rel="index">
                     <span itemprop="name">WebDesign</span>
                   </a>
@@ -567,26 +567,36 @@ ev.target.appendChild(document.getElementById(data));
 <p>DataTransfer.dropEffect</p>
 <blockquote>
 <p>Gets the type of drag-and-drop operation currently selected or sets the operation to a new type. The value must be none copy link or move.</p>
+</blockquote>
+<blockquote>
 <p>获取或者设置当前被选择元素的拖拽类型，它的值必须为none、copy、link、或者move</p>
 </blockquote>
 <p>DataTransfer.effectAllowed</p>
 <blockquote>
 <p>Provides all of the types of operations that are possible. Must be one ofnone,copy,copyLink,copyMove,link,linkMove,move,alloruninitialized.</p>
+</blockquote>
+<blockquote>
 <p>提供所有可能的操作种类，必须是none,copy,copyLink,copyMove,link,linkMove,move,all或者uninitialized.中的一个。</p>
 </blockquote>
 <p>DataTransfer.files</p>
 <blockquote>
 <p>Contains a list of all the local files available on the data transfer. If the drag operation doesn’t involve dragging files, this property is an empty list.</p>
+</blockquote>
+<blockquote>
 <p>包含一组可获取的本地文件列表，如果拖拽操作不包含文件，则这个文件列表将会是空的。这个属性超棒，很多拖拽上传功能就是这样子开发出来的</p>
 </blockquote>
 <p>DataTransfer.items    Read only</p>
 <blockquote>
 <p>Gives aDataTransferItemListobject which is a list of all of the drag data.</p>
+</blockquote>
+<blockquote>
 <p>只读，给定一个DataTransferItemList的对象，其中包含了一个所有拖拽数据的列表。</p>
 </blockquote>
 <p>DataTransfer.types Read only</p>
 <blockquote>
 <p>An array ofstringgiving the formats that were set in thedragstartevent.</p>
+</blockquote>
+<blockquote>
 <p>只读，一组字符串数组，给定了在dragstart事件中设置的一组格式。</p>
 </blockquote>
 <p><strong>Methods</strong></p>
@@ -594,23 +604,31 @@ ev.target.appendChild(document.getElementById(data));
 <p>DataTransfer.clearData()</p>
 <blockquote>
 <p>Remove the data associated with a given type. The type argument is optional. If the type is empty or not specified, the data associated with all types is removed. If data for the specified type does not exist, or the data transfer contains no data, this method will have no effect.</p>
+</blockquote>
+<blockquote>
 <p>清除给定类别的数据，type这个参数是可选的，如果类别是空或者不明确，跟所有类别相关的数据都将清除掉，如果特定类别的数据不存在，或者dataTransfer不包含数据，则这个方法将没有任何效果。</p>
 </blockquote>
 <p>DOM String dataTransfer.getData(format);</p>
 <p>DataTransfer.getData()</p>
 <blockquote>
 <p>Retrieves the data for a given type, or an empty string if data for that type does not exist or the data transfer contains no data.</p>
+</blockquote>
+<blockquote>
 <p>取回给定类别的数据，如果给定类别的数据不存在或者dataTransfer不包含任何数据，则将返回一个空字符串。</p>
 </blockquote>
 <p>DataTransfer.setData()</p>
 <blockquote>
 <p>Set the data for a given type. If data for the type does not exist, it is added at the end, such that the last item in the types list will be the new format. If data for the type already exists, the existing data is replaced in the same position.</p>
+</blockquote>
+<blockquote>
 <p>设置一个给定类别的数据，如果这个类别的数据不存在，则将被添加到末尾，因此这个类别的列表的最后一项将是一个新的格式，如果这个类别已经存在，则存在的数据将被取代为这个新的数据</p>
 </blockquote>
 <p>void dataTransfer.setDragImage(img, xOffset, yOffset);</p>
 <p>DataTransfer.setDragImage()</p>
 <blockquote>
 <p>Set the image to be used for dragging if a custom one is desired.      </p>
+</blockquote>
+<blockquote>
 <p>设置拖拽的时候显示的图片（默认是拖拽元素的缩略图）</p>
 </blockquote>
 <p>六、代码</p>
@@ -663,16 +681,16 @@ ev.target.appendChild(document.getElementById(data));
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/11/自定义表单（一）/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -717,7 +735,7 @@ ev.target.appendChild(document.getElementById(data));
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/WebDesign/" itemprop="url" rel="index">
                     <span itemprop="name">WebDesign</span>
                   </a>
@@ -887,7 +905,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
       
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="William Wang">
           <p class="site-author-name" itemprop="name">William Wang</p>
            
@@ -1015,7 +1033,7 @@ function：Callthismethod during the handling of a mousedown event to retarget a
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

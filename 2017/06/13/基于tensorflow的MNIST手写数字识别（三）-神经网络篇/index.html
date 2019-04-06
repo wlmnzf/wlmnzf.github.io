@@ -147,7 +147,7 @@
   <title>基于tensorflow的MNIST手写数字识别（三）--神经网络篇 | 会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 
@@ -183,7 +183,7 @@
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -293,16 +293,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/13/基于tensorflow的MNIST手写数字识别（三）-神经网络篇/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -345,7 +345,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/MachineLearning/" itemprop="url" rel="index">
                     <span itemprop="name">MachineLearning</span>
                   </a>
@@ -391,34 +391,80 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 卷积函数</span><br><span class="line"># convolution</span><br><span class="line">def conv2d(x, W):</span><br><span class="line">    return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding=&apos;SAME&apos;)</span><br><span class="line">#这里tensorflow自己带了conv2d函数做卷积，然而我们自定义了个函数，用于指定步长为1，边缘处理为直接复制过来</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"># pooling</span><br><span class="line">def max_pool_2x2(x):</span><br><span class="line">    return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding=&apos;SAME&apos;)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None, name=None)</p>
+</blockquote>
+<blockquote>
 <p>Computes a 2-D convolution given 4-D input and filter tensors.</p>
+</blockquote>
+<blockquote>
 <p>Given an input tensor of shape [batch, in_height, in_width, in_channels] and a filter / kernel tensor of shape [filter_height, filter_width, in_channels, out_channels], this op performs the following:</p>
+</blockquote>
+<blockquote>
 <p>Flattens the filter to a 2-D matrix with shape [filter_height <em> filter_width </em> in_channels, output_channels].</p>
+</blockquote>
 <p>Extracts image patches from the the input tensor to form a virtual tensor of shape [batch, out_height, out_width, filter_height <em> filter_width </em> in_channels].</p>
+<blockquote>
+</blockquote>
 <p>For each patch, right-multiplies the filter matrix and the image patch vector.<br>In detail,</p>
+<blockquote>
 <p>output[b, i, j, k] =<br>    sum_{di, dj, q} input[b, strides[1] <em> i + di, strides[2] </em> j + dj, q] *<br>                    filter[di, dj, q, k]</p>
+</blockquote>
 <p>Must have strides[0] = strides[3] = 1. For the most common case of the same horizontal and vertices strides, strides = [1, stride, stride, 1].</p>
+<blockquote>
 <p>Args:</p>
+</blockquote>
+<blockquote>
 <p>input: A Tensor. Must be one of the following types: float32, float64.</p>
+</blockquote>
+<blockquote>
 <p>filter: A Tensor. Must have the same type as input.</p>
+</blockquote>
+<blockquote>
 <p>strides: A list of ints. 1-D of length 4. The stride of the sliding window for each dimension of input.</p>
+</blockquote>
+<blockquote>
 <p>padding: A string from: “SAME”, “VALID”. The type of padding algorithm to use.</p>
+</blockquote>
+<blockquote>
 <p>use_cudnn_on_gpu: An optional bool. Defaults to True.</p>
+</blockquote>
+<blockquote>
 <p>name: A name for the operation (optional).</p>
+</blockquote>
+<blockquote>
 <p>Returns:</p>
+</blockquote>
+<blockquote>
 <p>A Tensor. Has the same type as input.</p>
 </blockquote>
 <p>#### </p>
 <blockquote>
 <p>tf.nn.max_pool(value, ksize, strides, padding, name=None)</p>
+</blockquote>
+<blockquote>
 <p>Performs the max pooling on the input.</p>
+</blockquote>
+<blockquote>
 <p>Args:</p>
+</blockquote>
+<blockquote>
 <p>value: A 4-D Tensor with shape [batch, height, width, channels] and type float32, float64, qint8, quint8, qint32.</p>
+</blockquote>
+<blockquote>
 <p>ksize: A list of ints that has length &gt;= 4. The size of the window for each dimension of the input tensor.</p>
+</blockquote>
+<blockquote>
 <p>strides: A list of ints that has length &gt;= 4. The stride of the sliding window for each dimension of the input tensor.</p>
+</blockquote>
+<blockquote>
 <p>padding: A string, either ‘VALID’ or ‘SAME’. The padding algorithm.</p>
+</blockquote>
+<blockquote>
 <p>name: Optional name for the operation.</p>
+</blockquote>
+<blockquote>
 <p>Returns:</p>
+</blockquote>
+<blockquote>
 <p>A Tensor with the same type as value. The max pooled output tensor.</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">初始化权重和偏置值矩阵，值是空的，需要后期训练。</span><br><span class="line"></span><br><span class="line">def weight_variable(shape):</span><br><span class="line">    initial = tf.truncated_normal(shape, stddev=0.1)</span><br><span class="line">    return tf.Variable(initial)</span><br><span class="line"></span><br><span class="line">def bias_variable(shape):</span><br><span class="line">    initial = tf.constant(0.1, shape = shape)</span><br><span class="line">    # print(tf.Variable(initial).eval())</span><br><span class="line">    return tf.Variable(initial)</span><br></pre></td></tr></table></figure>
@@ -645,7 +691,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="William Wang">
           <p class="site-author-name" itemprop="name">William Wang</p>
            
@@ -789,7 +835,7 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -139,7 +139,7 @@
   <title>会打代码的扫地王大爷</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 
@@ -177,7 +177,7 @@
  ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -287,16 +287,161 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/11/12/HEXO搭建/">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2019/03/19/风行者Cache(一)/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/19/风行者Cache(一)/" itemprop="url">风行者Cache（一）</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-19T20:57:32+08:00">
+                2019-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Computer-Architecture/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Architecture</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p style="text-align: center;"><br>风行者Cache（一）之初入江湖<br>==================<br></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;风，看不见摸不着，却拥有着巨大的力量。对于江湖上时常出现的不明身份的武功高手，我们通常称之为风行者</p>
+<p>​        Cache就是其中之一，现代计算机的处理速度能达到如此之高，Cache是功不可没的。但是这么一个重要的部件，对于普通人，甚至是程序员而言，是根本感受不到它的存在的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高速缓存在计算机体系结构中的地位宛若风一般，程序员无法感受到它的存在，但是它却为系统新歌能的提升做出了巨大的贡献。</p>
+<h4 id="为什么需要Cache"><a href="#为什么需要Cache" class="headerlink" title="为什么需要Cache"></a>为什么需要Cache</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最早的计算机中并不存在Cache结构，因为当时CPU和内存的速度都不是十分快，但是随着摩尔定律的不断应验，CPU一直处于高度发展当中，反过来，内存却进步很小。它们之间的速度差距越来越大，意味着，CPU处理各种计算的时候，等待IO将数据从内存取回来的时间将显得十分明显，如图1所示，很明显，内存大大拖累了处理器的处理速度，业界常称这种速度差距为剪刀差。</p>
+<p><img src="/uploads/风行者Cache(一" alt="图1">之初入江湖/CPU-DRAM.png)</p>
+<p style="text-align: center;"><br>图1 CPU与内存的速度随时间的差异图<br></p>
+
+<p>​          为了弥补处理器和内存之间的这些差距，Cache就诞生了，Cache又叫高速缓存，顾名思义它会将内存中一些常用的数据存起来，当处理器后续访问这些数据时就可以直接返回结果，而不需要再劳神费力地去访问内存了。有人可能会说，既然Cache的速度如此之快，那为什么还需要内存呢，将缓存做的大不就可以了吗？理论上确实如此，但是Cache的成本实在太高，如果完全得将Cache做的像内存那样大，恐怕计算机会十分贵。这一点参考前些年固态硬盘和机械硬盘的价格就可以理解了，固态硬盘虽然比机械硬盘快很多，但是固态硬盘又贵又小，满足不了日常需求，计算机的价格却因此大大提升。关于Cache和内存为什么会有速度差距，请参看另一篇文章，DRAM&amp;SRAM之争。</p>
+<h4 id="Cache的三种结构"><a href="#Cache的三种结构" class="headerlink" title="Cache的三种结构"></a>Cache的三种结构</h4><h4 id="直接映射"><a href="#直接映射" class="headerlink" title="直接映射"></a>直接映射</h4><h4 id="全相连"><a href="#全相连" class="headerlink" title="全相连"></a>全相连</h4><h4 id="组相连"><a href="#组相连" class="headerlink" title="组相连"></a>组相连</h4><h3 id="替换法则"><a href="#替换法则" class="headerlink" title="替换法则"></a>替换法则</h3><h4 id="时间空间局部性原理"><a href="#时间空间局部性原理" class="headerlink" title="时间空间局部性原理"></a>时间空间局部性原理</h4><h4 id="举个循环的例子"><a href="#举个循环的例子" class="headerlink" title="举个循环的例子"></a>举个循环的例子</h4><p>举个数组的例子</p>
+<p>替换法则</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/11/12/HEXO搭建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="William Wang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -341,7 +486,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/HEXO/" itemprop="url" rel="index">
                     <span itemprop="name">HEXO</span>
                   </a>
@@ -387,6 +532,8 @@
 <p>####安装依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
 <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><blockquote>
 <p>问题1:  Error: Cannot find module ‘hexo-util’<br>回答1：npm install – save-dev hexo-util</p>
+</blockquote>
+<blockquote>
 <p>问题2:  sh: 1: cannot create highlight_alias.json: Permission denied<br>回答2:  尝试执行<code>npm config set unsafe-perm true</code>，依然不行按照官方解决方案尝试<a href="https://docs.npmjs.com/getting-started/fixing-npm-permissions" target="_blank" rel="noopener">https://docs.npmjs.com/getting-started/fixing-npm-permissions</a></p>
 </blockquote>
 
@@ -431,16 +578,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/11/12/安装最新版本的Nodejs/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -485,7 +632,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Nodejs/" itemprop="url" rel="index">
                     <span itemprop="name">Nodejs</span>
                   </a>
@@ -570,16 +717,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/11/12/源码安装shadowsocks/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -624,7 +771,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/shadowsocks/" itemprop="url" rel="index">
                     <span itemprop="name">shadowsocks</span>
                   </a>
@@ -667,11 +814,11 @@
 <li>安装依赖包</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install qt5-qmake qtbase5-dev libqrencode-dev libappindicator-dev libzbar-dev libbotan1.10-dev</span><br></pre></td></tr></table></figure>
-<ol>
+<ol start="2">
 <li>安装库</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/shadowsocks/libQtShadowsocks.git</span><br><span class="line">cd libQtShadowsocks</span><br><span class="line">cmake .</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">sudo cp /usr/local/lib/libQtShadowsocks.so.2 /usr/lib/libQtShadowsocks.so.2</span><br></pre></td></tr></table></figure>
-<ol>
+<ol start="3">
 <li>安装shadowsocks</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/shadowsocks/shadowsocks-qt5.git</span><br><span class="line">cd shadowsocks-qt5</span><br><span class="line">cmake .</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
@@ -717,155 +864,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/09/28/风行者Cache(一)/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会打代码的扫地王大爷">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/28/风行者Cache(一)/" itemprop="url">风行者Cache（一）</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-28T19:57:32+08:00">
-                2018-09-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Computer-Architecture/" itemprop="url" rel="index">
-                    <span itemprop="name">Computer Architecture</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p style="text-align: center;"><br>风行者Cache（一）<br>==================<br></p>
-
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;风，</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高速缓存在计算机体系结构中的地位宛若风一般，程序员无法感受到它的存在，但是它却为系统新歌能的提升做出了巨大的贡献。</p>
-<h3 id="Cache简史"><a href="#Cache简史" class="headerlink" title="Cache简史"></a>Cache简史</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最早的计算机中并不存在Cache结构，因为当时CPU和内存的速度都不是十分快，</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/27/GEM5中添加一个简单的IO模块/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -910,7 +918,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/gem5/" itemprop="url" rel="index">
                     <span itemprop="name">gem5</span>
                   </a>
@@ -1008,16 +1016,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/26/GEM5中利用Pydot输出系统配置图/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -1062,7 +1070,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/gem5/" itemprop="url" rel="index">
                     <span itemprop="name">gem5</span>
                   </a>
@@ -1147,16 +1155,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/25/Gem5中使用DRAMSim2/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -1201,7 +1209,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/gem5/" itemprop="url" rel="index">
                     <span itemprop="name">gem5</span>
                   </a>
@@ -1291,16 +1299,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/23/模型检验-计算树逻辑（CTL）小例/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -1345,7 +1353,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Model-checking/" itemprop="url" rel="index">
                     <span itemprop="name">Model checking</span>
                   </a>
@@ -1356,7 +1364,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Model-checking/Formal-Method/" itemprop="url" rel="index">
                     <span itemprop="name">Formal Method</span>
                   </a>
@@ -1395,9 +1403,9 @@
           
             <p style="text-align: center;"><br>模型检验-计算树逻辑（CTL）小例<br>==================<br></p>
 
-<p><img src="/uploads/CTL小例/1.png" alt=""></p>
+<p><img src="/uploads/CTL小例/1.png" alt></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AX是相对于初始节点（x=1）开始的树而言的，由于AX表示对于任何从初始节点(x=1)开始的路径中的下一个节点，因此EX则是相对于初始节点的子节点（x=2）开始的子树而言的。EX(x=4)表示存在从节点(x=2)开始的路径，使得子树的初始节点(x=2)的下一个节点是节点(x=4)。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在Kripke结构K中，对于(x=1) =&gt; (x=2) =&gt; (x=3) =&gt; (x=1)的路径而言(x=2)的下一个节点是(x=3)并不满足EX(x=4)，并不是对任何从初始节点(x=1)出发的路径都满足式子中的AX。因此K不满足式子AX EX(x=4)。相反K’中对于节点(x=2)而言，存在路径 (x=2) =&gt; (x=4) =&gt; (x=1) =&gt; (x=2)满足EX(x=4)，同时它也满足AX。因此K’满足。</p>
-<p><img src="/uploads/CTL小例/2.png" alt=""></p>
+<p><img src="/uploads/CTL小例/2.png" alt></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AX(x=3) V AX(x=4)要求在K’中，从(x=2)出发的任何路径，下一个节点都是(x=3)或者都是(x=4)。但是K’中(x=2)节点的下一个节点或是(x=3)或是(x=4),并不满足条件。</p>
 
           
@@ -1441,16 +1449,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/10/SPEC2006/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -1495,7 +1503,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Benchmarks/" itemprop="url" rel="index">
                     <span itemprop="name">Benchmarks</span>
                   </a>
@@ -1619,12 +1627,12 @@
 <li>483 end of file 问题，我是通过把配置文件中的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 如果不幸需要自己编译工具链，可能会遇到更多奇怪的问题</span><br><span class="line"></span><br><span class="line">&gt; Specmd5sum multiple definition of `getline&apos;</span><br><span class="line"></span><br><span class="line">- Specmd5sum文件夹中的库文件跟系统库文件的函数冲突了，打开md5sum.c，注释掉```#include &quot;getline.h&quot;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <blockquote>
-<p>在perl中make时遇到 MAKE: <em>*</em> NO RULE TO MAKE TARGET ‘<command-line\>‘</command-line\></p>
+<p>在perl中make时遇到 MAKE: *** NO RULE TO MAKE TARGET ‘&lt;COMMAND-LINE>‘</p>
 </blockquote>
 <ul>
-<li>这是因为gcc在高版本中改变了输出，以至于这里没有及时过滤掉，其实只要将makefile（注意不是Makefile）中<command-line\><br>的那一行全删掉即可。</command-line\></li>
+<li>这是因为gcc在高版本中改变了输出，以至于这里没有及时过滤掉，其实只要将makefile（注意不是Makefile）中&lt;command-line><br>的那一行全删掉即可。</li>
 <li>这里有个问题是，buildtools每次编译都会将之前生成的东西清空，然后重新生成makefile文件，因此手工删除makefile中的<command-line>会失败。</command-line></li>
-<li><p>于是自己随便在网上找了一段代码用于删除makefile文件中的’<command-line\>‘</command-line\></p>
+<li><p>于是自己随便在网上找了一段代码用于删除makefile文件中的’&lt;command-line>‘</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"> </span><br><span class="line">void Delete(char* filepath, char str[])</span><br><span class="line">&#123;</span><br><span class="line">	char buf[4096];    //每读取一行，都将内容放到该数组中</span><br><span class="line">	FILE* fp = fopen(filepath, &quot;r&quot;);     //filepath里是原内容 </span><br><span class="line"> </span><br><span class="line">	FILE* fpt = fopen(&quot;temp&quot;, &quot;w&quot;);    //将filepath文件第n行内容删除后存入temp.txt中 </span><br><span class="line">	</span><br><span class="line">	while(!feof(fp)) </span><br><span class="line">	&#123;  </span><br><span class="line">	   fgets(buf,sizeof(buf), fp);  </span><br><span class="line">		if (!strstr(buf,str)) </span><br><span class="line">		&#123;      </span><br><span class="line">		  fprintf(fpt, &quot;%s&quot;, buf); </span><br><span class="line">                  printf(&quot;%s\n&quot;,buf);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(fpt);</span><br><span class="line"> </span><br><span class="line">	fpt = fopen(&quot;temp&quot;, &quot;r&quot;);</span><br><span class="line">    fp = fopen(filepath, &quot;w&quot;);</span><br><span class="line">    fgets(buf, sizeof(buf), fpt);	</span><br><span class="line">    while(!feof(fpt))</span><br><span class="line">	&#123;</span><br><span class="line">	   fprintf(fp, &quot;%s&quot;, buf);</span><br><span class="line">       fgets(buf, sizeof(buf), fpt);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(fpt);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">void main()</span><br><span class="line">&#123; </span><br><span class="line">	Delete(&quot;x2p/makefile&quot;, &quot;command&quot;);  </span><br><span class="line">    Delete(&quot;makefile&quot;, &quot;command&quot;); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将上述代码另存为delete.c,置于工具链中的perl-5.8.7根目录下</p>
@@ -1674,16 +1682,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/03/形式化方法调研报告/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="会打代码的扫地王大爷">
     </span>
 
@@ -1728,7 +1736,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/形式化方法/" itemprop="url" rel="index">
                     <span itemprop="name">形式化方法</span>
                   </a>
@@ -1919,7 +1927,7 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以使用如表2所示的符号来描述硬件系统的行为，例如我们要表示“信号A一直不变，直到上升沿才翻转”这一操作，则我们令p为“信号A不变”，q为“时钟到达上升沿”，则该操作可表示为当满足pUq使信号A翻转。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比较常用的时序逻辑是线性时序逻辑（Linear temporal logic，LTL）以及计算树逻辑（Computation tree logic，CTL）。线性时序逻辑是个线性结构，每一个时刻都只对应一个后继，计算树逻辑则是一个树状的分支结构。LTL可用于重点对象的分析，并且它可以使用公平的概念，但是对于一些可返回到初始状态的复杂系统，LTL则无法表示。CTL则相反，它无法使用公平的概念，但是却可以表达一些较为复杂的系统[3]。LTL和CTL各有自己的优势，E. A. Emerson 和 Joseph Y. Halpern 在 1986年提出了CTL*，统一了LTL和CTL。在传统的模型检验中，通常采用时序逻辑来描述电路。</p>
 <h6 id="Petri网"><a href="#Petri网" class="headerlink" title="Petri网"></a>Petri网</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Petri网是一种重要的数学工具，Petri网对系统的并发性，异步性和不确定性具有很强的描述能力，一般主要是使用Petri网的可达图[4]。</p>
-<p>Petri网通常为四元组N= \<p,t,f,m0\></p,t,f,m0\></p>
+<p>Petri网通常为四元组N= \&lt;P,T,F,M0></p>
 <p>P：库所（Place）的有限集</p>
 <p>T：迁移（Transition）的有限集</p>
 <p>F：F ⊆ (P x T) ∪ (T x P)，表示边的集合。∪前后分别表示输入函数集以及输出函数集。</p>
@@ -2043,7 +2051,7 @@
       
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="William Wang">
           <p class="site-author-name" itemprop="name">William Wang</p>
            
@@ -2171,7 +2179,7 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
