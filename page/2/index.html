@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
-  <meta name="keywords" content="丁洁的男朋友,csuncle,William,王立敏,会打代码的扫地王大爷,wlmnzf,中科院信工所,IIE,CAS">
+  <meta name="keywords" content="csuncle,William,王立敏,会打代码的扫地王大爷,wlmnzf,中科院信工所,IIE,CAS">
 
 
 
@@ -127,6 +127,7 @@
     }
   };
 </script>
+<script data-ad-client="ca-pub-1948912436963562" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 
 
@@ -288,10 +289,741 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/23/模型检验-计算树逻辑（CTL）小例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Limin Wang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/23/模型检验-计算树逻辑（CTL）小例/" itemprop="url">模型检验-计算树逻辑（CTL）小例</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-23T20:36:00+08:00">
+                2018-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Model-checking/" itemprop="url" rel="index">
+                    <span itemprop="name">Model checking</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Model-checking/Formal-Method/" itemprop="url" rel="index">
+                    <span itemprop="name">Formal Method</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p style="text-align: center;"><br>模型检验-计算树逻辑（CTL）小例<br>==================<br></p>
+
+<p><img src="/uploads/CTL小例/1.png" alt></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AX是相对于初始节点（x=1）开始的树而言的，由于AX表示对于任何从初始节点(x=1)开始的路径中的下一个节点，因此EX则是相对于初始节点的子节点（x=2）开始的子树而言的。EX(x=4)表示存在从节点(x=2)开始的路径，使得子树的初始节点(x=2)的下一个节点是节点(x=4)。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在Kripke结构K中，对于(x=1) =&gt; (x=2) =&gt; (x=3) =&gt; (x=1)的路径而言(x=2)的下一个节点是(x=3)并不满足EX(x=4)，并不是对任何从初始节点(x=1)出发的路径都满足式子中的AX。因此K不满足式子AX EX(x=4)。相反K’中对于节点(x=2)而言，存在路径 (x=2) =&gt; (x=4) =&gt; (x=1) =&gt; (x=2)满足EX(x=4)，同时它也满足AX。因此K’满足。</p>
+<p><img src="/uploads/CTL小例/2.png" alt></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AX(x=3) V AX(x=4)要求在K’中，从(x=2)出发的任何路径，下一个节点都是(x=3)或者都是(x=4)。但是K’中(x=2)节点的下一个节点或是(x=3)或是(x=4),并不满足条件。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/10/SPEC2006/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Limin Wang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/SPEC2006/" itemprop="url">SPEC2006</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T11:09:01+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Benchmarks/" itemprop="url" rel="index">
+                    <span itemprop="name">Benchmarks</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p style="text-align: center;"><br>SPEC2006常见用法和问题<br>==================<br></p>
+
+<h4 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># Ubuntu16.04</span><br><span class="line"># 注意安装gFortran</span><br><span class="line">. ./install.sh</span><br><span class="line">. ./shrc</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一般情况下经过以上步骤即可安装完毕，进行使用,注意需要执行shrc设置完环境变量以后才可正常执行后续的各种操作。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此外SPEC官方并不建议使用root权限，因为所有的测试集并不需要修改系统文件。</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><blockquote>
+<p>runspec int –noreportable –n=1 –size=test</p>
+</blockquote>
+<ul>
+<li>正式运行SPEC2006之前需要跑一下test尺寸，test尺寸比较小，因此跑起来耗时教短，可用于确保所有测试集都可正常编译运行。</li>
+<li>int：表明这是整数测试集，这个参数也可用fp，all代替，分表表示只使用浮点测试集和所有测试集。</li>
+<li>–noreportable 不生成报告 –reportable生成报告，若开启将会生成诸如html，pdf等格式的报告。</li>
+<li>–n=1:表示只跑一轮，每个测试集只会跑一遍。若要生成报告，则至少跑3轮</li>
+<li>–size=test：表示这次只跑少量集合，用于测试所有集合是否都已经编译执行正确</li>
+</ul>
+<blockquote>
+<p>runspec int –reportable  –size=ref -I</p>
+</blockquote>
+<ul>
+<li>-I 表示跑benchmark的适合忽略错误，如果中途出错也不会停下来。</li>
+<li>如果没有指定rate和copies则为测试speed，speed只能测试单核性能。</li>
+<li>若想测试多核性能，则可通过 –rate=128进行指定，这里讲使用128个线程。</li>
+<li>rate和speed指标的区别请看<br><a href="https://www.spec.org/cpu2006/Docs/readme1st.html#Q15" target="_blank" rel="noopener">Q15. What is the difference between a “rate” and a “speed” metric?</a></li>
+</ul>
+<blockquote>
+<p>如何检测自己的电脑是多少核心的呢？</p>
+</blockquote>
+<ul>
+<li><p>逻辑CPU核心数(包括超线程技术): </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/cpuinfo |grep &quot;processor&quot;|sort -u|wc -l</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>物理CPU个数:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;physical id&quot; /proc/cpuinfo|sort -u|wc -l</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="或者"><a href="#或者" class="headerlink" title="或者"></a>或者</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;physical id&quot; /proc/cpuinfo|sort -u</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>每个物理CPU上的真实内核个数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;cpu cores&quot; /proc/cpuinfo|uniq</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每个物理CPU上逻辑内核个数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;siblings&quot; /proc/cpuinfo|uniq</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>若每个核心上的逻辑内核比真实内核多，则说明开启了超线程技术</p>
+</li>
+<li>来源<a href="https://zhidao.baidu.com/question/1367310944286874379.html?word=linux%E6%80%8E%E4%B9%88%E7%9C%8Bcpu%E6%A0%B8%E6%95%B0&amp;ms=1&amp;rid=7428484352289693960" target="_blank" rel="noopener">Linux读取CPU信息</a></li>
+</ul>
+<blockquote>
+<p>runspec 481  –noreportable –n=1 </p>
+</blockquote>
+<ul>
+<li>有时候为了修复编译错误，可以让他单独跑481这一项</li>
+</ul>
+<blockquote>
+<p>runspec -c xxx.cfg</p>
+</blockquote>
+<ul>
+<li>-c用于指定配置文件，如果没有指定，则默认使用根目录的config文件夹下的default.cfg作为配置文件</li>
+</ul>
+<h4 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h4><blockquote>
+<p>gcc5.x如何跑SPEC2006</p>
+</blockquote>
+<ul>
+<li>在无法通过的测试集的gcc编译选项上加 –std=gnu89</li>
+</ul>
+<blockquote>
+<p>缺少库文件</p>
+</blockquote>
+<ul>
+<li>在gcc的编译选项上加 -include /usr/include/memory.h   include 后面的路径需要换成自己的，这里只是举个例子</li>
+</ul>
+<blockquote>
+<p>447.dealII 遇到 error: ‘ptrdiff_t’ does not name a type</p>
+</blockquote>
+<ul>
+<li>linux下需要引入 <cstddef>头文件，使用上述方法在config文件中找到447.dealII的配置在CXXPORTABILITY后面加上 -include cstddef  -include cstdlib -include cstring</cstddef></li>
+<li>进入的头文件若是系统库，则不需要具体路径</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/GoogleCloudPlatform/PerfKitBenchmarker/issues/1120" target="_blank" rel="noopener">spec2006 fp test failed with 416.gamess and 481.wrf</a></p>
+</blockquote>
+<ul>
+<li>416 miscompare 问题是gcc旧版本的bug，当开启O2优化的适合会出错</li>
+<li>升级新版本gcc或者用-O0进行编译或者换一个编译器</li>
+<li>483 end of file 问题，我是通过把配置文件中的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 如果不幸需要自己编译工具链，可能会遇到更多奇怪的问题</span><br><span class="line"></span><br><span class="line">&gt; Specmd5sum multiple definition of `getline&apos;</span><br><span class="line"></span><br><span class="line">- Specmd5sum文件夹中的库文件跟系统库文件的函数冲突了，打开md5sum.c，注释掉```#include &quot;getline.h&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>在perl中make时遇到 MAKE: *** NO RULE TO MAKE TARGET ‘&lt;COMMAND-LINE>‘</p>
+</blockquote>
+<ul>
+<li>这是因为gcc在高版本中改变了输出，以至于这里没有及时过滤掉，其实只要将makefile（注意不是Makefile）中&lt;command-line><br>的那一行全删掉即可。</li>
+<li>这里有个问题是，buildtools每次编译都会将之前生成的东西清空，然后重新生成makefile文件，因此手工删除makefile中的<command-line>会失败。</command-line></li>
+<li><p>于是自己随便在网上找了一段代码用于删除makefile文件中的’&lt;command-line>‘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"> </span><br><span class="line">void Delete(char* filepath, char str[])</span><br><span class="line">&#123;</span><br><span class="line">	char buf[4096];    //每读取一行，都将内容放到该数组中</span><br><span class="line">	FILE* fp = fopen(filepath, &quot;r&quot;);     //filepath里是原内容 </span><br><span class="line"> </span><br><span class="line">	FILE* fpt = fopen(&quot;temp&quot;, &quot;w&quot;);    //将filepath文件第n行内容删除后存入temp.txt中 </span><br><span class="line">	</span><br><span class="line">	while(!feof(fp)) </span><br><span class="line">	&#123;  </span><br><span class="line">	   fgets(buf,sizeof(buf), fp);  </span><br><span class="line">		if (!strstr(buf,str)) </span><br><span class="line">		&#123;      </span><br><span class="line">		  fprintf(fpt, &quot;%s&quot;, buf); </span><br><span class="line">                  printf(&quot;%s\n&quot;,buf);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(fpt);</span><br><span class="line"> </span><br><span class="line">	fpt = fopen(&quot;temp&quot;, &quot;r&quot;);</span><br><span class="line">    fp = fopen(filepath, &quot;w&quot;);</span><br><span class="line">    fgets(buf, sizeof(buf), fpt);	</span><br><span class="line">    while(!feof(fpt))</span><br><span class="line">	&#123;</span><br><span class="line">	   fprintf(fp, &quot;%s&quot;, buf);</span><br><span class="line">       fgets(buf, sizeof(buf), fpt);</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(fpt);</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">void main()</span><br><span class="line">&#123; </span><br><span class="line">	Delete(&quot;x2p/makefile&quot;, &quot;command&quot;);  </span><br><span class="line">    Delete(&quot;makefile&quot;, &quot;command&quot;); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将上述代码另存为delete.c,置于工具链中的perl-5.8.7根目录下</p>
+</li>
+<li>并修改buildtools中的shell脚本,如下打加号的部分<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">  DYLD_LIBRARY_PATH=`pwd`</span><br><span class="line">  export LD_LIBRARY_PATH DYLD_LIBRARY_PATH</span><br><span class="line">  ./Configure   -dOes -Ud_flock $PERLFLAGS -Ddosuid=undef -Dprefix=$INSTALLDIR -Dd_bincompat3=undef -A ldflags=-L$&#123;INSTALLDIR&#125;/lib -A ccflags=-I$&#123;INSTALLDIR&#125;/include -Ui_db -Ui_gdbm -Ui_ndbm -Ui_dbm -Uuse5005threads ; testordie &quot;error configuring perl&quot;</span><br><span class="line"></span><br><span class="line">+  gcc -o del delete.c</span><br><span class="line">+  ./del</span><br><span class="line">+  cd x2p</span><br><span class="line">+    $MYMAKE</span><br><span class="line">+  cd ../</span><br><span class="line">+  ./del</span><br><span class="line"></span><br><span class="line">  $MYMAKE; testordie &quot;error building perl&quot;</span><br><span class="line">  ./perl installperl; testordie &quot;error installing perl&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/03/形式化方法调研报告/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Limin Wang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会打代码的扫地王大爷">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/03/形式化方法调研报告/" itemprop="url">形式化验证调研报告</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-03T21:34:08+08:00">
+                2018-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/形式化方法/" itemprop="url" rel="index">
+                    <span itemprop="name">形式化方法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p style="text-align: center;"><br>形式化验证调研报告<br>==================<br></p>
+
+<p style="text-align: center;">王立敏</p>
+
+
+<p style="text-align: center;">中国科学院信息工程研究所 第五实验室 北京 中国100093</p>
+
+<p><strong>摘要</strong>2018年初，Spectre和Meltdown漏洞的发现，使得芯片安全备受重视。然而传统的基于仿真的芯片验证方法由于测试样例覆盖不完全，验证过程耗时巨大，逐渐适应不了日益复杂的芯片了。形式化方法作为一种静态验证方法，正好可以解决这些问题。本文主要梳理了当前形式化方法检测的常见方法，并且列出他们的优缺点，以及前人对这些缺点的改良方法。</p>
+<p>关键词<br><strong>芯片安全，形式化验证，二元决策图，时序逻辑，Petri网，定理证明，等效性检验，模型检验</strong></p>
+<p style="text-align: center;">Formal Verification Investigation Report</p>
+
+<p style="text-align: center;">Wang Liming<sup>1</sup></p><br><p style="text-align: center;">Institute of Information Engineering, Chinese Academy of Sciences, Beijing 100093, China</p>
+
+<p><strong>Abstract</strong> At the beginning of 2018, the discovery of Spectre and Meltdown attacks made chip security receive much more concerns. However, due to the serious drawbacks in the simulation-based methods in tradition such as the test cases did not cover all of the inputs and the time consuming of the simulation, this method became inappropriate to validate the chips that became more and more complicated. Formal Methods is a static verification method, which would solve these problems that the simulation-based methods bright. This report would list their advantages and disadvantages, as well as the previous methods that attempt to solve these problems.</p>
+<p><strong>Key words</strong> Chip security, Formal verification, Binary Decision Diagrams,Temporal logic, Petri net, Theorem Proving, Equivalence Checking, Model checking</p>
+<h4 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a><strong>1</strong> 引言</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;近些年来，芯片的性能和规模不断提升，集成电路的设计也越来越复杂，使得引入错误和问题的可能性日益增加。但是传统的基于仿真的集成电路验证方法的覆盖率难以达到100%。而形式化方法作为一种静态测试的方法，通过数学的推理证明，理论上可以实现绝对安全，找出难以发现的错误，因此广受研究人员的关注。</p>
+<h6 id="基于仿真的集成电路验证"><a href="#基于仿真的集成电路验证" class="headerlink" title="基于仿真的集成电路验证"></a>基于仿真的集成电路验证</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;目前应用最广泛的依然是基于仿真的验证方法。这种验证方法通常需要一个测试基准，通常同时对待验证的电路和测试基准施加相同的激励，然后通过对比他们的输出来判断电路是否正确。这些输入向量可以事先生成，然后在测试期间从数据库读入，也可以边测试边生成。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于仿真的验证只能证明电路在指定的输入向量下输出正确，若要证明电路的正确性，输入向量必须覆盖电路的所有输入组合。但是现在集成电路十分复杂，要实现这一点是十分困难的。令人遗憾的是，许多不安全的因素或者错误都是出现在测试向量难以覆盖的地方[1]。而且这种验证方式主要用于发现逻辑漏洞，而并不能检查出芯片中的安全漏洞。</p>
+<h6 id="基于形式化方法的验证"><a href="#基于形式化方法的验证" class="headerlink" title="基于形式化方法的验证"></a>基于形式化方法的验证</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于形式化方法的验证是通过数理逻辑推理的一种方法。一般分为形式等效性检验（Equivalence<br>Checking），定理证明（Theorem Proving）以及模型检查（Model<br>Checking），如图1所示。</p>
+<p><img src="/uploads/形式化验证调研报告/Formal_Methods-types_ch.svg" alt="图1 形式化方法的分类"></p>
+<p style="text-align: center;">图1 形式化方法的分类</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;形式等效性检验一般用于检测两个电路设计逻辑相等，电路设计一般使用硬件描述语言（Verilog或者VHDL）进行描述，然后综合成门级电路，接着再进行一系列的优化。这里的每一个步骤都会导致电路设计的改变，因此检查每一步操作前后的电路设计是否逻辑等效是有必要的。有些时候优化操作需要人为干预，因此也需要使用等效性检验来确保这些操作没有引入错误。除此之外，设计完成的芯片也需要与对应的黄金模型进行对比，以确保集成电路设计的正确性。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定理证明方法是一种将模型抽象为逻辑公式，然后使用自动的逻辑推理技术来验证电路是否正确的技术。但是定理证明方法在使用时需要专业人士事先制定大量的定理和推理策略。因此它在自动化推理方面能力较差，不适用大规模的系统。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;模型检验是一种基于状态迁移系统的自动验证技术。它最早是由Edmund M.<br>Clarke和他的研究生E.A. Emerson以及A.P.Sistla提出来的[2]。使用这种方法首先需要提出一系列规格属性，这些属性表示对电路的安全需求，系统只要满足这些属性，就能确保安全。然后建立一个电路系统的模型，即可通过模型检测方法自动地检测模型是否满足这些规格属性。模型检验一般用于电路和协议的验证。</p>
+<h6 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于仿真的集成电路验证需要输入向量，而形式化验证并不需要。前者是先生成输入向量，再验证输出向量，而后者的考虑方向则相反，要先指明什么样的输出是符合要求的，再利用形式化方法去证明它。由于基于仿真的集成电路验证存在覆盖率不能达到100%，以及仿真时间过长等问题，而形式化证明则正好能解决这些问题。因此形式化验证开始被研究人员广泛关注。</p>
+<h4 id="模型的建立"><a href="#模型的建立" class="headerlink" title="模型的建立"></a><strong>模型的建立</strong></h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要使用形式化方法，需要先为电路建立模型，这些模型通常用一些图的数据结构或者公式来表示。形式化模型建立完成后，即可使用形式化算法对其进行检验。</p>
+<h6 id="二元决策图"><a href="#二元决策图" class="headerlink" title="二元决策图"></a>二元决策图</h6><h6 id="2-1-1-二元决策图概述"><a href="#2-1-1-二元决策图概述" class="headerlink" title="2.1.1 二元决策图概述"></a>2.1.1 二元决策图概述</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二元决策图（Binary Decision Diagrams，BDD）可以很好地表示一个布尔函数。所谓布尔函数，即定义域和值域都是布尔值的函数，布尔函数在电路设计和密码学方面有广泛的应用。由于电路的输入和输出都是二进制值，这意味着电路可以表示成一个布尔函数，因此使用BDD结构来表示电路是十分合适的。</p>
+<h6 id="2-1-2一个例子"><a href="#2-1-2一个例子" class="headerlink" title="2.1.2一个例子"></a>2.1.2一个例子</h6><p style="text-align: center;">表1 f(x1,x2,x3)的真值表</p>
+
+<table>
+<thead>
+<tr>
+<th>x1</th>
+<th>x2</th>
+<th>x3</th>
+<th>f(x1,x2,x3)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设有一个电路，电路的功能如公式(1)所示。<br>$$<br>\begin{equation}<br>f(x1,x2,x3)=x1x2+x1\overline{x2}\overline{x3}   \tag{1}<br>\end{equation}<br>$$</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其真值表如表1所示。于是可得出该电路的BDD图，如图2，x1,x2,x3为变量，实线表示变量赋值为1，虚线表示变量赋值为0。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由表1真值表可得，当x1,x2,x3分别赋值为0时，f(x1,x2,x3)的值也为0。则如图2在BDD图中沿着x1,x2,x3,0之间的虚线最终也会到达0的地方。如图中所示这样变量有序的BDD图也可以称作有序二元决策图（Ordered Binary Decision Diagrams ，OBDD）图。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以发现，当x1赋值为0,x2也赋值为0时，无论x3赋何值，最终结果也是0，因此可以将BDD再做精简。如图3中简化后的BDD所示，可以将这条路径中的x3节点删除，直接将x2用虚线连接至0处，这个过程可称为BDD的简化，而最终的简化结果则称为简化的有序二元决策图（Reduced<br>Ordered Binary Decision Diagrams，ROBDD）。</p>
+<p><img src="/uploads/形式化验证调研报告/BDD.svg" alt="图2 f(x1,x2,x3)的BDD图"></p>
+<p style="text-align: center;">图2 f(x1,x2,x3)的BDD图</p>
+
+<p><img src="/uploads/形式化验证调研报告/BDD-simply.svg" alt="图3 f(x1,x2,x3)的简化BDD图"></p>
+<p style="text-align: center;">图3 f(x1,x2,x3)的简化BDD图</p>
+
+<h6 id="2-1-3基于二元决策图的电路表示"><a href="#2-1-3基于二元决策图的电路表示" class="headerlink" title="2.1.3基于二元决策图的电路表示"></a>2.1.3基于二元决策图的电路表示</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于组合逻辑电路而言，可以直接使用上述方法生成BDD结构。但是对于时序逻辑电路而言，则需要根据其特点生成有限自动机（Finite State Machine，FSM），再使用BDD来表示FSM的状态变迁过程，在形式等效验证和符号模型检验中常采用这一方法来表示电路。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BDD本身不能减少状态空间，随着变量数的增加，状态空间数依然呈指数级上涨，但是它也有许多优点，比如表达形式简洁，并且配合图算法可实现快速的操作，用于表示电路十分合适。</p>
+<h6 id="时序逻辑"><a href="#时序逻辑" class="headerlink" title="时序逻辑"></a>时序逻辑</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时序逻辑是逻辑领域中一个重要的组成部分，它在形式化验证中有十分重要的应用</p>
+<p style="text-align: center;">表2 时序逻辑的操作</p>
+
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>操作</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>θUψ</td>
+<td>Until</td>
+<td>若θUψ在路径上为真，则θ一直保持真直到ψ为真</td>
+</tr>
+<tr>
+<td>θRψ</td>
+<td>Release</td>
+<td>若ψ为真，直到θ为真（或者θ永远不为真）则θRψ在路径上为真，</td>
+</tr>
+<tr>
+<td>Xθ</td>
+<td>Next</td>
+<td>若Xθ在路径上为真，则下一个时刻θ为真</td>
+</tr>
+<tr>
+<td>Fθ</td>
+<td>Future</td>
+<td>若Fθ在路径上为真，则θ最终一定为真</td>
+</tr>
+<tr>
+<td>Gθ</td>
+<td>Globally</td>
+<td>若Gθ在路径上为真，则任何时刻，θ都为真</td>
+</tr>
+<tr>
+<td>Aθ</td>
+<td>All</td>
+<td>表示对于任意路径</td>
+</tr>
+<tr>
+<td>Eθ</td>
+<td>Exists</td>
+<td>表示存在这样的路径</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以使用如表2所示的符号来描述硬件系统的行为，例如我们要表示“信号A一直不变，直到上升沿才翻转”这一操作，则我们令p为“信号A不变”，q为“时钟到达上升沿”，则该操作可表示为当满足pUq使信号A翻转。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比较常用的时序逻辑是线性时序逻辑（Linear temporal logic，LTL）以及计算树逻辑（Computation tree logic，CTL）。线性时序逻辑是个线性结构，每一个时刻都只对应一个后继，计算树逻辑则是一个树状的分支结构。LTL可用于重点对象的分析，并且它可以使用公平的概念，但是对于一些可返回到初始状态的复杂系统，LTL则无法表示。CTL则相反，它无法使用公平的概念，但是却可以表达一些较为复杂的系统[3]。LTL和CTL各有自己的优势，E. A. Emerson 和 Joseph Y. Halpern 在 1986年提出了CTL*，统一了LTL和CTL。在传统的模型检验中，通常采用时序逻辑来描述电路。</p>
+<h6 id="Petri网"><a href="#Petri网" class="headerlink" title="Petri网"></a>Petri网</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Petri网是一种重要的数学工具，Petri网对系统的并发性，异步性和不确定性具有很强的描述能力，一般主要是使用Petri网的可达图[4]。</p>
+<p>Petri网通常为四元组N= \&lt;P,T,F,M0></p>
+<p>P：库所（Place）的有限集</p>
+<p>T：迁移（Transition）的有限集</p>
+<p>F：F ⊆ (P x T) ∪ (T x P)，表示边的集合。∪前后分别表示输入函数集以及输出函数集。</p>
+<p>M0：P->N，表示初始状态集</p>
+<p>库所（Place）表示系统的状态。一般用 <div style="width: 20px;height: 20px;border: 2px solid black;border-radius: 50%;position: relative;"><div style="width: 15px;height: 15px;border: 1px solid #black;border-radius: 50%;position: absolute;margin: auto;left: 0;right: 0;top: 0;bottom: 0; black;"></div></div>表示。</p>
+<p>迁移（Transition）则表示资源的消耗使用，一般用 <span style="display:block;width:50px;height:25px;background-color:black"></span>表示。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;连接库所与变迁的有向弧表示输入输出函数。用令牌Token表示库所中的资源数量，一般用●表示。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资源会沿着有向弧流动，当资源足够时，便会触发某些操作的执行来使用和消耗资源。即令牌会不断沿着迁移流动，令牌在迁移之前积聚叫做迁移的使能（enabled），令牌积累到足够数量之后便能通过迁移，这一过程也叫迁移的激发(fire)。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图4表示一个互斥系统的Petri网，双方发出进入临界区的请求，当其中一方进入临界区时，另一方只能等待。图中的小黑点表示Token，最中间的库所t表示哪一方可优先访问临界区，当Idle中的Token传递到Wait时，t中个Token也会流到可优先进入临界区的那一方，于是便可以激发迁移Access，当经过Free之后，Token又将回到Idle和t中。</p>
+<p><img src="/uploads/形式化验证调研报告/Petri网.svg" alt="图4 互斥模型的Petri网"></p>
+<p style="text-align: center;">图4 互斥模型的Petri网</p>
+
+<p>1.<strong>形式化方法</strong></p>
+<h6 id="形式等效验证（Equivalence-Checking）"><a href="#形式等效验证（Equivalence-Checking）" class="headerlink" title="形式等效验证（Equivalence Checking）"></a>形式等效验证（Equivalence Checking）</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设我们有Spec1和Spec2两个模型。若需要验证综合优化前后两个模型是否逻辑相等，则Spec1和Spec2可分别表示综合优化前后的设计。若需要验证设计的正确性，Spec1通常为黄金模型，Spec2则为我们的设计。Spec1和Spec2通常使用相同的数据结构，例如BDD，再根据具体的需求使用诸如布尔SAT求解程序（求解可满足性问题）之类的算法来进行等效性检验。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然等效检验的检测效果不错，在工业上也得到了应用，但是在使用过程中依然需要高层次的专业人员去制定等效检验框架[5]。而且在复杂的电路中，等效性检验也存在状态空间数呈指数级增长的问题。虽然学术界提出了各种优化的方法，比如将复杂的等效检验切割成小的可比较集合进行处理[6]，或者利用算法优化减少空间消耗[7]，但是状态空间爆炸问题依然没有很好地解决。</p>
+<h6 id="定理证明-Theorem-Proving"><a href="#定理证明-Theorem-Proving" class="headerlink" title="定理证明(Theorem Proving)"></a>定理证明(Theorem Proving)</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定理证明方法十分严格，跟数理逻辑结合十分紧密。一般使用高阶逻辑（Higher-Order<br>Logic，HOL） 系统来进行证明。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要验证一个大的系统，通常采用目标制导的方式。将系统用HOL表示出来之后，再分为若干个子命题分别证明。定理证明方法对硬件模块的验证一般会用到抽象技术和层次化验证技术</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在证明之前需要对系统进行建模，Mike Gordon在论文[8]中提出可以直接利用HOL来为硬件建模。一个器件模块只有输入输出，这些输入输出可以用HOL中的谓词和函数表示，而模块之间的连接可用合取表示。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;抽象技术主要用于将系统的详细信息掩盖掉，只考虑需要关注的性质，这样可以方便算法的处理。根据关注对象的不同，可以分为不同的抽象。例如结构抽象掩盖了内部结构信息而只描述了设备的规范，而行为抽象则只对模块的部分行为进行定义，数据抽象则是通过一个映射，将现实中的数据抽象为一个较小的抽象数据集，比如布尔真值。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层次化验证技术是将大的模型划分为小的模型，构建成一个树状结构，每一个子节点都是父节点的细化。下一层的正确性可以证明上一层的正确性，因此自下而上地证明可以确保根节点的模型的正确性。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定理证明方法在工业上也有一定的使用，但是定理证明方法需要对系统用严格语义的数学符号进行描述和推理，因此对用户而言十分复杂。而且并没有办法确保事先人为制定的规则和定理的正确性，因此最终的正确性也值得怀疑，即前提若有错误，则最终的验证结果就不一定正确。</p>
+<h6 id="模型检验-Model-Checking"><a href="#模型检验-Model-Checking" class="headerlink" title="模型检验(Model Checking)"></a>模型检验(Model Checking)</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;模型检验是目前最为流行的形式化检测方法。但是它依然存在状态空间爆炸的问题，模型检测方法的发展几乎都是为了解决状态空间爆炸问题以及不同系统的适用性问题展开的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态空间爆炸问题一直制约着模型检验方法的发展，为此科研人员一直寻找合适的方法来解决这一问题，例如符号模型检验，偏序规约技术，以及近些年来十分热门的SAT技术。</p>
+<h6 id="3-2-1符号模型检验"><a href="#3-2-1符号模型检验" class="headerlink" title="3.2.1符号模型检验"></a>3.2.1符号模型检验</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;符号模型检验的提出是解决状态空间爆炸问题的一个里程碑，它采用OBDD来描述电路。这使得模型检验可检查的系统规模大大增加，可以超过1020个状态。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;McMillan最先将OBDD引入模型检验技术[9]，提出了符号模型检验，最初时符号模型检验只是基于CTL公式的。该方法将CTL公式转化成OBDD图，并在OBDD上搜索状态空间。之后Clarke等人又提出了基于LTL的符号模型[10]。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;符号模型检验中，存在许多优化方法，最常见的两种方法是偏序规约技术[11]和抽象模型[12]。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于系统中可能存在两个并行的模块，而这些并行模块的运行组合有许多种，其中的一部分运行组合实际上是重复的。因此若能将并行的模块的运行次序固定下来，在验证过程中就可以减少许多重复的路径。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;抽象技术多用于需要数据处理的系统，符号模型检验的数据处理能力较弱，若是需要表达复杂的数据结构，则验证的复杂性会十分的高。因此可以将精确的数据值和抽象的数据集合做个映射，产生一个较小的抽象数据集，以此来简化符号模型检验的状态空间。</p>
+<h6 id="3-2-1-SAT技术"><a href="#3-2-1-SAT技术" class="headerlink" title="3.2.1 SAT技术"></a>3.2.1 SAT技术</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于BDD的符号模型检验虽然使得可检验的系统规模增加了许多，但是状态空间爆炸问题并没有彻底解决，在BDD中，状态空间依然是指数级增长的。BDD可通过简化生成ROBDD来减少状态空间，但是可优化的余地依然比较少。随着SAT技术的发展，它也被引入到模型检验领域[13]。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SAT是NP完全的方法，因此它也是指数爆炸型的，为此Clarke等人提出了限界模型检验[14]。模型检验是通过对整个系统建模，并证明我们的模型是否满足我们定义的属性规格。而限界模型检验，则通过广度搜索的方法，从长度为1的路径开始搜索，搜索的路径长度逐渐递增，若能在长度为K的路径中搜索到不符合属性规格的路径，则停止搜索并报告这一反例。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然限界模型检验搜索到反例后即可停止这一机制使得其遍历的状态大大减少，但是它只检查了整个状态空间的一个子集，只能证明在限界中的那部分状态符合属性规格，而无法证明整个状态空间符合属性规格。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了解决这一完整性问题，目前学术界较为流行的做法是逼近所求的解，即迭代地计算可达状态的不动点，来验证这整个模型是否最终满足规约。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yakir Vizel等人于2015年整理了各种适用于SAT的优秀的算法，这些算法包括冲突驱动从句学习（Conflict-Driven<br>Clause Learning），随机局部搜索（Stochastic Local Search）[15]。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SAT技术在经过EDA社区与科研人员的相互促进之下，在过去十年中取得了很大的进步。虽然SAT在工业界也得到了应用，但是它依然无法很好地解决模型检验的状态空间爆炸问题和限界模型检验的完整性问题，此外并行SAT技术也是一个十分有前景的方向。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;而为了解决不同系统的适应性问题，如第2部分所述，研究人员提出了许多不同的建模方式。传统的模型检验方法一般采用时序逻辑来描述电路。</p>
+<h4 id="4-讨论"><a href="#4-讨论" class="headerlink" title="4 讨论"></a><strong>4</strong> 讨论</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传统的基于仿真的验证方式虽然存在有覆盖不完全，耗时间等问题。而形式化验证则正好可以解决这些问题，然而这并不意味着形式化方法可以完全替代传统的仿真验证。形式化方法依然存在许多的局限性，目前最好的办法是将传统的仿真验证与形式化验证结合起来。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;虽然在工业界和学术界的共同促进之下，形式化验证技术有了长足的进步。但依然存在不少进步的空间。模型验证是目前自动化水平最优的，很少需要手动干预，但是状态空间爆炸的问题依然令人十分困扰。为了提高形式化验证的速度,研究人员依然在尝试攻克检测技术的并行化的问题，这也是目前较为火的一个方向。此外为了能够使用到工业界，形式化验证必然还是需要提高检测技术的自动化水平，例如门级信息流的方法[16]利用关键信息只能从低安全级流向高安全级这一特性，简化了形式化方法建模的流程，使其可以自动生成模型。此外，纵观整个形式化验证方法的发展历程，可以发现许多形式化验证的突破，都是因为将一些已经存在的理论成果移植应用到工程中去，因此我们也可以从这一方面去考虑如何改进形式化验证的方法。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;形式化方法是个十分有前景而又十分重要的研究方向，不仅可以用于检测出难以发现的逻辑错误，也可以检查电路中隐藏的硬件木马，甚至发现较为隐秘安全漏洞。因此上述的一些形式化方法的局限依然值得我们在日后重点研究。</p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><p>[1] LAM W K. Hardware Design Verification: Simulation and Formal Method-Based<br>Approaches (Prentice Hall Modern Semiconductor Design Series)[M]. Upper Saddle<br>River, NJ, USA: Prentice Hall PTR, 2005.</p>
+<p>[2] CLARKE E M, EMERSON E A. Design and synthesis of synchronization skeletons<br>using branching time temporal logic[J]. : 20.</p>
+<p>[3] 张瑞雪, 郝春梅, 王旭. 计算机形式验证方法研究综述[J]. 中国电子商务, 2011(5):<br>69–69.</p>
+<p>[4] 蒋屹新, 林闯, 邢栩嘉. 基于线性时态逻辑的Petri网模型检测[J]. 系统仿真学报,<br>2003, 15(z1): 6–10.</p>
+<p>[5] KREIKER J, TARLECKI A, VARDI M Y等. Modeling, Analysis, and Verification -<br>The Formal Methods Manifesto 2010 (Dagstuhl Perspectives Workshop 10482)[J].<br>HERBSTRITT M. 2011.</p>
+<p>[6] KUEHLMANN A, KROHM F. Equivalence Checking Using Cuts and Heaps[J]. : 6.</p>
+<p>[7] PARUTHI V, KUEHLMANN A. Equivalence checking combining a structural<br>SAT-solver, BDDs, and simulation[C]//IEEE Comput. Soc, 2000: 459–464.</p>
+<p>[8] HAN J, STONE G. The implementation and verification of a conditional sum<br>adder[J]. 1988.</p>
+<p>[9] MCMILLAN K L. Symbolic checking，An approachto the state explosion<br>problem[J]. : 212.</p>
+<p>[10] CLARKE E, GRUMBERG O, HAMAGUCHI K. Another look at LTL model<br>checking[C]//International Conference on Computer Aided Verification. Springer,<br>1994: 415–427.</p>
+<p>[11] PELED D. All from one, one for all: on model checking using<br>representatives[G]//COURCOUBETIS C. Computer Aided Verification. Berlin,<br>Heidelberg: Springer Berlin Heidelberg, 1993, 697: 409–423.</p>
+<p>[12] CLARKE E M, GRUMBERG O, LONG D E. Model checking and abstraction[J]. ACM<br>transactions on Programming Languages and Systems (TOPLAS), 1994, 16(5):<br>1512–1542.</p>
+<p>[13] 王瑞. 基于SAT的符号化模型检验技术研究[D]. 国防科学技术大学, 2014.</p>
+<p>[14] CLARKE E, BIERE A, RAIMI R等. Bounded Model Checking Using Satisﬁability<br>Solving[J]. : 20.</p>
+<p>[15] VIZEL Y, WEISSENBACHER G, MALIK S. Boolean Satisfiability Solvers and Their<br>Applications in Model Checking[J]. Proceedings of the IEEE, 2015, 103(11):<br>2021–2035.</p>
+<p>[16] HU W, MAO B, OBERG J等. Detecting Hardware Trojans with Gate-Level<br>Information-Flow Tracking[J]. Computer, 2016, 49(8): 44–52.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/03/梅森旋转安全性分析及改进/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
+      <meta itemprop="name" content="Limin Wang">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
@@ -516,6 +1248,8 @@
       
     </div>
 
+
+
     <div>
       
     </div>
@@ -548,7 +1282,7 @@
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/08/02/基于无保护AES算法的CPA攻击/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
+      <meta itemprop="name" content="Limin Wang">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
@@ -758,6 +1492,8 @@
       
     </div>
 
+
+
     <div>
       
     </div>
@@ -790,7 +1526,7 @@
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2018/02/11/Meltdown &  Spectre原理简要梳理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
+      <meta itemprop="name" content="Limin Wang">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
@@ -935,6 +1671,8 @@
       
     </div>
 
+
+
     <div>
       
     </div>
@@ -967,7 +1705,7 @@
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/10/20/【论文阅读】Shakti-T-A-RISC-V-Processor-with-Light-Weight-Security-Extensions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
+      <meta itemprop="name" content="Limin Wang">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
@@ -1098,6 +1836,8 @@
       
     </div>
 
+
+
     <div>
       
     </div>
@@ -1130,7 +1870,7 @@
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/08/08/Windows-linux子系统-入门到GUI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
+      <meta itemprop="name" content="Limin Wang">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
@@ -1275,6 +2015,8 @@
       
     </div>
 
+
+
     <div>
       
     </div>
@@ -1307,7 +2049,7 @@
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/07/03/机器学习之梯度下降法数学推导-分类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
+      <meta itemprop="name" content="Limin Wang">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
@@ -1430,6 +2172,8 @@
       
     </div>
 
+
+
     <div>
       
     </div>
@@ -1462,7 +2206,7 @@
     <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/13/机器学习之梯度下降法数学推导--回归/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
+      <meta itemprop="name" content="Limin Wang">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/uploads/avatar.png">
     </span>
@@ -1601,734 +2345,7 @@
       
     </div>
 
-    <div>
-      
-    </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/13/基于tensorflow的MNIST手写数字识别（三）-神经网络篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会打代码的扫地王大爷">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/13/基于tensorflow的MNIST手写数字识别（三）-神经网络篇/" itemprop="url">基于tensorflow的MNIST手写数字识别（三）--神经网络篇</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T15:08:13+08:00">
-                2017-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MachineLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">MachineLearning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="想想还是要说点什么"><a href="#想想还是要说点什么" class="headerlink" title="想想还是要说点什么"></a>想想还是要说点什么</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;抱歉啊，第三篇姗姗来迟，确实是因为我懒，而不是忙什么的，所以这次再加点料，以表示我的歉意。废话不多说，我就直接开始讲了。</p>
-<h3 id="加入神经网络的意义"><a href="#加入神经网络的意义" class="headerlink" title="加入神经网络的意义"></a>加入神经网络的意义</h3><ul>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;前面也讲到了，使用普通的训练方法，也可以进行识别，但是识别的精度不够高，因此我们需要对其进行提升，其实MNIST官方提供了很多的组合方法以及测试精度，并做成了表格供我们选用，谷歌官方为了保证教学的简单性，所以用了最简单的卷积神经网络来提升这个的识别精度，原理是通过强化它的特征（比如轮廓等），其实我也刚学，所以能看懂就说明它确实比较简单。<ul>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;我的代码都是在0.7版本的tensorflow上实现的，建议看一下前两篇文章先。</li>
-</ul>
-</li>
-</ul>
-<h3 id="流程和步骤"><a href="#流程和步骤" class="headerlink" title="流程和步骤"></a>流程和步骤</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;其实流程跟前面的差不多,只是在softmax前进行了卷积神经网络的操作，所也就不仔细提出了，这里只说卷积神经网络的部分。<br>        如第一篇文章所说，我们的卷积神经网络的，过程是卷积-&gt;池化-&gt;全连接.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 卷积函数</span><br><span class="line"># convolution</span><br><span class="line">def conv2d(x, W):</span><br><span class="line">    return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding=&apos;SAME&apos;)</span><br><span class="line">#这里tensorflow自己带了conv2d函数做卷积，然而我们自定义了个函数，用于指定步长为1，边缘处理为直接复制过来</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"># pooling</span><br><span class="line">def max_pool_2x2(x):</span><br><span class="line">    return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding=&apos;SAME&apos;)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>tf.nn.conv2d(input, filter, strides, padding, use_cudnn_on_gpu=None, name=None)</p>
-</blockquote>
-<blockquote>
-<p>Computes a 2-D convolution given 4-D input and filter tensors.</p>
-</blockquote>
-<blockquote>
-<p>Given an input tensor of shape [batch, in_height, in_width, in_channels] and a filter / kernel tensor of shape [filter_height, filter_width, in_channels, out_channels], this op performs the following:</p>
-</blockquote>
-<blockquote>
-<p>Flattens the filter to a 2-D matrix with shape [filter_height <em> filter_width </em> in_channels, output_channels].</p>
-</blockquote>
-<p>Extracts image patches from the the input tensor to form a virtual tensor of shape [batch, out_height, out_width, filter_height <em> filter_width </em> in_channels].</p>
-<blockquote>
-</blockquote>
-<p>For each patch, right-multiplies the filter matrix and the image patch vector.<br>In detail,</p>
-<blockquote>
-<p>output[b, i, j, k] =<br>    sum_{di, dj, q} input[b, strides[1] <em> i + di, strides[2] </em> j + dj, q] *<br>                    filter[di, dj, q, k]</p>
-</blockquote>
-<p>Must have strides[0] = strides[3] = 1. For the most common case of the same horizontal and vertices strides, strides = [1, stride, stride, 1].</p>
-<blockquote>
-<p>Args:</p>
-</blockquote>
-<blockquote>
-<p>input: A Tensor. Must be one of the following types: float32, float64.</p>
-</blockquote>
-<blockquote>
-<p>filter: A Tensor. Must have the same type as input.</p>
-</blockquote>
-<blockquote>
-<p>strides: A list of ints. 1-D of length 4. The stride of the sliding window for each dimension of input.</p>
-</blockquote>
-<blockquote>
-<p>padding: A string from: “SAME”, “VALID”. The type of padding algorithm to use.</p>
-</blockquote>
-<blockquote>
-<p>use_cudnn_on_gpu: An optional bool. Defaults to True.</p>
-</blockquote>
-<blockquote>
-<p>name: A name for the operation (optional).</p>
-</blockquote>
-<blockquote>
-<p>Returns:</p>
-</blockquote>
-<blockquote>
-<p>A Tensor. Has the same type as input.</p>
-</blockquote>
-<p>#### </p>
-<blockquote>
-<p>tf.nn.max_pool(value, ksize, strides, padding, name=None)</p>
-</blockquote>
-<blockquote>
-<p>Performs the max pooling on the input.</p>
-</blockquote>
-<blockquote>
-<p>Args:</p>
-</blockquote>
-<blockquote>
-<p>value: A 4-D Tensor with shape [batch, height, width, channels] and type float32, float64, qint8, quint8, qint32.</p>
-</blockquote>
-<blockquote>
-<p>ksize: A list of ints that has length &gt;= 4. The size of the window for each dimension of the input tensor.</p>
-</blockquote>
-<blockquote>
-<p>strides: A list of ints that has length &gt;= 4. The stride of the sliding window for each dimension of the input tensor.</p>
-</blockquote>
-<blockquote>
-<p>padding: A string, either ‘VALID’ or ‘SAME’. The padding algorithm.</p>
-</blockquote>
-<blockquote>
-<p>name: Optional name for the operation.</p>
-</blockquote>
-<blockquote>
-<p>Returns:</p>
-</blockquote>
-<blockquote>
-<p>A Tensor with the same type as value. The max pooled output tensor.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">初始化权重和偏置值矩阵，值是空的，需要后期训练。</span><br><span class="line"></span><br><span class="line">def weight_variable(shape):</span><br><span class="line">    initial = tf.truncated_normal(shape, stddev=0.1)</span><br><span class="line">    return tf.Variable(initial)</span><br><span class="line"></span><br><span class="line">def bias_variable(shape):</span><br><span class="line">    initial = tf.constant(0.1, shape = shape)</span><br><span class="line">    # print(tf.Variable(initial).eval())</span><br><span class="line">    return tf.Variable(initial)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#这是做了两次卷积和池化</span><br><span class="line">h_conv1 = tf.nn.relu(conv2d(x_image, w_conv1) + b_conv1)</span><br><span class="line">h_pool1 = max_pool_2x2(h_conv1)</span><br><span class="line"></span><br><span class="line">h_conv2 = tf.nn.relu(conv2d(h_pool1, w_conv2) + b_conv2)</span><br><span class="line">h_pool2 = max_pool_2x2(h_conv2)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这里是做了全连接，还用了relu激活函数（RELU在下面会提到）</span><br><span class="line">h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])</span><br><span class="line">h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, w_fc1) + b_fc1)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#为了防止过拟合化，这里用dropout来关闭一些连接（DROP下面会提到）</span><br><span class="line">h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)</span><br></pre></td></tr></table></figure>
-<p>然后得到的结果再跟之前的一样，使用softmax等方法训练即可得到参数。</p>
-<h3 id="RELU激活函数"><a href="#RELU激活函数" class="headerlink" title="RELU激活函数"></a>RELU激活函数</h3><p>激活函数有很多种，最常用的是以下三种</p>
-<h5 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h5><blockquote>
-<p>将数据映射到0-1范围内</p>
-<h4 id="公式如下"><a href="#公式如下" class="headerlink" title="公式如下"></a>公式如下</h4><p> <img src="/uploads/基于tensorflow的MNIST手写数字识别三/1.jpg" alt="这里写图片描述"></p>
-<p> ####函数图像如下<br><img src="/uploads/基于tensorflow的MNIST手写数字识别三/2.jpg" alt="函数图像"></p>
-</blockquote>
-<h4 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h4><blockquote>
-<p>将数据映射到-1-1的范围内</p>
-<h4 id="公式如下-1"><a href="#公式如下-1" class="headerlink" title="公式如下"></a>公式如下</h4><p><img src="/uploads/基于tensorflow的MNIST手写数字识别三/3.jpg" alt="这里写图片描述"></p>
-<p>函数图像如下<br><img src="/uploads/基于tensorflow的MNIST手写数字识别三/4.jpg" alt="这里写图片描述"></p>
-</blockquote>
-<h4 id="RELU"><a href="#RELU" class="headerlink" title="RELU"></a>RELU</h4><blockquote>
-<p>小于0的值就变成0，大于0的等于它本身</p>
-<h4 id="函数图像"><a href="#函数图像" class="headerlink" title="函数图像"></a>函数图像</h4><p><img src="/uploads/基于tensorflow的MNIST手写数字识别三/5.jpg" alt="这里写图片描述"></p>
-</blockquote>
-<p>具体的参考这个<a href="http://blog.csdn.net/u012526120/article/details/49149317" target="_blank" rel="noopener">http://blog.csdn.net/u012526120/article/details/49149317</a></p>
-<p>###dropout的作用</p>
-<blockquote>
-<ul>
-<li><p>以前学习数学我们常用到一种方法，叫做待定系数法，就是给定2次函数上的几个点，然后求得2次函数的参数。</p>
-</li>
-<li><p>一样的道理，我们这里用格式训练集训练，最后训练得到参数，其实就是在求得一个模型（函数），使得它能跟原始数据的曲线进行拟合（说白了，就是假装原始数据都在我们计算出来的函数上）</p>
-</li>
-<li><p>但是这样不行啊，因为我们还需要对未知数据进行预测啊，如果原始的数据点都在（或者大多数都在）函数上了（这就是过拟合），那会被很多训练数据误导的，所以其实只要一个大致的趋势函数就可以了</p>
-</li>
-<li><p>所以Dropout函数就是用来，减少某些点的全连接（可以理解为把一些点去掉了），来防止过拟合</p>
-</li>
-</ul>
-</blockquote>
-<p>具体的看这个<a href="http://www.cnblogs.com/tornadomeet/p/3258122.html" target="_blank" rel="noopener">http://www.cnblogs.com/tornadomeet/p/3258122.html</a></p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><blockquote>
-<ul>
-<li>水完了，看代码吧，注释上有写一些变量的维度，大家可以一步步地看过去，计算过去</li>
-<li><a href="https://github.com/wlmnzf/tensorflow-train/blob/master/mnist/cnn_mnist.py" target="_blank" rel="noopener">https://github.com/wlmnzf/tensorflow-train/blob/master/mnist/cnn_mnist.py</a></li>
-</ul>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/13/基于tensorflow的MNIST手写数字识别（二）-入门篇/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会打代码的扫地王大爷">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/13/基于tensorflow的MNIST手写数字识别（二）-入门篇/" itemprop="url">基于tensorflow的MNIST手写数字识别（二）--入门篇</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T15:07:32+08:00">
-                2017-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MachineLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">MachineLearning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="一、本文的意义"><a href="#一、本文的意义" class="headerlink" title="一、本文的意义"></a>一、本文的意义</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;因为谷歌官方其实已经写了MNIST入门和深入两篇教程了，那我写这些文章又是为什么呢，只是抄袭？那倒并不是，更准确的说应该是笔记吧，然后用更通俗的语言来解释，并且补充更多，官方文章中没有详细展开的一些知识点，不过建议与官方文章结合着阅读。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;另外是代码部分的改动，官方的demo只提供了验证精确度，我将它改造成了能输入并预测输出结果的代码也就是说是一个从准备待测图片到最终是别的一个完整demo</p>
-<blockquote>
-<p>中文版本：MNIST机器学习入门<br><a href="http://wiki.jikexueyuan.com/project/tensorflow-zh/tutorials/mnist_beginners.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/tensorflow-zh/tutorials/mnist_beginners.html</a></p>
-</blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;需要识别的图片放到test_num里，然后运行mnist_softmax.py就好了</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;demo截图如下，会将放进去的图片预测，然后输出结果，代码说明请看github的readme（最底下）</p>
-<p><img src="/uploads/基于tensorflow的MNIST手写数字识别二/1.png" alt="这里写图片描述"></p>
-<h4 id="二、MNIST简介"><a href="#二、MNIST简介" class="headerlink" title="二、MNIST简介"></a>二、MNIST简介</h4><blockquote>
-<p>官网：<a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="noopener">http://yann.lecun.com/exdb/mnist/</a></p>
-</blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;这个MNIST数据库是一个手写数字的数据库，它提供了六万的训练集和一万的测试集。<br>它的图片是被规范处理过的，是一张被放在中间部位的28px*28px的灰度图</p>
-<blockquote>
-<p>总共4个文件:\<br>train-images-idx3-ubyte: training set images \<br>train-labels-idx1-ubyte: training set labels \<br>t10k-images-idx3-ubyte:  test set images \<br>t10k-labels-idx1-ubyte:  test set labels\</p>
-</blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;图片都被转成二进制放到了文件里面，<br>所以，每一个文件头部几个字节都记录着这些图片的信息，然后才是储存的图片信息</p>
-<blockquote>
-<p>TRAINING SET LABEL FILE (train-labels-idx1-ubyte):</p>
-</blockquote>
-<figure class="highlight plain"><figcaption><span>[type]          [value]         [description] </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0000     32 bit integer  0x00000801(2049) magic number (MSB first) </span><br><span class="line">0004     32 bit integer  60000            number of items </span><br><span class="line">0008     unsigned byte   ??               label </span><br><span class="line">0009     unsigned byte   ??               label </span><br><span class="line">........ </span><br><span class="line">xxxx     unsigned byte   ??               label</span><br></pre></td></tr></table></figure>
-<p>The labels values are 0 to 9.</p>
-<blockquote>
-<p>TRAINING SET IMAGE FILE (train-images-idx3-ubyte):</p>
-</blockquote>
-<figure class="highlight plain"><figcaption><span>[type]          [value]          [description] </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">0000     32 bit integer  0x00000803(2051) magic number </span><br><span class="line">0004     32 bit integer  60000            number of images </span><br><span class="line">0008     32 bit integer  28               number of rows </span><br><span class="line">0012     32 bit integer  28               number of columns </span><br><span class="line">0016     unsigned byte   ??               pixel </span><br><span class="line">0017     unsigned byte   ??               pixel </span><br><span class="line">........ </span><br><span class="line">xxxx     unsigned byte   ??               pixel</span><br></pre></td></tr></table></figure>
-<p>每个像素被转成了0-255,0代表着白色，255代表着黑色。</p>
-<blockquote>
-<p>TEST SET LABEL FILE (t10k-labels-idx1-ubyte):</p>
-</blockquote>
-<figure class="highlight plain"><figcaption><span>[type]          [value]          [description] </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0000     32 bit integer  0x00000801(2049) magic number (MSB first) </span><br><span class="line">0004     32 bit integer  10000            number of items </span><br><span class="line">0008     unsigned byte   ??               label </span><br><span class="line">0009     unsigned byte   ??               label </span><br><span class="line">........ </span><br><span class="line">xxxx     unsigned byte   ??               label</span><br></pre></td></tr></table></figure>
-<p>The labels values are 0 to 9.</p>
-<blockquote>
-<p>TEST SET IMAGE FILE (t10k-images-idx3-ubyte):</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[offset] [type]          [value]          [description] </span><br><span class="line">0000     32 bit integer  0x00000803(2051) magic number </span><br><span class="line">0004     32 bit integer  10000            number of images </span><br><span class="line">0008     32 bit integer  28               number of rows </span><br><span class="line">0012     32 bit integer  28               number of columns </span><br><span class="line">0016     unsigned byte   ??               pixel </span><br><span class="line">0017     unsigned byte   ??               pixel </span><br><span class="line">........ </span><br><span class="line">xxxx     unsigned byte   ??               pixel</span><br></pre></td></tr></table></figure>
-<p>每个像素被转成了0-255,0代表着白色，255代表着黑色。</p>
-<h4 id="三、tensorflow手写数字识别的大致步骤"><a href="#三、tensorflow手写数字识别的大致步骤" class="headerlink" title="三、tensorflow手写数字识别的大致步骤"></a>三、tensorflow手写数字识别的大致步骤</h4><ol>
-<li>将要识别的图片转为灰度图，并且转化为28*28矩阵（单通道，每个像素范围0-255，0为黑色，255为白色，这一点与MNIST中的正好相反）</li>
-<li>将28*28的矩阵转换成1维矩阵（也就是把第2,3,4,5….行矩阵纷纷接入到第一行的后面）</li>
-<li>用一个1*10的向量代表标签，也就是这个数字到底是几，举个例子e数字1对应的矩阵就是[0,1,0,0,0,0,0,0,0,0]</li>
-<li>softmax回归预测图片是哪个数字的概率</li>
-<li>用交叉熵和梯度下降法训练参数</li>
-</ol>
-<h4 id="四、过程讲解"><a href="#四、过程讲解" class="headerlink" title="四、过程讲解"></a>四、过程讲解</h4><h5 id="4-1-准备要识别的图片"><a href="#4-1-准备要识别的图片" class="headerlink" title="4.1 准备要识别的图片"></a>4.1 准备要识别的图片</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;这个部分其实是比较重要的，因为如果处理不得当可能并不一定会有很好的结果，所以按照mnist的标准规范需要将待测图片转为28×28且文字居中的灰度图（其实彩色的也可以，不过就是最后代码需要改一下），目前介绍两种获得待测图片的方法：</p>
-<ol>
-<li>自己用ps或者真的手写一些数字</li>
-<li>将MNIST数据库中的二进制转化成图片，然后用来做测试<pre><code>ps:图片解析  点击进入
-</code></pre></li>
-</ol>
-<h5 id="4-2-将待测图片转换为矩阵"><a href="#4-2-将待测图片转换为矩阵" class="headerlink" title="4.2 将待测图片转换为矩阵"></a>4.2 将待测图片转换为矩阵</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;如图所示，根据黑色部分的浓淡将其转化成微一个浮点数的数组，（白色0,黑色1）</p>
-<p><img src="/uploads/基于tensorflow的MNIST手写数字识别二/2.png" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;看到这里，如果你跟我一样不熟悉python，是不是开始方了，没事，其实python很厉害，自带的PIL图片库一句话就可以搞定</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img=array(Image.open(filename))         //打开然后就被numpy转化了</span><br></pre></td></tr></table></figure>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;如果是彩色的图片，则需要先将它这样子转换一下（我当初并不知道可以转化，傻不垃圾地自己写了一个转化，所以python还是好好学习啊）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lim  = img=array(im.convert(&quot;L&quot;))</span><br></pre></td></tr></table></figure></p>
-<h5 id="4-3将矩阵转化为一维矩阵-以及标签的介绍"><a href="#4-3将矩阵转化为一维矩阵-以及标签的介绍" class="headerlink" title="4.3将矩阵转化为一维矩阵,以及标签的介绍"></a>4.3将矩阵转化为一维矩阵,以及标签的介绍</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;转化为一维的矩阵其实并不难，用python的reshape就能搞定，还是要讲一下标签的表示方法，这个曾经令队友疑惑不久，直到我把这个数组打印出来</p>
-<h5 id="4-3-1标签的来历–有监督学习-和-无监督学习"><a href="#4-3-1标签的来历–有监督学习-和-无监督学习" class="headerlink" title="4.3.1标签的来历–有监督学习 和 无监督学习"></a>4.3.1标签的来历–有监督学习 和 无监督学习</h5><blockquote>
-<p>监督学习：利用一组已知类别的样本调整分类器的参数，使其达到所要求性能的过程，也称为监督训练或有教师学习</p>
-</blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; 举个例子，MNIST自带了训练图片和训练标签，每张图片都有一个对应的标签，比如这张图片是1，标签也就是1,用他们训练程序，之后程序也就能识别测试集中的图片了，比如给定一张2的图片，它能预测出他是2</p>
-<blockquote>
-<p>无监督学习：其中很重要的一类叫聚类</p>
-</blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; 举个例子，如果MNIST中只有训练图片，没有标签，我们的程序能够根据图片的不同特征，将他们分类，但是并不知道他们具体是几，这个其实就是“聚类”</p>
-<h6 id="4-3-2-标签的表示"><a href="#4-3-2-标签的表示" class="headerlink" title="4.3.2 标签的表示"></a>4.3.2 标签的表示</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;在这里标签的表示方式有些特殊，它也是使用了一个一维数组，而不是单纯的数字，上面也说了，他是一个一位数组，0表示方法[1,0,0,0,0,0,0,0,0,0],1表示[0,1,0,0,0,0,0,0,0,0],………， 主要原因其实是这样的，因为softmax回归处理后会生成一个1*10的数组，数组[0,0]的数字表示预测的这张图片是0的概率，[0,1]则表示这张图片表示是1的概率……以此类推，这个数组表示的就是这张图片是哪个数字的概率（已经归一化），因此，实际上，概率最大的那个数字就是我们所预测的值。两者对应来看，标准的标签就是表示图片对应数字的概率为100%，而表示其它数字的概率为0，举个例子，0表示[1,0,0,0,0,0,0,0,0,0]，可以理解为它表示0的概率为1，而表示别的数字的概率为0.</p>
-<h4 id="4-4-softmax回归"><a href="#4-4-softmax回归" class="headerlink" title="4.4 softmax回归"></a>4.4 softmax回归</h4><p> &nbsp;&nbsp;&nbsp;&nbsp;这是一个分类器，可以认为是Logistic回归的扩展，Logistic大家应该都听说过，就是生物学上的S型曲线，它只能分两类，用0和1表示，这个用来表示答题对错之类只有两种状态的问题时足够了，但是像这里的MNIST要把它分成10类，就必须用softmax来进行分类了。  </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;P(y=0)=p0,P(y=1)=p1,p(y=2)=p2……P(y=9)=p9.这些表示预测为数字i的概率，（跟上面标签的格式正好对应起来了）,它们的和为1，即 ∑(pi)=1。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; tensorflow实现了这个函数，我们直接调用这个softmax函数即可，对于原理，可以参考下面的引文，这里只说一下我们这个MNIST demo要用softmax做什么。</p>
-<p>  （注：每一个神经元都可以接收来自网络中其他神经元的一个或多个输入信号，神经元与神经元之间都对应着连接权值，所有的输入加权和决定该神经元是处于激活还是抑制状态。感知器网络的输出只能取值0或1，不具备可导性。而基于敏感度的训练算法要求其输出函数必须处处可导，于是引入了常见的S型可导函数，即在每个神经元的输出之前先经过S型激活函数的处理。）</p>
-<h4 id="4-5-交叉熵"><a href="#4-5-交叉熵" class="headerlink" title="4.5 交叉熵"></a>4.5 交叉熵</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;通俗一点就是，方差大家都知道吧，用它可以衡量预测值和实际值的相差程度，交叉熵其实也是一样的作用，那为什么不用方差呢，因为看sigmoid函数的图像就会发现，它的两侧几乎就是平的，导致它的方差在大部分情况下很小，这样在训练参数的时候收敛地就会很慢，交叉熵就是用来解决这个问题的，它的公式是 <img src="/uploads/基于tensorflow的MNIST手写数字识别二/3.png" alt>,其中，y 是我们预测的概率分布, y’ 是实际的分布。</p>
-<h4 id="4-6-梯度下降"><a href="#4-6-梯度下降" class="headerlink" title="4.6 梯度下降"></a>4.6 梯度下降</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;上面那步也说了，有个交叉熵，根据大伙对方差的理解，值越小，自然就越好，因此我们也要训练使得交叉熵最小的参数，这里梯度下降法就派上用场了，这个解释见上一篇系列文章吧，什么叫训练参数呢，可以想象一下，我们先用实际的值在二位坐标上画一条线，然后我们希望我们预测出来的那些值要尽可能地贴近这条线，我们假设生成我们这条线的公式ax+ax^2+bx^3+…..，我们需要生成这些系数，要求得这些系数，我们就需要各种点代入，然后才能求出，所以其实训练参数跟求参数是个类似的过程。</p>
-<h4 id="4-7-预测"><a href="#4-7-预测" class="headerlink" title="4.7 预测"></a>4.7 预测</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;训练结束以后我们就可以用这个模型去预测新的图片了，就像我们已经求出来了方程，以后只要随意输入一个x，就能求出对应的y。</p>
-<h4 id="5-代码"><a href="#5-代码" class="headerlink" title="5 代码"></a>5 代码</h4><p><a href="https://github.com/wlmnzf/tensorflow-train/tree/master/mnist" target="_blank" rel="noopener">https://github.com/wlmnzf/tensorflow-train/tree/master/mnist</a></p>
-<h3 id="6-参考文章"><a href="#6-参考文章" class="headerlink" title="6 参考文章"></a>6 参考文章</h3><p><span style="font-family:Microsoft YaHei;font-size:18px;"><a href="http://blog.csdn.net/acdreamers/article/details/44663305" target="_blank" rel="noopener">http://blog.csdn.net/acdreamers/article/details/44663305</a>   softmax回归</span></p>
-<p><span style="font-family:Microsoft YaHei;font-size:18px;"><a href="http://wiki.jikexueyuan.com/project/tensorflow-zh/tutorials/mnist_beginners.html" target="_blank" rel="noopener">http://wiki.jikexueyuan.com/project/tensorflow-zh/tutorials/mnist_beginners.html</a>    MNIST学习入门<br></span></p>
-<p><span style="font-family:Microsoft YaHei;font-size:18px;"><a href="http://blog.csdn.net/u012162613/article/details/44239919" target="_blank" rel="noopener">http://blog.csdn.net/u012162613/article/details/44239919</a>   交叉熵代价函数</span></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://csuncle.com/2017/06/13/基于tensorflow的MNIST手写字识别（一）-白话卷积神经网络模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="William Wang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="会打代码的扫地王大爷">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/13/基于tensorflow的MNIST手写字识别（一）-白话卷积神经网络模型/" itemprop="url">基于tensorflow的MNIST手写数字识别（一）--白话卷积神经网络模型</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T15:06:36+08:00">
-                2017-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MachineLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">MachineLearning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="一、卷积神经网络模型知识要点"><a href="#一、卷积神经网络模型知识要点" class="headerlink" title="一、卷积神经网络模型知识要点"></a>一、卷积神经网络模型知识要点</h4><ol>
-<li>卷积</li>
-<li>池化</li>
-<li>全连接</li>
-<li>梯度下降法</li>
-<li>softmax</li>
-</ol>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;本次就是用最简单的方法给大家讲解这些概念，因为具体的各种论文网上都有，连推导都有，所以本文主要就是给大家做个铺垫，如有错误请指正，相互学习共同进步。</p>
-<h4 id="二、卷积神经网络讲解"><a href="#二、卷积神经网络讲解" class="headerlink" title="二、卷积神经网络讲解"></a>二、卷积神经网络讲解</h4><pre><code>##### 2.1卷积神经网络作用
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp; 大家应该知道大名鼎鼎的傅里叶变换，即一个波形，可以有不同的正弦函数和余弦函数进行叠加完成，卷积神经网络也是一样，可以认为一张图片是由各种不同特征的图片叠加而成的，所以它的作用是用来提取特定的特征，举个例子，比如给定一张图片，然后我只想提取它的轮廓，于是就需要卷积神经网络。</p>
-<p><img src="/uploads/基于tensorflow的MNIST手写字识别一/1.png" alt></p>
-<h5 id="2-2卷积神经网络模型"><a href="#2-2卷积神经网络模型" class="headerlink" title="2.2卷积神经网络模型"></a>2.2卷积神经网络模型</h5><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/2.jpg" alt>          </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;如图是大名鼎鼎的LeNet-5（识别数字的卷积网络），效果和论文在此，这里拿出来只是为了说明一下卷积神经网络的模型，就像图中那样，经过多次，卷积，池化（又叫子采样），然后全连接，就完工了。</p>
-<h4 id="2-3-卷积"><a href="#2-3-卷积" class="headerlink" title="2.3 卷积"></a>2.3 卷积</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/3.gif" alt></p>
-<h5 id="2-3-1-卷积的原理"><a href="#2-3-1-卷积的原理" class="headerlink" title="2.3.1 卷积的原理"></a>2.3.1 卷积的原理</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;其实卷积很好理解，左侧绿色的部分的5<em>5矩阵其实一般就是我们输入的图片的灰度值（可以想象成一张5px</em>5px的黑白照片，然后把黑白照片上的每一个点转化成矩阵上的每一个元素），然后上面的黄色部分矩阵就是我们的过滤器，用来提取特征，（其实应该叫滤波器或者卷积核），让卷积核在输入矩阵上进行从左到右，从上到下滑动，然后每一次滑动，两个矩阵对应位置的元素相乘然后求和，就是右边那个矩阵的一个元素。</p>
-<h5 id="2-3-2-滑动的步长-stride"><a href="#2-3-2-滑动的步长-stride" class="headerlink" title="2.3.2 滑动的步长-stride"></a>2.3.2 滑动的步长-stride</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;上面那张图片从左到右，每次滑动的时候只移动一格，但是其实它一次滑动多格，这就是步长</p>
-<h5 id="2-3-3-卷积的边界处理-padding"><a href="#2-3-3-卷积的边界处理-padding" class="headerlink" title="2.3.3 卷积的边界处理-padding"></a>2.3.3 卷积的边界处理-padding</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;如上图所示，卷积后的矩阵只有3*3，比原来的图片要小了，因为边界没有了，所以要考虑这个边界的问题，网上说卷积的边界处理有两种方式：</p>
-<ol>
-<li>丢掉边界，也就是就按右边那个缩小的矩阵来。</li>
-<li>复制边界，也就是把左边的最外层原封不动地复制过去</li>
-</ol>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;但是在看matlab代码和tensorflow代码的时候发现并不是那么简单的事情。</p>
-<p>matlab中conv2这个“padding”参数可以设为三个值FULL，SAME，VALID</p>
-<p>tensorflow中conv2d的”padding”参数可以设为两个值SAME，VALID</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;它们对边界是这样处理的，对输入的矩阵，包裹n层0，然后再按照上面所说的卷积方法进行卷积，这个n怎么求呢，</p>
-<blockquote>
-<p>FULL: edge_row = kernel_row - 1;   edge_cols = kernel_cols - 1; </p>
-</blockquote>
-<blockquote>
-<p>SAME: edge_row = (kernel_row - 1) / 2;   edge_cols = (kernel_cols - 1) / 2; </p>
-</blockquote>
-<blockquote>
-<p>VALID:edge_row = edge_cols = 0;  </p>
-</blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;edge_row就是边的行数，kernel_row就是卷积核的行数，所以上面讲的其实就是VALID模式</p>
-<h5 id="2-3-4-卷积与神经网络"><a href="#2-3-4-卷积与神经网络" class="headerlink" title="2.3.4 卷积与神经网络"></a>2.3.4 卷积与神经网络</h5><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/4.png" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;右下角就是卷积的数学公式，矩阵的对应元素相乘求和，然后加上一个偏置值</p>
-<h4 id="2-4-池化"><a href="#2-4-池化" class="headerlink" title="2.4 池化"></a>2.4 池化</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/5.gif" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;池化分为两种，一种是最大池化，在选中区域中找最大的值作为抽样后的值，另一种是平均值池化，把选中的区域中的平均值作为抽样后的值，这样做的，原因是为了后面全连接的时候减少连接数</p>
-<h4 id="2-5-全连接"><a href="#2-5-全连接" class="headerlink" title="2.5 全连接"></a>2.5 全连接</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/6.png" alt></p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;左边的是没有没有进行卷积的全连接，假设图片是1000<em>1000的，然后用1M的神经元去感知，最后需要10^12个权值作为参数，右边是经过卷积过的，每个圆点是一个神经元，因此只是用一个卷积核的话，其实只要100</em>10^6，数量级就大大减少，而且因为提取的就是所需的特征，所以在加快训练速度的时候对结果并不会产生过大的影响，甚至更为精确。</p>
-<h4 id="2-6-梯度下降法"><a href="#2-6-梯度下降法" class="headerlink" title="2.6 梯度下降法"></a>2.6 梯度下降法</h4><p><img src="/uploads/基于tensorflow的MNIST手写字识别一/7.png" alt><br>&nbsp;&nbsp;&nbsp;&nbsp;可能很多人会问，那个卷积核是怎么得出来的呢，其实它是被各种训练集训练出来的，利用梯度下降法使得我们的参数到达最优解。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;梯度下降法可以这样子理解，假设我们正在下山，要使得下山的路径达到最短，于是我们每走一步之前就判断一下四面八方从哪个方向跨出这一步会最短，不过学过算法的人应该都知道，有个问题就是，我们当前走的这一步是当前位置最短的，但是真正从山上到山下最短路径可能并不路过这一步。也就是说这是个局部最优解，而不是全局最优解，我们得到的路径并不一定是最短的，但是也足够优秀，原因就是，得到最优解费时费力，性价比并不高。这一个知识点还是建议大家伙去看一下斯坦福Andrew Ng的《机器学习》，然后就能理解上面所说的权值参数要少的意义了。</p>
-<h4 id="2-7最后-softmax"><a href="#2-7最后-softmax" class="headerlink" title="2.7最后 softmax"></a>2.7最后 softmax</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;softmax是分类用的，说直白一点就是归一化，因为这个店最好跟例子结合起来，所以暂时不多说，感兴趣的可以去网上找，也可以关注后面的系列文章。</p>
-<h4 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;其实感觉讲的并不深入，因此还是希望各位能自己去仔细钻研一下，这里给各位一些基础吧，读起论文和数学公式来会更轻松一些。</p>
-<h4 id="四、参考"><a href="#四、参考" class="headerlink" title="四、参考"></a>四、参考</h4><blockquote>
-<p>神经网络介绍<br><a href="http://ufldl.stanford.edu/wiki/index.php/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C" target="_blank" rel="noopener">http://ufldl.stanford.edu/wiki/index.php/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C</a></p>
-</blockquote>
-<blockquote>
-<p>技术向：一文读懂卷积神经网络CNN<br><a href="http://www.cnblogs.com/nsnow/p/4562308.html" target="_blank" rel="noopener">http://www.cnblogs.com/nsnow/p/4562308.html</a></p>
-</blockquote>
-<blockquote>
-<p>深度学习（卷积神经网络）一些问题总结<br><a href="http://blog.csdn.net/nan355655600/article/details/17690029" target="_blank" rel="noopener">http://blog.csdn.net/nan355655600/article/details/17690029</a></p>
-</blockquote>
-<blockquote>
-<p>卷积神经网络（CNN）<br><a href="http://ibillxia.github.io/blog/2013/04/06/Convolutional-Neural-Networks/" target="_blank" rel="noopener">http://ibillxia.github.io/blog/2013/04/06/Convolutional-Neural-Networks/</a></p>
-</blockquote>
-<blockquote>
-<p>Deep Learning模型之：CNN卷积神经网络（一）深度解析CNN<br><a href="http://www.cnblogs.com/nsnow/p/4562363.html" target="_blank" rel="noopener">http://www.cnblogs.com/nsnow/p/4562363.html</a></p>
-</blockquote>
-<blockquote>
-<p>数据挖掘系列（10）——卷积神经网络算法的一个实现(转)<br><a href="http://blog.sina.com.cn/s/blog_4ff49c7e0102vl5m.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_4ff49c7e0102vl5m.html</a></p>
-</blockquote>
-<blockquote>
-<p>Matlab/DeepLearnToolbox<br><a href="https://github.com/rasmusbergpalm/DeepLearnToolbox" target="_blank" rel="noopener">https://github.com/rasmusbergpalm/DeepLearnToolbox</a></p>
-</blockquote>
-<blockquote>
-<p>Deep Learning论文笔记之（四）CNN卷积神经网络推导和实现<br><a href="http://blog.csdn.net/zouxy09/article/details/9993371" target="_blank" rel="noopener">http://blog.csdn.net/zouxy09/article/details/9993371</a></p>
-</blockquote>
-<blockquote>
-<p>Deep Learning论文笔记之（五）CNN卷积神经网络代码理解<br><a href="http://blog.csdn.net/zouxy09/article/details/9993743" target="_blank" rel="noopener">http://blog.csdn.net/zouxy09/article/details/9993743</a></p>
-</blockquote>
-<blockquote>
-<p>斯坦福  池化<br><a href="http://ufldl.stanford.edu/wiki/index.php/%E6%B1%A0%E5%8C%96" target="_blank" rel="noopener">http://ufldl.stanford.edu/wiki/index.php/%E6%B1%A0%E5%8C%96</a></p>
-</blockquote>
-<blockquote>
-<p>CNN神经网络层次分析<br><a href="http://blog.csdn.net/liulina603/article/details/44915905" target="_blank" rel="noopener">http://blog.csdn.net/liulina603/article/details/44915905</a></p>
-</blockquote>
-<blockquote>
-<p>深度学习笔记1(卷积神经网络)<br><a href="http://blog.csdn.net/lu597203933/article/details/46575779" target="_blank" rel="noopener">http://blog.csdn.net/lu597203933/article/details/46575779</a></p>
-</blockquote>
-<blockquote>
-<p>CNN公式推导<br><a href="http://blog.csdn.net/lu597203933/article/details/46575871" target="_blank" rel="noopener">http://blog.csdn.net/lu597203933/article/details/46575871</a></p>
-</blockquote>
-<blockquote>
-<p>前向型神经网络之BPNN(附源码)<br><a href="http://blog.csdn.net/heyongluoyao8/article/details/48213345" target="_blank" rel="noopener">http://blog.csdn.net/heyongluoyao8/article/details/48213345</a></p>
-</blockquote>
-<blockquote>
-<p>残差与误差的区别<br><a href="http://wenku.baidu.com/link?url=DUDkyV1tnD_SEGzgcxb9AaFU5VUcP9ISNR8q39-fpCcq_LGUHY7ucx5vDwr-MCfU_ofr7yIQZ_UgTfiivTtaDOulW2DD3pGs07eYmiQv5P7" target="_blank" rel="noopener">http://wenku.baidu.com/link?url=DUDkyV1tnD_SEGzgcxb9AaFU5VUcP9ISNR8q39-fpCcq_LGUHY7ucx5vDwr-MCfU_ofr7yIQZ_UgTfiivTtaDOulW2DD3pGs07eYmiQv5P7</a></p>
-</blockquote>
-<blockquote>
-<p>反向传导算法<br><a href="http://deeplearning.stanford.edu/wiki/index.php/%E5%8F%8D%E5%90%91%E4%BC%A0%E5%AF%BC%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">http://deeplearning.stanford.edu/wiki/index.php/%E5%8F%8D%E5%90%91%E4%BC%A0%E5%AF%BC%E7%AE%97%E6%B3%95</a></p>
-</blockquote>
-<blockquote>
-<p>图像卷积与滤波的一些知识点<br><a href="http://blog.csdn.net/zouxy09/article/details/49080029" target="_blank" rel="noopener">http://blog.csdn.net/zouxy09/article/details/49080029</a></p>
-</blockquote>
-<blockquote>
-<p>CNN卷积神经网络原理简介+代码详解<br><a href="http://doc.okbase.net/u012162613/archive/126058.html" target="_blank" rel="noopener">http://doc.okbase.net/u012162613/archive/126058.html</a></p>
-</blockquote>
-<blockquote>
-<p>卷积神经网络（lenet）<br><a href="http://deeplearning.net/tutorial/lenet.html" target="_blank" rel="noopener">http://deeplearning.net/tutorial/lenet.html</a></p>
-</blockquote>
-<blockquote>
-<p>激活函数的作用<br><a href="https://www.zhihu.com/question/22334626" target="_blank" rel="noopener">https://www.zhihu.com/question/22334626</a></p>
-</blockquote>
-<blockquote>
-<p>神经网络入门第一部分<br><a href="http://blog.sina.com.cn/s/blog_6a67b5c50100tspb.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_6a67b5c50100tspb.html</a></p>
-</blockquote>
-<blockquote>
-<p>神经网络入门第二部分<br><a href="http://blog.sina.com.cn/s/blog_6a67b5c50100tspe.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_6a67b5c50100tspe.html</a></p>
-</blockquote>
-<blockquote>
-<p>卷积神经网络全面解析<br><a href="http://www.moonshile.com/post/juan-ji-shen-jing-wang-luo-quan-mian-jie-xi" target="_blank" rel="noopener">http://www.moonshile.com/post/juan-ji-shen-jing-wang-luo-quan-mian-jie-xi</a></p>
-</blockquote>
-<blockquote>
-<p>Deep learning：四十一(Dropout简单理解)<br><a href="http://www.cnblogs.com/tornadomeet/p/3258122.html" target="_blank" rel="noopener">http://www.cnblogs.com/tornadomeet/p/3258122.html</a></p>
-</blockquote>
-<blockquote>
-<p>DeepLearning (六) 学习笔记整理：神经网络以及卷积神经网络<br><a href="http://www.07net01.com/2015/11/963741.html" target="_blank" rel="noopener">http://www.07net01.com/2015/11/963741.html</a></p>
-</blockquote>
-<blockquote>
-<p>深度卷积网络CNN与图像语义分割<br><a href="http://blog.csdn.net/xiahouzuoxin/article/details/47789361" target="_blank" rel="noopener">http://blog.csdn.net/xiahouzuoxin/article/details/47789361</a></p>
-</blockquote>
-<blockquote>
-<p>MATLAB conv2卷积的实现<br><a href="http://blog.csdn.net/celerychen2009/article/details/38852105" target="_blank" rel="noopener">http://blog.csdn.net/celerychen2009/article/details/38852105</a><br></p>
-</blockquote>
-<div style="color:white"><br><span>William</span><br><span>会打代码的扫地王大爷</span><br><span>wlmnzf</span><br><span>中科院信工所</span><br><span>IIE</span><br><span>CAS</span><br><span>csuncle</span><br><span>丁洁的男朋友</span><br><span>丁洁的人</span><br><span>王立敏</span><br></div>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
 
     <div>
       
@@ -2386,8 +2403,8 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="William Wang">
-          <p class="site-author-name" itemprop="name">William Wang</p>
+          <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Limin Wang">
+          <p class="site-author-name" itemprop="name">Limin Wang</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
            
@@ -2397,7 +2414,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2408,7 +2425,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -2419,7 +2436,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -2451,11 +2468,11 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="http://weibo.com/1505236542" target="_blank" title="Weibo">
+                <a href="https://scholar.google.com/citations?user=6zXbMxQAAAAJ&hl=en" target="_blank" title="Scholar">
                   
-                    <i class="fa fa-fw fa-weibo"></i>
+                    <i class="fa fa-fw fa-google"></i>
                   
-                  Weibo
+                  Scholar
                 </a>
               </span>
             
@@ -2487,12 +2504,20 @@
                   <a href="https://note.junyangz.com" title="Junyangz" target="_blank">Junyangz</a>
                 </li>
               
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.dchengsd.com" title="Dch's Blog (dchengsd)" target="_blank">Dch's Blog (dchengsd)</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://taoxiaojie.github.io/" title="Myth Blog" target="_blank">Myth Blog</a>
+                </li>
+              
             </ul>
           </div>
         
 
         
-
+   
 
       </section>
 
@@ -2513,11 +2538,11 @@
         <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">William Wang</span>
+  <span class="author" itemprop="copyrightHolder">Limin Wang</span>
 </div>
 
 
@@ -2667,8 +2692,8 @@
    
    
    
-   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/gitment.browser.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/theme-next/theme-next-gitment@1/default.css">
    
        <script type="text/javascript">
            function ShowGitment(){
